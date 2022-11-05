@@ -182,7 +182,7 @@
                         var feature4 = document.getElementById("feature4").value;
                         var feature5 = document.getElementById("feature5").value;
                         var http = new XMLHttpRequest();
-                        http.open("POST", "api/mlsupplychainfuncapp", true);
+                        http.open("POST", "api/mlsupplychain", true);
                         http.setRequestHeader("Content-Type", "application/json");
                         http.onreadystatechange = function () {
                             if (http.readyState == 4 && http.status == 200) {
