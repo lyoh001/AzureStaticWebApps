@@ -1,0 +1,135 @@
+<html>
+
+<head>
+    <link href="/mlmobileuurka/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>MobileUurka</title>
+</head>
+
+<body>
+    <header id="dashboard">
+        <h1><b>MOBILE</b> UURKA</h1>
+        <hr>
+        Maternal Mortality Dashboard
+        <hr>
+        <iframe title="mobileuurka - Page 1" width="910" height="572"
+            src="https://app.powerbi.com/view?r=eyJrIjoiZDIwMzAxNjQtNGNkOC00ZTI1LTkxZTgtMzE2YzVkZDBkODRiIiwidCI6IjcyMmVhMGJlLTNlMWMtNGIxMS1hZDZmLTk0MDFkNjg1NmUyNCJ9"
+            frameborder="0" allowFullScreen="true"></iframe>
+    </header>
+    <header id="model">
+        <hr>
+        Maternal Risk Level Prediction
+        <hr>
+    </header>
+    <main>
+        <article id="mainLeft">
+            <section>
+                <h2>NOTEBOOK</h2>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/DLMobileUurka/blob/main/notebook/notebook.ipynb">Risk Level
+                        Prediction Notebook</a>
+                </p>
+            </section>
+            <section>
+                <h2>PROJECT</h2>
+                <p>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <a href="https://omdena.com/projects/ai-maternal-care/">Omdena Project</a>
+                </p>
+                <p></p>
+            </section>
+            <section>
+                <h2>SKILLS</h2>
+                <p>Python, Machine Learning, Deep Learning, DevOps, MLOps, AWS, Azure, Power BI, SQL, IaC</p>
+            </section>
+            <section>
+                <h2>CONTACT</h2>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001">github.com/lyoh001</a>
+                </p>
+                <p>
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    <a href="https://linkedin.com/in/lyoh001">linkedin.com/in/lyoh001</a>
+                </p>
+                <p>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <a href="http://lyoh001.ml">lyoh001.ml</a>
+                </p>
+                <p>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <a href="mailto:lyoh001@hotmail.com">lyoh001@hotmail.com</a>
+                </p>
+            </section>
+        </article>
+        <article id="mainRight">
+            <section>
+                <h2>PROBLEM</h2>
+                <p>Approximately 70% of all maternal mortality cases in the world occur in Sub-Saharan Africa countries
+                    because of unequally despaired, under-resourced healthcare settings and low numbers of skilled
+                    healthcare workers.
+
+                    Somalia has the 6th highest MMR worldwide, with 1 in 18 dying from pregnancy-related complications.
+                    Unfortunately, most of these complications could have been easily cured, avoided, or managed.
+
+                    The technology nowadays allows for remote tracking of women’s health status, which is vital since
+                    70% of the population lives outside urban areas with low or no access to healthcare facilities. The
+                    urgency for the technology is high because the average age in Somalia is 17 years, and the typical
+                    childbearing age is between 15 and 45, implying that there will be an exponential increase in
+                    pregnancies over the next three decades. In the next two years, the need will increase by 25%, but
+                    the shortage of healthcare workers remains.
+                </p>
+            </section>
+            <section>
+                <h2>GOALS</h2>
+                <p>The AI solution that will be built will let a person send her matrix of data (related to personal
+                    health) and the AI solution will predict the potential health hazards the person may encounter
+                    during pregnancy. The goal of such an AI system will be to reduce maternal mortality.
+
+                    Optionally, the AI challenge may also build an end-to-end tool that will let a person upload her
+                    data via the tool and the person can see the outcome from the AI model.
+                </p>
+            </section>
+            <section>
+                <h2>PREDICTION</h2>
+                <p>
+                    Please populate the input fields listed below and click predict to continue.
+                </p>
+                <ol>
+                    <li><input id="feature1" placeholder="Age"></li>
+                    <li><input id="feature2" placeholder="SystolicBP"></li>
+                    <li><input id="feature3" placeholder="DiastolicBP"></li>
+                    <li><input id="feature4" placeholder="BS"></li>
+                    <li><input id="feature5" placeholder="BodyTemp"></li>
+                    <li><input id="feature6" placeholder="HeartRate"></li>
+                    <button onclick="predict();">predict</button>
+                </ol>
+                <p>Prediction: <b id="prediction">...</b></p>
+                <p>(*It may take upto 15 seconds to compute the prediction.)</p>
+                <script>
+                    function predict() {
+                        var feature1 = document.getElementById("feature1").value;
+                        var feature2 = document.getElementById("feature2").value;
+                        var feature3 = document.getElementById("feature3").value;
+                        var feature4 = document.getElementById("feature4").value;
+                        var feature5 = document.getElementById("feature5").value;
+                        var feature6 = document.getElementById("feature6").value;
+                        var http = new XMLHttpRequest();
+                        http.open("POST", "api/mlmobileuurka", true);
+                        http.setRequestHeader("Content-Type", "application/json");
+                        http.onreadystatechange = function () {
+                            if (http.readyState == 4 && http.status == 200) {
+                                var response = http.responseText
+                                document.getElementById("prediction").innerHTML = response;
+                            }
+                        }
+                        http.send(JSON.stringify({ "Age": [feature1], "SystolicBP": [feature2], "DiastolicBP": [feature3], "BS": [feature4], "BodyTemp": [feature5], "HeartRate": [feature6] }));
+                    }
+                </script>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>
