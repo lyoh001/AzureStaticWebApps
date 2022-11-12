@@ -3,30 +3,30 @@ body {
   font-size: 12px;
   max-width: 960px;
   margin: auto;
-  color: #272B34;
-  background-color: #ffffff;
+  color: #ffffff;
+  background-color: #333333;
 }
 
 a:link {
-  color: #272B34;
+  color: #99CA3B;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:visited {
-  color: #272B34;
+  color: #99CA3B;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:hover {
-  color: #272B34;
+  color: #99CA3B;
   background-color: transparent;
   text-decoration: underline;
 }
 
 a:active {
-  color: #272B34;
+  color: #99CA3B;
   background-color: transparent;
   text-decoration: underline;
 }
@@ -80,12 +80,7 @@ h2 {
 
 input {
   text-align: left;
-  width: 35%;
-}
-
-select {
-  text-align: left;
-  width: 35%;
+  width: 30%;
 }
 
 #mainLeft {
