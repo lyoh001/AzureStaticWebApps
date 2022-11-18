@@ -80,7 +80,12 @@ h2 {
 
 input {
   text-align: left;
-  width: 30%;
+  width: 35%;
+}
+
+select {
+  text-align: left;
+  width: 35%;
 }
 
 #mainLeft {

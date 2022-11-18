@@ -1,16 +1,16 @@
 <html>
 
 <head>
-    <link href="/mlhospitality/styles.css" rel="stylesheet">
+    <link href="/mltelecom/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>Hospitality Bookings</title>
+    <title>Telecom Market Insights</title>
 </head>
 
 <body>
     <header id="dashboard">
-        <h1><b>HOSPITALITY</b> BOOKINGS</h1>
+        <h1><b>TELECOM</b> MARKET</h1>
         <hr>
-        Hospitality Bookings Dashboard
+        Telecom Market Insights Dashboard
         <hr>
         <iframe title="hospitality_bookings - Page 1" width="910" height="572"
             src="https://app.powerbi.com/view?r=eyJrIjoiOTFlZDNiZGYtNzJjNy00Y2Y1LWE2ODUtZWRmMDhjMTU0ZWRlIiwidCI6IjcyMmVhMGJlLTNlMWMtNGIxMS1hZDZmLTk0MDFkNjg1NmUyNCJ9"
@@ -18,7 +18,7 @@
     </header>
     <header id="model">
         <hr>
-        Hospitality Bookings Prediction Model
+        Telecom Market Insights Prediction Model
         <hr>
     </header>
     <main>
@@ -27,8 +27,8 @@
                 <h2>NOTEBOOK</h2>
                 <p>
                     <i class="fab fa-github" aria-hidden="true"></i>
-                    <a href="https://github.com/lyoh001/AzureFunctions/blob/main/mlhospitality/notebook/notebook.ipynb">Jupyter
-                        Notebook</a>
+                    <a href="https://github.com/lyoh001/AzureFunctions/blob/main/mltelecom/notebook/notebook.ipynb">Plan
+                        Revenue Prediction Analysis</a>
                 </p>
             </section>
             <section>
@@ -57,15 +57,16 @@
         </article>
         <article id="mainRight">
             <section>
-                <h2>ABOUT</h2>
-                <p>Atliq Grands owns multiple five-star hotels across India. They have been in the hospitality industry
-                    for the past 20 years. Due to strategic moves from other competitors and ineffective decision-making
-                    in management, Atliq Grands are losing its market share and revenue in the luxury/business hotels
-                    category. As a strategic move, the managing director of Atliq Grands wanted to incorporate “Business
-                    and Data Intelligence” in order to regain their market share and revenue. However, they do not have
-                    an in-house data analytics team to provide them with these insights.
-                    Their revenue management team had decided to hire a 3rd party service provider to provide them
-                    insights from their historical data.
+                <h2>PROBLEM</h2>
+                <p>AtliQo is one of the leading telecom providers in India and launched it's 5G plans in May 2022 along
+                    with other telecom providers.
+
+                    However, the management noticed a decline in their active users and revenue growth post 5G launch in
+                    May 2022. Atliqo's business director requested their analytics team to provide a comparison report
+                    of KPIs between pre and post-periods of the 5G launch. The management is keen to compare the
+                    performance between these periods and get insights which would enable them to make informed
+                    decisions to recover their active user rate and other key metrics. They also wonder if they can
+                    optimize their internet plans to get more active users.
                 </p>
             </section>
             <section>
@@ -74,19 +75,33 @@
                     Please populate the input fields listed below and click predict to continue.
                 </p>
                 <ol>
-                    <li><input id="feature1" placeholder="City Code"></li>
-                    <li><input id="feature2" placeholder="Accomodation Type"></li>
-                    <li><input id="feature3" placeholder="Reco Insurance Type"></li>
-                    <li><input id="feature4" placeholder="Upper Age"></li>
-                    <li><input id="feature5" placeholder="Lower Age"></li>
-                    <li><input id="feature6" placeholder="Is Spouse"></li>
-                    <li><input id="feature7" placeholder="Health Indicator"></li>
-                    <li><input id="feature8" placeholder="Holding Policy Duration"></li>
-                    <li><input id="feature9" placeholder="Holding Policy Type"></li>
-                    <li><input id="feature10" placeholder="Reco Policy Catalogue"></li>
+                    <li>
+                        <select name="feature1" id="feature1">
+                            <option value="Mumbai">City Name</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Pune">Pune</option>
+                            <option value="Ahmedabad">Ahmedabad</option>
+                            <option value="Jaipur">Jaipur</option>
+                            <option value="Lucknow">Lucknow</option>
+                            <option value="Patna">Patna</option>
+                            <option value="Coimbatore">Coimbatore</option>
+                            <option value="Chandigarh">Chandigarh</option>
+                            <option value="Gurgaon">Gurgaon</option>
+                            <option value="Raipur">Raipur</option>
+                        </select>
+                    </li>
+                    <li><input id="feature2" name="feature2" type="month" value="2022-10" min="2022-10" max="2023-12">
+                    </li>
+                    <li><input id="feature3" placeholder="Data Size in Gb (0.1-30)"></li>
+                    <li><input id="feature4" placeholder="Valid Period in Days (1-180)"></li>
                     <button onclick="predict();">predict</button>
                 </ol>
-                <p>Prediction: $<b id="prediction">...</b></p>
+                <p>Monthly Plan Revenue Prediction: <b id="prediction">...</b></p>
                 <p>(*It may take upto 10 seconds to compute the prediction.)</p>
                 <script>
                     function predict() {
@@ -94,14 +109,8 @@
                         var feature2 = document.getElementById("feature2").value;
                         var feature3 = document.getElementById("feature3").value;
                         var feature4 = document.getElementById("feature4").value;
-                        var feature5 = document.getElementById("feature5").value;
-                        var feature6 = document.getElementById("feature6").value;
-                        var feature7 = document.getElementById("feature7").value;
-                        var feature8 = document.getElementById("feature8").value;
-                        var feature9 = document.getElementById("feature9").value;
-                        var feature10 = document.getElementById("feature10").value;
                         var http = new XMLHttpRequest();
-                        http.open("POST", "api/mlhospitality", true);
+                        http.open("POST", "api/mltelecom", true);
                         http.setRequestHeader("Content-Type", "application/json");
                         http.onreadystatechange = function () {
                             if (http.readyState == 4 && http.status == 200) {
@@ -109,7 +118,7 @@
                                 document.getElementById("prediction").innerHTML = response;
                             }
                         }
-                        http.send(JSON.stringify({ "City_Code": [feature1], "Accomodation_Type": [feature2], "Reco_Insurance_Type": [feature3], "Upper_Age": [feature4], "Lower_Age": [feature5], "Is_Spouse": [feature6], "Health Indicator": [feature7], "Holding_Policy_Duration": [feature8], "Holding_Policy_Type": [feature9], "Reco_Policy_Cat": [feature10] }));
+                        http.send(JSON.stringify({ "city_name": [feature1], "time_period": [feature2], "data_size": [feature3], "valid_period": [feature4] }));
                     }
                 </script>
             </section>
