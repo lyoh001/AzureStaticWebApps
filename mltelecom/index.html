@@ -90,20 +90,32 @@
                     </li>
                     <li><input id="feature2" type="month" value="2022-10" min="2022-10" max="2023-12">
                     </li>
-                    <li><input id="feature3" type="number" min="1" max="180" placeholder="Valid Period (1-180) Days">
-                    </li>
-                    <li><label for="feature4">Data Size in Gb (0.1-30)</label></li>
+                    <li><label for="feature3">Valid Period (1-180) Days</label></li>
                     <div class="slider">
-                        <input type="range" min="0.1" max="30" value="15" step="0.1" class="slider" id="feature4">
-                        <p>Data: <span id="feature4_output"></span> Gb</p>
+                        <input type="range" min="1" max="180" value="1" step="1" class="slider" id="feature3">
+                        <p><span id="feature3_output"></span> Days</p>
                     </div>
                     <script>
-                        var slider = document.getElementById("feature4");
-                        var output = document.getElementById("feature4_output");
-                        output.innerHTML = slider.value;
+                        var slider3 = document.getElementById("feature3");
+                        var output3 = document.getElementById("feature3_output");
+                        output3.innerHTML = slider3.value;
 
-                        slider.oninput = function () {
-                            output.innerHTML = this.value;
+                        slider3.oninput = function () {
+                            output3.innerHTML = this.value;
+                        }
+                    </script>
+                    <li><label for="feature4">Data Size (0.1-30) Gb</label></li>
+                    <div class="slider">
+                        <input type="range" min="0.1" max="30" value="0.1" step="0.1" class="slider" id="feature4">
+                        <p><span id="feature4_output"></span> Gb</p>
+                    </div>
+                    <script>
+                        var slider4 = document.getElementById("feature4");
+                        var output4 = document.getElementById("feature4_output");
+                        output4.innerHTML = slider4.value;
+
+                        slider4.oninput = function () {
+                            output4.innerHTML = this.value;
                         }
                     </script>
                     <button onclick="predict();">predict</button>
