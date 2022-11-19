@@ -158,17 +158,30 @@
                             <option value="AM Tea 100">AM Tea 100</option>
                         </select>
                     </li>
-                    <li><input id="feature3" placeholder="Order Quantity (100)"></li>
-                    <li><input id="feature4" name="feature4" type="date" value="2022-01-01" min="2022-01-01"
+                    <li><input id="feature3" name="feature3" type="date" value="2022-01-01" min="2022-01-01"
                             max="2022-12-31"></li>
                     <li>
-                        <select name="feature5" id="feature5">
+                        <select name="feature4" id="feature4">
                             <option value="1">Days for Delivery</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                         </select>
                     </li>
+                    <li><label for="feature5">Order Quantity (20-500)</label></li>
+                    <div class="slider">
+                        <input type="range" min="20" max="500" value="20" step="1" class="slider" id="feature5">
+                        <p>Qty: <span id="feature5_output"></span></p>
+                    </div>
+                    <script>
+                        var slider5 = document.getElementById("feature5");
+                        var output5 = document.getElementById("feature5_output");
+                        output5.innerHTML = slider5.value;
+
+                        slider5.oninput = function () {
+                            output5.innerHTML = this.value;
+                        }
+                    </script>
                 </ol>
                 <button onclick="predict();">predict</button>
                 <p>Prediction: <b id="prediction">...</b></p>
@@ -189,7 +202,7 @@
                                 document.getElementById("prediction").innerHTML = response;
                             }
                         }
-                        http.send(JSON.stringify({ "customer_id": [feature1], "product_name": [feature2], "order_qty": [feature3], "order_date": [feature4], "days_for_delivery": [feature5] }));
+                        http.send(JSON.stringify({ "customer_id": [feature1], "product_name": [feature2], "order_date": [feature3], "days_for_delivery": [feature4], "order_qty": [feature5] }));
                     }
                 </script>
             </section>
