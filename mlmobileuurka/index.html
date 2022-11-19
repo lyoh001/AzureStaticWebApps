@@ -3,7 +3,7 @@
 <head>
     <link href="/mlmobileuurka/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>MobileUurka</title>
+    <title>Mobile Uurka</title>
 </head>
 
 <body>
@@ -88,17 +88,96 @@
                 </p>
             </section>
             <section>
-                <h2>PREDICTION</h2>
+                <h2>RISK PREDICTION</h2>
                 <p>
                     Please populate the input fields listed below and click predict to continue.
                 </p>
                 <ol>
-                    <li><input id="feature1" placeholder="Age"></li>
-                    <li><input id="feature2" placeholder="SystolicBP"></li>
-                    <li><input id="feature3" placeholder="DiastolicBP"></li>
-                    <li><input id="feature4" placeholder="BS"></li>
-                    <li><input id="feature5" placeholder="BodyTemp"></li>
-                    <li><input id="feature6" placeholder="HeartRate"></li>
+                    <li><label for="feature1">Age (10-70)</label></li>
+                    <div class="slider">
+                        <input type="range" min="10" max="70" value="10" step="1" class="slider" id="feature1">
+                        <p><span id="feature1_output"></span></p>
+                    </div>
+                    <script>
+                        var slider1 = document.getElementById("feature1");
+                        var output1 = document.getElementById("feature1_output");
+                        output1.innerHTML = slider1.value;
+
+                        slider1.oninput = function () {
+                            output1.innerHTML = this.value;
+                        }
+                    </script>
+
+                    <li><label for="feature2">Systolic BP (70-160)</label></li>
+                    <div class="slider">
+                        <input type="range" min="70" max="160" value="70" step="1" class="slider" id="feature2">
+                        <p><span id="feature2_output"></span> </p>
+                    </div>
+                    <script>
+                        var slider2 = document.getElementById("feature2");
+                        var output2 = document.getElementById("feature2_output");
+                        output2.innerHTML = slider2.value;
+
+                        slider2.oninput = function () {
+                            output2.innerHTML = this.value;
+                        }
+                    </script>
+                    <li><label for="feature3">Diastolic BP (49-100)</label></li>
+                    <div class="slider">
+                        <input type="range" min="49" max="100" value="49" step="1" class="slider" id="feature3">
+                        <p><span id="feature3_output"></span> </p>
+                    </div>
+                    <script>
+                        var slider3 = document.getElementById("feature3");
+                        var output3 = document.getElementById("feature3_output");
+                        output3.innerHTML = slider3.value;
+
+                        slider3.oninput = function () {
+                            output3.innerHTML = this.value;
+                        }
+                    </script>
+                    <li><label for="feature4">BS (6-20)</label></li>
+                    <div class="slider">
+                        <input type="range" min="6" max="20" value="6" step="1" class="slider" id="feature4">
+                        <p><span id="feature4_output"></span> </p>
+                    </div>
+                    <script>
+                        var slider4 = document.getElementById("feature4");
+                        var output4 = document.getElementById("feature4_output");
+                        output4.innerHTML = slider4.value;
+
+                        slider4.oninput = function () {
+                            output4.innerHTML = this.value;
+                        }
+                    </script>
+                    <li><label for="feature5">BodyTemp (98-103)</label></li>
+                    <div class="slider">
+                        <input type="range" min="98" max="103" value="98" step="1" class="slider" id="feature5">
+                        <p><span id="feature5_output"></span> </p>
+                    </div>
+                    <script>
+                        var slider5 = document.getElementById("feature5");
+                        var output5 = document.getElementById("feature5_output");
+                        output5.innerHTML = slider5.value;
+
+                        slider5.oninput = function () {
+                            output5.innerHTML = this.value;
+                        }
+                    </script>
+                    <li><label for="feature6">HeartRate (60-90)</label></li>
+                    <div class="slider">
+                        <input type="range" min="60" max="90" value="60" step="1" class="slider" id="feature6">
+                        <p><span id="feature6_output"></span> </p>
+                    </div>
+                    <script>
+                        var slider6 = document.getElementById("feature6");
+                        var output6 = document.getElementById("feature6_output");
+                        output6.innerHTML = slider6.value;
+
+                        slider6.oninput = function () {
+                            output6.innerHTML = this.value;
+                        }
+                    </script>
                     <button onclick="predict();">predict</button>
                 </ol>
                 <p>Prediction: <b id="prediction">...</b></p>
