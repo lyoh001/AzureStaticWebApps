@@ -25,7 +25,7 @@
                     <a
                         href="https://github.com/lyoh001/AzureFunctions/blob/main/mlsupplychain/notebook/notebook_otd.ipynb">On
                         Time
-                        Delievery Prediction
+                        Delivery Prediction
                         Notebook</a>
                 </p>
                 <p>
@@ -33,7 +33,7 @@
                     <a
                         href="https://github.com/lyoh001/AzureFunctions/blob/main/mlsupplychain/notebook/notebook_ifd.ipynb">In
                         Full
-                        Delievery Prediction
+                        Delivery Prediction
                         Notebook</a>
                 </p>
             </section>
@@ -71,25 +71,7 @@
         </article>
         <article id="mainRight">
             <section>
-                <h2>PROBLEM</h2>
-                <p>AtliQ Mart is a growing FMCG manufacturer headquartered in Gujarat, India. It is currently
-                    operational in three cities Surat, Ahmedabad and Vadodra. They want to expand to other metro/tier1
-                    cities in the next 2 years.
-
-                    AtliQ Mart is currently facing a problem where a few key customers did not extend the annual
-                    contract due to service issues. It is speculated that some of the essential products were either not
-                    delivered on time or not delivered in full over a continued period, which could have resulted in bad
-                    customer service. Management wants to fix this issue before expanding to other cities and requested
-                    their supply chain analytics team to track the 'On time' and 'In Full' delivery service level for
-                    all the customers on a daily basis so that they can respond swiftly to these issues.
-
-                    The Supply Chain team decided to use a standard approach to measure the service level in which they
-                    will measure 'on-time delivery (OT) %', 'In-full delivery (IF) %' and OnTime in full (OTIF) % of the
-                    customer orders on a daily basis against the target service level set for each customer.
-                </p>
-            </section>
-            <section>
-                <h2>PREDICTION</h2>
+                <h2>AI DELIVERY PREDICTION</h2>
                 <p>
                     Please populate the input fields listed below and click predict to continue.
                 </p>
@@ -205,6 +187,24 @@
                         http.send(JSON.stringify({ "customer_id": [feature1], "product_name": [feature2], "order_date": [feature3], "days_for_delivery": [feature4], "order_qty": [feature5] }));
                     }
                 </script>
+            </section>
+            <section>
+                <h2>PROBLEM STATEMENT</h2>
+                <p>AtliQ Mart is a growing FMCG manufacturer headquartered in Gujarat, India. It is currently
+                    operational in three cities Surat, Ahmedabad and Vadodra. They want to expand to other metro/tier1
+                    cities in the next 2 years.
+
+                    AtliQ Mart is currently facing a problem where a few key customers did not extend the annual
+                    contract due to service issues. It is speculated that some of the essential products were either not
+                    delivered on time or not delivered in full over a continued period, which could have resulted in bad
+                    customer service. Management wants to fix this issue before expanding to other cities and requested
+                    their supply chain analytics team to track the 'On time' and 'In Full' delivery service level for
+                    all the customers on a daily basis so that they can respond swiftly to these issues.
+
+                    The Supply Chain team decided to use a standard approach to measure the service level in which they
+                    will measure 'on-time delivery (OT) %', 'In-full delivery (IF) %' and OnTime in full (OTIF) % of the
+                    customer orders on a daily basis against the target service level set for each customer.
+                </p>
             </section>
         </article>
     </main>
