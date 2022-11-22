@@ -1,7 +1,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
-  max-width: 960px;
+  max-width: 75%;
   margin: auto;
   color: #333333;
   background-color: #ffffff;
@@ -45,7 +45,7 @@ h2 {
 
 main {
   display: grid;
-  grid-template-columns: 40% 60%;
+  grid-template-columns: 30% 60%;
   margin-top: 3em;
 }
 
