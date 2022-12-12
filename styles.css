@@ -3,30 +3,30 @@ body {
   font-size: 12px;
   max-width: 75%;
   margin: auto;
-  color: #FFFFFF;
-  background-color: #000814;
+  color: #FCFAF9;
+  background-color: #333333;
 }
 
 a:link {
-  color: #FFC300;
+  color: #48E5C2;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:visited {
-  color: #FFC300;
+  color: #48E5C2;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:hover {
-  color: #FFC300;
+  color: #48E5C2;
   background-color: transparent;
   text-decoration: underline;
 }
 
 a:active {
-  color: #FFC300;
+  color: #48E5C2;
   background-color: transparent;
   text-decoration: underline;
 }
