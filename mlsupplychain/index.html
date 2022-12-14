@@ -164,10 +164,10 @@
                             output5.innerHTML = this.value;
                         }
                     </script>
+                    <button
+                        onclick="document.getElementById('prediction').innerHTML = 'Computing the prediction. It may take upto 10~15 seconds during the process.'; predict();">predict</button>
                 </ol>
-                <button onclick="predict();">predict</button>
                 <p>Stock Delivery Prediction: <b style="color:#8ECAE6" id="prediction">...</b></p>
-                <p>(*It may take upto 10 seconds to compute the prediction.)</p>
                 <script>
                     function predict() {
                         var feature1 = document.getElementById("feature1").value;
