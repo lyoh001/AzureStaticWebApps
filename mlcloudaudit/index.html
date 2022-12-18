@@ -70,13 +70,13 @@
                     <button
                         onclick="document.getElementById('prediction').innerHTML = 'Computing the prediction. It may take up to 10 seconds during the process.'; predict();">predict</button>
                 </ol>
-                <p>Monthly Cloud Usage Prediction: <b style="color:#D00000" id="prediction">...</b></p>
+                <p>Monthly Cloud Usage Prediction: <b style="color:#DC2F02" id="prediction">...</b></p>
                 <script>
                     function predict() {
                         var feature1 = document.getElementById("feature1").value;
                         var http = new XMLHttpRequest();
-                        http.open("POST", "api/mlcloudaudit", true
-                        Cloud Usage.setRequestHeader("Content-Type", "application/json");
+                        http.open("POST", "api/mlcloudaudit", true);
+                        http.setRequestHeader("Content-Type", "application/json");
                         http.onreadystatechange = function () {
                             if (http.readyState == 4 && http.status == 200) {
                                 var response = http.responseText

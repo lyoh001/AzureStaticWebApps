@@ -8,25 +8,25 @@ body {
 }
 
 a:link {
-  color: #D00000;
+  color: #DC2F02;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:visited {
-  color: #D00000;
+  color: #DC2F02;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:hover {
-  color: #D00000;
+  color: #DC2F02;
   background-color: transparent;
   text-decoration: underline;
 }
 
 a:active {
-  color: #D00000;
+  color: #DC2F02;
   background-color: transparent;
   text-decoration: underline;
 }
