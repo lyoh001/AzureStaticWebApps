@@ -1,0 +1,105 @@
+<html>
+
+<head>
+    <link href="/mlcloudaudit/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Cloud Audit</title>
+</head>
+
+<body>
+    <header id="dashboard">
+        <h1><b>CLOUD</b> AUDIT</h1>
+        <hr>
+        Cloud Audit Insights Dashboard and AI Usage Predictor
+        <hr>
+        <iframe title="telecom - Page 1" width="100%" height="100%"
+            src="https://app.powerbi.com/view?r=eyJrIjoiNmVmYTExOWYtZjI1Yy00NDAzLTgxZjYtZDVlNTU1MThkMTlhIiwidCI6IjcyMmVhMGJlLTNlMWMtNGIxMS1hZDZmLTk0MDFkNjg1NmUyNCJ9"
+            frameborder="0" allowFullScreen="true"></iframe>
+    </header>
+    <main>
+        <article id="mainLeft">
+            <section>
+                <h2>NOTEBOOK</h2>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/AzureFunctions/blob/main/mlcloudaudit/notebook/notebook.ipynb">
+                        Cloud Usage Prediction Analysis</a>
+                </p>
+            </section>
+            <section>
+                <h2>PROJECT</h2>
+                <p>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <a href="https://codebasics.io/event/codebasics-resume-project-challenge">Codebasics Project</a>
+                </p>
+                <p></p>
+            </section>
+            <section>
+                <h2>SKILLS</h2>
+                <p>Python, Machine Learning, Deep Learning, DevOps, MLOps, AWS, Azure, Power BI, SQL, IaC</p>
+            </section>
+            <section>
+                <h2>CONTACT</h2>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001">github.com/lyoh001</a>
+                </p>
+                <p>
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    <a href="https://linkedin.com/in/lyoh001">linkedin.com/in/lyoh001</a>
+                </p>
+                <p>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <a href="https://lyoh001.com">lyoh001.com</a>
+                </p>
+                <p>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <a href="mailto:lyoh001@hotmail.com">lyoh001@hotmail.com</a>
+                </p>
+            </section>
+        </article>
+        <article id="mainRight">
+            <section>
+                <h2>AI CLOUD USAGE PREDICTOR</h2>
+                <p>
+                    Please populate the input fields listed below to predict cloud usage.
+                </p>
+                <ol>
+                    <li><input id="feature1" type="month" value="2023-01" min="2023-01" max="2023-04">
+                    </li>
+                    <button
+                        onclick="document.getElementById('prediction').innerHTML = 'Computing the prediction. It may take up to 10 seconds during the process.'; predict();">predict</button>
+                </ol>
+                <p>Monthly Cloud Usage Prediction: <b style="color:#D00000" id="prediction">...</b></p>
+                <script>
+                    function predict() {
+                        var feature1 = document.getElementById("feature1").value;
+                        var http = new XMLHttpRequest();
+                        http.open("POST", "api/mlcloudaudit", true
+                        Cloud Usage.setRequestHeader("Content-Type", "application/json");
+                        http.onreadystatechange = function () {
+                            if (http.readyState == 4 && http.status == 200) {
+                                var response = http.responseText
+                                document.getElementById("prediction").innerHTML = response;
+                            }
+                        }
+                        http.send(JSON.stringify({ "Date": [feature1] }));
+                    }
+                </script>
+            </section>
+            <section>
+                <h2>PROBLEM STATEMENT</h2>
+                <p>AtliQo is one of the leading telecom providers in India and launched it's 5G plans in May 2022 along
+                    with other telecom providers.
+                    However, the management noticed a decline in their active users and revenue growth post 5G launch in
+                    May 2022. Atliqo's business director requested to provide a comparison report
+                    of KPIs between pre and post-periods of the 5G launch. The management is keen to compare the
+                    performance between these periods and get insights which would enable them to make informed
+                    decisions to recover their active user rate by optimizing internet plans.
+                </p>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>
