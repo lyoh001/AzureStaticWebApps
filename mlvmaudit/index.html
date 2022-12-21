@@ -10,7 +10,7 @@
     <header id="dashboard">
         <h1><b>VIRTUAL MACHINE</b> AUDIT</h1>
         <hr>
-        Virtual Machine Audit Dashboard
+        Virtual Machine Audit Insights Dashboard and AI Usage Predictor
         <hr>
         <iframe title="vmaudit - Page 1" width="100%" height="100%"
             src="https://app.powerbi.com/view?r=eyJrIjoiOWVkMjc1NDYtM2FjMi00OGM4LThmOTMtMmZiNTcxOWUwNmU5IiwidCI6IjcyMmVhMGJlLTNlMWMtNGIxMS1hZDZmLTk0MDFkNjg1NmUyNCJ9"
@@ -23,6 +23,11 @@
                 <h2>NOTEBOOK</h2>
                 <p>
                     <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/AzureFunctions/blob/main/mlcloudaudit/notebook/notebook.ipynb">
+                        Cloud Usage Prediction Analysis</a>
+                </p>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
                     <a href="https://github.com/lyoh001/AzureReservedInstance/blob/main/notebook/notebook.ipynb">
                         VM Reserved Instance and vCore Analysis</a>
                 </p>
@@ -33,6 +38,10 @@
                     <i class="fab fa-github" aria-hidden="true"></i>
                     <a href="https://github.com/lyoh001/AzureReservedInstance">VM Reserved Instance and vCore
                         Analysis</a>
+                </p>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/AzureBillForecast">Cloud Usage Forecasting</a>
                 </p>
             </section>
             <section>
@@ -60,6 +69,34 @@
             </section>
         </article>
         <article id="mainRight">
+            <section>
+                <h2>AI CLOUD USAGE PREDICTOR</h2>
+                <p>
+                    Please populate the input fields listed below to predict cloud usage.
+                </p>
+                <ol>
+                    <li><input id="feature1" type="month" value="2023-01" min="2023-01" max="2023-04">
+                    </li>
+                    <button
+                        onclick="document.getElementById('prediction').innerHTML = 'Computing the prediction. It may take up to 10 seconds during the process.'; predict();">predict</button>
+                </ol>
+                <p>Monthly Cloud Usage Prediction: <b style="color:#8ECAE6" id="prediction">...</b></p>
+                <script>
+                    function predict() {
+                        var feature1 = document.getElementById("feature1").value;
+                        var http = new XMLHttpRequest();
+                        http.open("POST", "api/mlcloudaudit", true);
+                        http.setRequestHeader("Content-Type", "application/json");
+                        http.onreadystatechange = function () {
+                            if (http.readyState == 4 && http.status == 200) {
+                                var response = http.responseText
+                                document.getElementById("prediction").innerHTML = response;
+                            }
+                        }
+                        http.send(JSON.stringify({ "Date": [feature1] }));
+                    }
+                </script>
+            </section>
             <section>
                 <h2>PROBLEM STATEMENT</h2>
                 <p>There is a requirement from the business to further analyse the current cost model of Azure resources
