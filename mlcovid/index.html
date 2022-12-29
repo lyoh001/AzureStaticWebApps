@@ -1,0 +1,144 @@
+<html>
+
+<head>
+    <link href="/mlcovid/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Covid Xray</title>
+</head>
+
+<body>
+    <header id="dashboard">
+        <h1><b>COVID</b> XRAY</h1>
+        <hr>
+        Covid Xray AI Detection System powered by Convolutional Neural Network
+        <hr>
+        <img src="/mlcovid/covid.jpg" height="65%" width="100%">
+    </header>
+    <main>
+        <article id="mainLeft">
+            <section>
+                <h2>NOTEBOOK</h2>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/DLCovid19/blob/main/notebook/notebook_mobilenet_v2.ipynb">Mobilenet_v2
+                        Classification Analysis</a>
+                </p>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/DLCovid19/blob/main/notebook/notebook_cnn.ipynb">CNN
+                        Classification Analysis</a>
+                </p>
+            </section>
+            <section>
+                <h2>ARCHITECTURE DESIGN</h2>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/AzureFunctions">Azure Static Web Apps with Function Integration
+                        Design</a>
+                </p>
+            </section>
+            <section>
+                <h2>PROJECT</h2>
+                <p>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/DLCovid19">Covid19 Xray Image Classification</a>
+                </p>
+                <p></p>
+            </section>
+            <section>
+                <h2>SKILLS</h2>
+                <p>Python, Machine Learning, Deep Learning, DevOps, MLOps, AWS, Azure, Power BI, SQL, IaC</p>
+            </section>
+            <section>
+                <h2>CONTACT</h2>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001">github.com/lyoh001</a>
+                </p>
+                <p>
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    <a href="https://linkedin.com/in/lyoh001">linkedin.com/in/lyoh001</a>
+                </p>
+                <p>
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    <a href="https://lyoh001.com">lyoh001.com</a>
+                </p>
+                <p>
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <a href="mailto:lyoh001@hotmail.com">lyoh001@hotmail.com</a>
+                </p>
+            </section>
+        </article>
+        <article id="mainRight">
+            <section>
+                <h2>COVID AI PREDICTION</h2>
+                <p>
+                    Please select the image from the slider below and click predict to continue.
+                </p>
+                <ol>
+                    <li><label for="feature1">Xray Image (1-30)</label></li>
+                    <div class="slider">
+                        <input type="range" min="1" max="30" value="1" step="1" class="slider" id="feature1">
+                        <p>Image#: <span id="feature1_output"></span></p>
+                        <p>
+                            <img src="/mlcovid/images/1.jpg" style="height: 30%; width: 30%" id="img" />
+                        </p>
+                    </div>
+                    <script>
+                        var slider = document.getElementById("feature1");
+                        var output = document.getElementById("feature1_output");
+                        output.innerHTML = slider.value;
+
+                        slider.oninput = function () {
+                            output.innerHTML = this.value;
+                            document.getElementById("img").src = "/mlcovid/images/" + slider.value + ".jpg";
+                        }
+                    </script>
+                    <button
+                        onclick="document.getElementById('prediction').innerHTML = 'Computing the prediction. It may take up to 10 seconds during the process.'; predict();">predict</button>
+                </ol>
+                <p>Prediction: <b style="color:#8ECAE6" id="prediction">...</b></p>
+                <script>
+                    function predict() {
+                        var feature1 = document.getElementById("feature1").value;
+                        var http = new XMLHttpRequest();
+                        http.open("POST", "api/mlcovid", true);
+                        http.setRequestHeader("Content-Type", "application/json");
+                        http.onreadystatechange = function () {
+                            if (http.readyState == 4 && http.status == 200) {
+                                var response = http.responseText
+                                document.getElementById("prediction").innerHTML = response;
+                            }
+                        }
+                        http.send(JSON.stringify({ "image_id": [feature1] }));
+                    }
+                </script>
+            </section>
+            <section>
+                <h2>PROBLEM STATEMENT</h2>
+                <p>The 2019 novel coronavirus (COVID-19) presents several unique features. While the diagnosis is
+                    confirmed using polymerase chain reaction (PCR), infected patients with pneumonia may present on
+                    chest X-ray and computed tomography (CT) images with a pattern that is only moderately
+                    characteristic for the human eye Ng, 2020. COVID-19's rate of transmission depends on our capacity
+                    to reliably identify infected patients with a low rate of false negatives. In addition, a low rate
+                    of false positives is required to avoid further increasing the burden on the healthcare system by
+                    unnecessarily exposing patients to quarantine if that is not required. Along with proper infection
+                    control, it is evident that timely detection of the disease would enable the implementation of all
+                    the supportive care required by patients affected by COVID-19.
+
+                    In late January, a Chinese team published a paper detailing the clinical and paraclinical features
+                    of COVID-19. They reported that patients present abnormalities in chest CT images with most having
+                    bilateral involvement Huang 2020. Bilateral multiple lobular and subsegmental areas of consolidation
+                    constitute the typical findings in chest CT images of intensive care unit (ICU) patients on
+                    admission Huang 2020. In comparison, non-ICU patients show bilateral ground-glass opacity and
+                    subsegmental areas of consolidation in their chest CT images Huang 2020. In these patients, later
+                    chest CT images display bilateral ground-glass opacity with resolved consolidation Huang 2020.
+
+                    COVID is possibly better diagnosed using radiological imaging Fang, 2020 and Ai 2020.
+                </p>
+            </section>
+        </article>
+    </main>
+</body>
+
+</html>
