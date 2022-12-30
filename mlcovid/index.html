@@ -11,7 +11,7 @@
         <h1><b>COVID</b> XRAY</h1>
         <hr>
         Covid Xray AI Detection System powered by Convolutional Neural Network
-        <hr>
+        <hr>h
         <img src="/mlcovid/covid.jpg" height="65%" width="100%">
     </header>
     <main>
@@ -20,7 +20,8 @@
                 <h2>NOTEBOOK</h2>
                 <p>
                     <i class="fab fa-github" aria-hidden="true"></i>
-                    <a href="https://github.com/lyoh001/AzureFunctions/blob/main/mlcovid/notebook/notebook_mobilenet_v2.ipynb">Mobilenet_v2
+                    <a
+                        href="https://github.com/lyoh001/AzureFunctions/blob/main/mlcovid/notebook/notebook_mobilenet_v2.ipynb">Mobilenet_v2
                         Classification Analysis</a>
                 </p>
                 <p>
@@ -71,15 +72,15 @@
         </article>
         <article id="mainRight">
             <section>
-                <h2>COVID AI PREDICTION</h2>
+                <h2>COVID XRAY AI DETECTION</h2>
                 <p>
-                    Please select the image from the slider below and click predict to continue.
+                    Please select one of the xray images below and click predict to continue.
                 </p>
                 <ol>
                     <li><label for="feature1">Xray Image (1-30)</label></li>
                     <div class="slider">
                         <input type="range" min="1" max="30" value="1" step="1" class="slider" id="feature1">
-                        <p>Image#: <span id="feature1_output"></span></p>
+                        <p>Image ID: <span id="feature1_output"></span></p>
                         <p>
                             <img src="/mlcovid/images/1.jpg" style="height: 30%; width: 30%" id="img" />
                         </p>
@@ -97,7 +98,7 @@
                     <button
                         onclick="document.getElementById('prediction').innerHTML = 'Computing the prediction. It may take up to 10 seconds during the process.'; predict();">predict</button>
                 </ol>
-                <p>Prediction: <b style="color:#8ECAE6" id="prediction">...</b></p>
+                <p>Prediction: <b style="color:#BCF9FE" id="prediction">...</b></p>
                 <script>
                     function predict() {
                         var feature1 = document.getElementById("feature1").value;
