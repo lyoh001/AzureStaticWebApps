@@ -4,29 +4,29 @@ body {
     max-width: 88%;
     margin: auto;
     color: #FFFFFF;
-    background-color: #031A28;
+    background-color: #010101;
 }
 
 a:link {
-    color: #BCF9FE;
+    color: #369A99;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:visited {
-    color: #BCF9FE;
+    color: #369A99;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:hover {
-    color: #BCF9FE;
+    color: #369A99;
     background-color: transparent;
     text-decoration: underline;
 }
 
 a:active {
-    color: #BCF9FE;
+    color: #369A99;
     background-color: transparent;
     text-decoration: underline;
 }
