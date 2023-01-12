@@ -7,8 +7,6 @@ RUN apt-get -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false upd
 RUN DEBIAN_FRONTEND=noninteractive \
     && apt-get install wget -y \
     && apt-get install curl -y \
-    && apt-get install gnupg -y \
-    && apt-get install software-properties-common -y \
     && apt-get install htop -y \
     && apt-get install zsh -y \
     && apt-get install tzdata -y \
