@@ -14,8 +14,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
     && curl -sL https://deb.nodesource.com/setup_18.x | bash - \
     && apt-get update -y \
     && apt-get dist-upgrade -y \
-    && apt-get install nodejs -y \
     && apt-get install git -y \
+    && apt-get install nodejs -y \
     && npm install -g npm@latest \
     && npm install -g @azure/static-web-apps-cli \
     && sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
