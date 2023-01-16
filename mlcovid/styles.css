@@ -4,29 +4,33 @@ body {
     max-width: 88%;
     margin: auto;
     color: #FFFFFF;
-    background-color: #010101;
+    background-color: #171314;
+    background-image: url('/mlcovid/bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
 }
 
 a:link {
-    color: #369A99;
+    color: #AA5EFF;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:visited {
-    color: #369A99;
+    color: #AA5EFF;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:hover {
-    color: #369A99;
+    color: #AA5EFF;
     background-color: transparent;
     text-decoration: underline;
 }
 
 a:active {
-    color: #369A99;
+    color: #AA5EFF;
     background-color: transparent;
     text-decoration: underline;
 }
