@@ -12,7 +12,6 @@
         <hr>
         Coffee Plant Diseases AI Detection System powered by Convolutional Neural Network
         <hr>
-        <img src="/mlcoffeeplantdiseases/banner.jpg" height="80%" width="100%">
     </header>
     <main>
         <article id="mainLeft">
@@ -32,14 +31,6 @@
                     <a href="https://github.com/lyoh001/AzureFunctions">Azure Static Web Apps with Function Integration
                         Design</a>
                 </p>
-            </section>
-            <section>
-                <h2>PROJECT</h2>
-                <p>
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                    <a href="https://github.com/lyoh001/DLCovid19">Covid19 Xray Image Classification</a>
-                </p>
-                <p></p>
             </section>
             <section>
                 <h2>SKILLS</h2>
@@ -67,7 +58,17 @@
         </article>
         <article id="mainRight">
             <section>
-                <h2>COVID XRAY AI DETECTION</h2>
+                <h2>PROBLEM STATEMENT</h2>
+                <p>The Ethiopian Coffee and Tea Authority reported that Arabica coffee is affected by three major fungal
+                    diseases which greatly impact production and consumption in the country. However, the current method
+                    of observing these diseases with the naked eye is labor-intensive, costly, and requires expert
+                    knowledge. To address this, it is crucial to develop a way to identify these diseases automatically.
+                    One solution is to utilize deep learning, object detection, and image classification to detect
+                    various types of coffee plant diseases caused by pests and pathogens.
+                </p>
+            </section>
+            <section>
+                <h2>COFFEE PLANT DISEASES AI DETECTION</h2>
                 <p>
                     Please select one of the coffee leaf images below and click predict to continue.
                 </p>
@@ -93,7 +94,7 @@
                     <button
                         onclick="document.getElementById('prediction').innerHTML = 'Computing the prediction. It may take up to 10 seconds during the process.'; predict();">predict</button>
                 </ol>
-                <p>Radiology Report: <b style="color:#452103" id="prediction">...</b></p>
+                <p>Prediction: <b style="color:#DDB892" id="prediction">...</b></p>
                 <script>
                     function predict() {
                         var feature1 = document.getElementById("feature1").value;
@@ -109,50 +110,6 @@
                         http.send(JSON.stringify({ "image_id": [feature1] }));
                     }
                 </script>
-            </section>
-            <section>
-                <h2>PROBLEM STATEMENT</h2>
-                <p>Information obtained from the Ethiopian Coffee and Tea Authority revealed that coffee berry disease
-                    (CBD), CWD, and coffee leaf rust (CLR) are the three major fungal diseases of Arabica coffee, which
-                    are causing a significant reduction in coffee production and consumption in the country. These
-                    diseases can cause severe damage to the coffee plants, leading to reduced yields and a decline in
-                    the quality of the coffee beans.
-
-                    The traditional approach employed for illness surveillance is observation with the naked eye, which
-                    is time-consuming, expensive, and requires significant competence. This approach is also prone to
-                    human error, leading to inaccurate identification and treatment of the diseases. Therefore, it is
-                    important to find an alternative solution that can automatically identify the diseases without the
-                    need for experts.
-
-                    One potential solution is the use of deep learning, object detection, and image classification to
-                    solve this problem. These technologies have been widely used in various fields such as medical
-                    imaging, self-driving cars, and facial recognition, and have shown great potential in the
-                    identification and management of plant diseases.
-
-                    Deep learning methods have been introduced for the detection of different types of coffee plant
-                    diseases caused by pests and pathogens. These diseases can be classified by machine learning
-                    techniques like segmentation, and classification along with the estimation of the severity of
-                    stress. By using deep learning algorithms, the system can identify patterns and features in the
-                    images of the infected plants that are not visible to the human eye.
-
-                    Additionally, object detection can be used to identify specific regions of the coffee plant that are
-                    affected by the disease, allowing for targeted treatment. This can help farmers to apply the right
-                    type and amount of treatment to the affected areas, reducing the use of chemicals and increasing the
-                    efficiency of the treatment. Image classification can also be used to accurately identify the type
-                    of disease present on the plant, such as CBD, CWD, or CLR. This can help farmers to choose the most
-                    appropriate treatment for the specific disease, increasing the chances of successful treatment.
-
-                    Furthermore, using deep learning models can also help in predicting the potential spread of the
-                    disease, helping farmers to take preventative measures and avoiding widespread crop damage. This can
-                    include early detection and treatment of the disease, as well as identifying and isolating infected
-                    plants to prevent the spread of the disease to healthy plants.
-
-                    The use of such technology can significantly reduce the time and cost associated with manual disease
-                    identification, as well as increasing the accuracy and efficiency of disease identification and
-                    management. By leveraging the power of deep learning, object detection, and image classification,
-                    farmers can better protect their crops and increase their yields, leading to a more sustainable and
-                    profitable coffee industry in Ethiopia.
-                </p>
             </section>
         </article>
     </main>

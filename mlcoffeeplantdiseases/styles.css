@@ -3,30 +3,34 @@ body {
     font-size: 12px;
     max-width: 88%;
     margin: auto;
-    color: #010101;
-    background-color: #FFFFFF;
+    color: #FFFFFF;
+    background-color: #3D3D3D;
+    background-image: url('/mlcoffeeplantdiseases/bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
 }
 
 a:link {
-    color: #452103;
+    color: #DDB892;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:visited {
-    color: #452103;
+    color: #DDB892;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:hover {
-    color: #452103;
+    color: #DDB892;
     background-color: transparent;
     text-decoration: underline;
 }
 
 a:active {
-    color: #452103;
+    color: #DDB892;
     background-color: transparent;
     text-decoration: underline;
 }
