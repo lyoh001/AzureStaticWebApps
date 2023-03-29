@@ -7,7 +7,6 @@
 		"terminal.integrated.defaultProfile.linux": "zsh"
 	},
 	"extensions": [
-		"EasyCodeAI.chatgpt-gpt4-gpt3-vscode",
 		"ms-azuretools.vscode-azureresourcegroups",
 		"ms-azuretools.vscode-azurestaticwebapps",
 		"ms-vscode.azure-account",
