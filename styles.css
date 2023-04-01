@@ -3,30 +3,30 @@ body {
   font-size: 12px;
   max-width: 88%;
   margin: auto;
-  background-color: #000000;
   color: #FFFFFF;
+  background-color: #000000;
 }
 
 a:link {
-  color: #E66C37;
+  color: #FFFFFF;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:visited {
-  color: #E66C37;
+  color: #EE6009;
   background-color: transparent;
   text-decoration: none;
 }
 
 a:hover {
-  color: #E66C37;
+  color: #EE6009;
   background-color: transparent;
   text-decoration: underline;
 }
 
 a:active {
-  color: #E66C37;
+  color: #EE6009;
   background-color: transparent;
   text-decoration: underline;
 }
@@ -45,7 +45,6 @@ h2 {
 
 main {
   display: grid;
-  grid-template-columns: 25% 75%;
   margin-top: 3em;
 }
 
@@ -90,4 +89,13 @@ select {
 
 #mainLeft {
   border-right: 1px solid lightgray;
+}
+
+header .social-links li {
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  margin-left: 42px;
 }
