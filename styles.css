@@ -8,7 +8,7 @@ body {
 }
 
 a:link {
-  color: #FFFFFF;
+  color: #EE6009;
   background-color: transparent;
   text-decoration: none;
 }
@@ -91,11 +91,11 @@ select {
   border-right: 1px solid lightgray;
 }
 
-header .social-links li {
+footer .social-links li {
   text-align: center;
   position: relative;
   display: inline-block;
-  margin: 0;
-  padding: 0;
+  /* margin: 0;
+  padding: 0; */
   margin-left: 42px;
 }
