@@ -16,7 +16,8 @@
                 var response = http.responseText
                 document.getElementById("prediction").innerHTML = "ready";
             }
-            http.send(JSON.stringify({ "data": "load" }));
+            http.send();
+            // http.send(JSON.stringify({ "data": "load" }));
         }
     </script>
     <header id="dashboard">
