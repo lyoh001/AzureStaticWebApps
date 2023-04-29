@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Cloud Audit</title>
 </head>
-
 <body onload="load()">
     <script>
         function load() {
@@ -14,10 +13,9 @@
             http.setRequestHeader("Content-Type", "application/json");
             http.onreadystatechange = function () {
                 var response = http.responseText
-                document.getElementById("prediction").innerHTML = "ready";
+                document.getElementById("prediction").innerHTML = "Ready.";
             }
             http.send();
-            // http.send(JSON.stringify({ "data": "load" }));
         }
     </script>
     <header id="dashboard">

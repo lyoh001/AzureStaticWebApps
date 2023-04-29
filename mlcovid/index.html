@@ -14,12 +14,11 @@
             http.setRequestHeader("Content-Type", "application/json");
             http.onreadystatechange = function () {
                 var response = http.responseText
-                document.getElementById("prediction").innerHTML = response;
+                document.getElementById("prediction").innerHTML = "Ready.";
             }
-            http.send(JSON.stringify({ "data": "load" }));
+            http.send();
         }
     </script>
-
     <header id="dashboard">
         <h1><b>COVID</b> XRAY</h1>
         <hr>

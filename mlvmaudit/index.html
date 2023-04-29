@@ -5,7 +5,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Virtual Machine Audit</title>
 </head>
-
 <body onload="load()">
     <script>
         function load() {
@@ -14,12 +13,11 @@
             http.setRequestHeader("Content-Type", "application/json");
             http.onreadystatechange = function () {
                 var response = http.responseText
-                document.getElementById("prediction").innerHTML = response;
+                document.getElementById("prediction").innerHTML = "Ready.";
             }
-            http.send(JSON.stringify({ "data": "load" }));
+            http.send();
         }
     </script>
-
     <header id="dashboard">
         <h1><b>VIRTUAL MACHINE</b> AUDIT</h1>
         <hr>
