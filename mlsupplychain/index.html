@@ -13,14 +13,13 @@
             http.open("POST", "api/mlload", true);
             http.setRequestHeader("Content-Type", "application/json");
             http.onreadystatechange = function () {
-                if (http.readyState == 4 && http.status == 200) {
-                    var response = http.responseText
-                    document.getElementById("prediction").innerHTML = response;
-                }
+                var response = http.responseText
+                document.getElementById("prediction").innerHTML = response;
             }
             http.send(JSON.stringify({ "data": "load" }));
         }
     </script>
+
     <header id="dashboard">
         <h1><b>SUPPLY</b> CHAIN</h1>
         <hr>
