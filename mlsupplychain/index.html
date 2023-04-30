@@ -162,9 +162,10 @@
                         }
                     </script>
                     <button
-                        onclick="document.getElementById('prediction').innerHTML = 'Computing the prediction. It may take up to 10 seconds during the process.'; predict();">predict</button>
+                        onclick="document.getElementById('prediction').innerHTML = 'Predicting. May take up to 10 seconds. Please wait.'; predict();">predict</button>
                 </ol>
-                <p>Stock Delivery Prediction: <b style="color:#8ECAE6" id="prediction">...</b></p>
+                <p>Stock Delivery Prediction: <b style="color:#8ECAE6" id="prediction">Initializing AI. Please wait.</b>
+                </p>
                 <script>
                     function predict() {
                         var feature1 = document.getElementById("feature1").value;
