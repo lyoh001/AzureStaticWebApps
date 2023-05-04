@@ -3,8 +3,8 @@
 ### 1.1	Overview
 This is a machine learning notebook covering a prediction model to be used as a reference for other data scientists. The workflow is based on the following:
 - Notebooks: A set of notebooks for building ml model.
-- Github Codespace (devcontainer & Dockerfile)
-- CICD pipeline for deploying web apps to Azure
+- CICD pipeline for deploying web apps to Azure.
+- Github Codespace.
 
 ## 2 Logical Architecture
 ### 2.1	Logical System Component Overview
