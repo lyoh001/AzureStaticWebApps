@@ -21,19 +21,19 @@ This is a machine learning notebook covering a prediction model to be used as a 
 ![Figure 3: Power BI Dashboard](./images/powerbi.png)
 
 ## 4 Azure Static Web App for ML Prediction Demo
-Link: [RNN (Recurrent Neural Network - LSTM) Web Application Demo 1](https://lyoh001.com/mlvmaudit)
+Link: [RNN (Recurrent Neural Network - LSTM) Web Application Demo 1](https://www.lyoh001.com/mlvmaudit)
 
-Link: [RNN (Recurrent Neural Network - LSTM) Web Application Demo 2](https://lyoh001.com/mlcloudaudit)
+Link: [RNN (Recurrent Neural Network - LSTM) Web Application Demo 2](https://www.lyoh001.com/mlcloudaudit)
 
-Link: [CNN (Convolutional Neural Network) Web Application Demo 1](https://lyoh001.com/mlcoffeeplantdiseases)
+Link: [CNN (Convolutional Neural Network) Web Application Demo 1](https://www.lyoh001.com/mlcoffeeplantdiseases)
 
-Link: [CNN (Convolutional Neural Network) Web Application Demo 2](https://lyoh001.com/mlcovid)
+Link: [CNN (Convolutional Neural Network) Web Application Demo 2](https://www.lyoh001.com/mlcovid)
 
-Link: [ANN Regression (Artificial Neural Network) Web Application Demo 1](https://lyoh001.com/mltelecom)
+Link: [ANN Regression (Artificial Neural Network) Web Application Demo 1](https://www.lyoh001.com/mltelecom)
 
-Link: [ANN Classification (Artificial Neural Network) Web Application Demo 1](https://lyoh001.com/mlmaternalmortality)
+Link: [ANN Classification (Artificial Neural Network) Web Application Demo 1](https://www.lyoh001.com/mlmaternalmortality)
 
-Link: [ANN Classification (Artificial Neural Network) Web Application Demo 2](https://lyoh001.com/mlsupplychain)
+Link: [ANN Classification (Artificial Neural Network) Web Application Demo 2](https://www.lyoh001.com/mlsupplychain)
 
 ## 5 MS Docs Link
 Ref: [MS Docs: Azure Static Web Apps with Function Integration](https://docs.microsoft.com/en-us/azure/static-web-apps/functions-bring-your-own/)
