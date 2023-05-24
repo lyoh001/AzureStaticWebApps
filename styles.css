@@ -45,6 +45,7 @@ h2 {
 
 main {
   display: grid;
+  place-items: center;
   margin-top: 1.5em;
 }
 
