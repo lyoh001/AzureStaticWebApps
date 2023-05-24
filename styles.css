@@ -81,7 +81,8 @@ footer .social li a:hover {
 }
 
 section {
-  margin: auto 3em 3em 3em;
+  margin: auto;
+  width: 90%;
   background-color: #22212B;
   border-radius: 10px;
   padding: 20px;
@@ -116,8 +117,4 @@ input {
 select {
   text-align: left;
   width: 20%;
-}
-
-#mainLeft {
-  border-right: 1px solid lightgray;
 }
