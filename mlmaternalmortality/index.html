@@ -162,22 +162,34 @@
                     function predict() {
                         var feature1 = document.getElementById("feature1").value;
                         var feature2 = document.getElementById("feature2").value;
-                        var feature3 = document.getElementById("feature3").value;
-                        var feature4 = document.getElementById("feature4").value;
-                        var feature5 = document.getElementById("feature5").value;
-                        var feature6 = document.getElementById("feature6").value;
-                        var http = new XMLHttpRequest();
-                        http.open("POST", "api/mlmaternalmortality", true);
-                        http.setRequestHeader("Content-Type", "application/json");
-                        http.onreadystatechange = function () {
-                            if (http.readyState == 4 && http.status == 200) {
-                                var response = http.responseText
-                                document.getElementById("prediction").innerHTML = response;
-                            }
-                        }
-                        http.send(JSON.stringify({ "Age": [feature1], "SystolicBP": [feature2], "DiastolicBP": [feature3], "BS": [feature4], "BodyTemp": [feature5], "HeartRate": [feature6] }));
-                    }
-                </script>
+                                                var feature3 = document.getElementById("feature3").value;
+                                                        var feature4 = document.getElementById("feature4").value;
+                                                                var feature5 = document.getElementById("feature5").value;
+                                                                        var feature6 = document.getElementById("feature6").value;
+                                                                                var http = new XMLHttpRequest();
+                                                                                        http.open("POST", "api/mlmaternalmortality", true);
+                                                                                                http.setRequestHeader("Content-Type", "application/json");
+                                                                                                        http.onreadystatechange = function () {
+                                                                                                                    if (http.readyState == 4 && http.status == 200) {
+                                                                                                                                    var response = http.responseText;
+                                                                                                                                                    displayResponse(response);
+                                                                                                                                                                }
+                                                                                                                                                                        };
+                                                                                                                                                                                http.send(JSON.stringify({ "Age": [feature1], "SystolicBP": [feature2], "DiastolicBP": [feature3], "BS": [feature4], "BodyTemp": [feature5], "HeartRate": [feature6] }));
+                                                                                                                                                                                    }
+
+                                                                                                                                                                                        function displayResponse(response) {
+                                                                                                                                                                                                var index = 0;
+                                                                                                                                                                                                        var interval = setInterval(function () {
+                                                                                                                                                                                                                    document.getElementById("prediction").innerHTML += response[index];
+                                                                                                                                                                                                                                index++;
+                                                                                                                                                                                                                                            if (index >= response.length) {
+                                                                                                                                                                                                                                                            clearInterval(interval);
+                                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                                                }, 100); // Adjust the time interval (in milliseconds) between each character display
+                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                    </script>
+
             </section>
         </article>
     </main>
