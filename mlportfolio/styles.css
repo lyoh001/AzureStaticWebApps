@@ -4,7 +4,7 @@ body {
   max-width: 88%;
   margin: auto;
   color: #FFFFFF;
-  background-color: #131314;
+  background-color: #0D1117;
 }
 
 a:link {
@@ -82,7 +82,7 @@ footer .social li a:hover {
 section {
   margin: auto;
   width: 90%;
-  background-color: #22212B;
+  background-color: #161B22;
   border-radius: 10px;
   padding: 20px;
   margin-bottom: 20px;
