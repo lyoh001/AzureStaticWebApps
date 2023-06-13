@@ -20,50 +20,17 @@
         }
     </script>
     <header id="dashboard">
-        <h1><b>CHAT</b> GPT2</h1>
+        <h1><b>AI</b> GPT2</h1>
         <hr>
-        GPT2 AI Detection System powered by Large Language Model
+        AI Text Generator powered by a Large Language Model
         <hr>
     </header>
     <main>
-        <article id="mainLeft">
-            <section>
-                <h2>CODE</h2>
-                <p>
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                    <a
-                        href="https://github.com/lyoh001/AzureStaticWebApps/blob/main/mlgpt2/notebook/notebook_mobilenet_v2.ipynb">Mobilenet_v2
-                        Classification Analysis</a>
-                </p>
-                <p>
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                    <a
-                        href="https://github.com/lyoh001/AzureStaticWebApps/blob/main/mlgpt2/notebook/notebook_cnn.ipynb">CNN
-                        Classification Analysis</a>
-                </p>
-            </section>
-            <section>
-                <h2>DESIGN</h2>
-                <p>
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                    <a href="https://github.com/lyoh001/AzureFunctions">Azure Static Web Apps with Function Integration
-                        Design</a>
-                </p>
-            </section>
-            <section>
-                <h2>PROJECT</h2>
-                <p>
-                    <i class="fa fa-home" aria-hidden="true"></i>
-                    <a href="https://github.com/lyoh001/DLCovid19">Covid19 Xray Image Classification</a>
-                </p>
-                <p></p>
-            </section>
-        </article>
         <article id="mainRight">
             <section>
-                <h2>GPT2 AI DETECTION</h2>
+                <h2>AI-Powered Text Generation</h2>
                 <p>
-                    Please enter the ID of the xray image you want to use and click predict to continue.
+                    Please enter text. It may take up to 30 seconds due to low compute resources.
                 </p>
                 <ol>
                     <li><label for="feature1">User Input</label></li>
@@ -71,7 +38,8 @@
                     <button
                         onclick="document.getElementById('prediction').innerHTML = 'Thinking...'; predict();">predict</button>
                 </ol>
-                <p>Report: <b style="color:#AA5EFF" id="prediction">Initializing AI. May take up to 5 seconds. Please
+                <p>Generated Text: <b style="color:#AA5EFF" id="prediction">Initializing AI. May take up to 5 seconds.
+                        Please
                         wait.</b></p>
                 <script>
                     function predict() {
