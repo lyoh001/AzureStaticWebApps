@@ -1,0 +1,123 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    max-width: 88%;
+    margin: auto;
+    color: #FFFFFF;
+    background-color: #171314;
+    background-image: url('/mlcovid/bg.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+a:link {
+    color: #AA5EFF;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #AA5EFF;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #AA5EFF;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #AA5EFF;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+h1 {
+    font-size: 3em;
+    letter-spacing: .6em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+h2 {
+    font-size: 1.5em;
+    padding-bottom: 1em;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 25% 75%;
+    margin-top: 3em;
+}
+
+header {
+    text-align: center;
+    margin: auto 2em;
+}
+
+footer {
+    text-align: center;
+    margin: auto 2em;
+}
+
+footer .social {
+    margin: 24px 0;
+    padding: 0;
+    font-size: 30px;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, .8);
+}
+
+footer .social li {
+    display: inline-block;
+    margin: 0 15px;
+    padding: 0;
+}
+
+footer .social li a {
+    color: #fff;
+}
+
+footer .social li a:hover {
+    color: #FFFFFF;
+}
+
+section {
+    margin: auto 1em 2em 2em;
+}
+
+i {
+    margin-right: .5em;
+}
+
+p {
+    margin: .2em auto
+}
+
+hr {
+    border: none;
+    background-color: lightgray;
+    height: 1px;
+}
+
+h1,
+h2 {
+    font-weight: 100;
+    margin-bottom: 0;
+}
+
+input {
+    text-align: left;
+    width: 20%;
+}
+
+select {
+    text-align: left;
+    width: 20%;
+}
+
+#mainLeft {
+    border-right: 1px solid lightgray;
+}
