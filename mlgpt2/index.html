@@ -48,27 +48,25 @@
                 <h2>AI-Powered Text Generator</h2>
                 <div class="chat-window" id="chat-window"></div>
                 <div class="chat-input">
-                    <input type="text" id="feature1" placeholder="Type your message here...">
+                    <input type="text" g id="feature1" placeholder="Type your message here...">
                     <button onclick="predict()">Send</button>
                 </div>
                 <script>
                     function predict() {
                         var feature1 = document.getElementById("feature1").value;
-
                         var chatWindow = document.getElementById("chat-window");
                         var userMessage = document.createElement("div");
                         userMessage.textContent = feature1;
-                        userMessage.style.textAlign = "right";
+                        userMessage.classList.add("userMessage");
                         chatWindow.appendChild(userMessage);
-
                         document.getElementById("feature1").value = "";
 
                         var thinkingMessage = document.createElement("div");
                         thinkingMessage.textContent = "Thinking...It may take up to 30 seconds due to compute resources.";
                         thinkingMessage.style.textAlign = "left";
-                        thinkingMessage.style.color = "#AA5EFF";
+                        thinkingMessage.style.color = "#8ECAE6";
+                        thinkingMessage.style.fontWeight = "bold";
                         chatWindow.appendChild(thinkingMessage);
-
                         chatWindow.scrollTop = chatWindow.scrollHeight;
 
                         var http = new XMLHttpRequest();
@@ -87,7 +85,8 @@
                         var index = 0;
                         var aiResponseMessage = document.createElement("div");
                         aiResponseMessage.style.textAlign = "left";
-                        aiResponseMessage.style.color = "#AA5EFF";
+                        aiResponseMessage.style.color = "#8ECAE6";
+                        aiResponseMessage.style.fontWeight = "bold";
                         var chatWindow = document.getElementById("chat-window");
                         chatWindow.appendChild(aiResponseMessage);
 

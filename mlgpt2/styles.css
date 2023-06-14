@@ -1,201 +1,32 @@
-/* body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 12px;
-    max-width: 88%;
-    margin: auto;
-    color: #FFFFFF;
-    background-color: #0D1117;
-}
-
-a:link {
-    color: #AA5EFF;
-    background-color: transparent;
-    text-decoration: none;
-}
-
-a:visited {
-    color: #AA5EFF;
-    background-color: transparent;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #AA5EFF;
-    background-color: transparent;
-    text-decoration: underline;
-}
-
-a:active {
-    color: #AA5EFF;
-    background-color: transparent;
-    text-decoration: underline;
-}
-
-h1 {
-    font-size: 3em;
-    letter-spacing: .6em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-}
-
-h2 {
-    font-size: 1.5em;
-    padding-bottom: 1em;
-}
-
-main {
-    place-items: center;
-    margin-top: 1.5em;
-}
-
-header {
-    text-align: center;
-    margin: auto 2em;
-}
-
-footer {
-    text-align: center;
-    margin: auto 2em;
-}
-
-footer .social {
-    margin: 24px 0;
-    padding: 0;
-    font-size: 30px;
-    text-shadow: 0px 1px 2px rgba(0, 0, 0, .8);
-}
-
-footer .social li {
-    display: inline-block;
-    margin: 0 15px;
-    padding: 0;
-}
-
-footer .social li a {
-    color: #fff;
-}
-
-footer .social li a:hover {
-    color: #FFFFFF;
-}
-
-section {
-    margin: auto;
-    width: 90%;
-    background-color: #161B22;
-    border-radius: 24px;
-    padding: 32px;
-    margin-bottom: 20px;
-    border: 1px solid rgba(255, 255, 255, .08);
-}
-
-i {
-    margin-right: .5em;
-}
-
-p {
-    margin: .2em auto;
-    margin-bottom: 10px;
-    color: #a7a7a7;
-
-}
-
-hr {
-    border: none;
-    background-color: lightgray;
-    height: 1px;
-}
-
-h1,
-h2 {
-    font-weight: 100;
-    margin-bottom: 0;
-}
-
-input {
-    text-align: left;
-    width: 20%;
-}
-
-select {
-    text-align: left;
-    width: 20%;
-}
-
-.chat-window {
-    display: flex;
-    flex-direction: column;
-    height: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    overflow-y: scroll;
-    padding: 10px;
-}
-
-.chat-window::-webkit-scrollbar {
-    width: 6px;
-}
-
-.chat-window::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
-}
-
-.chat-input {
-    display: flex;
-    margin-top: 10px;
-}
-
-.chat-input input[type="text"] {
-    flex-grow: 1;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-}
-
-.chat-input button {
-    margin-left: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #AA5EFF;
-    color: white;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.chat-input button:hover {
-    background-color: #9C3DF0;
-} */
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 12px;
     max-width: 88%;
     margin: auto;
     color: #FFFFFF;
-    background-color: #0D1117;
+    background-color: #0D0F12;
 }
 
 a:link {
-    color: #AA5EFF;
+    color: #8ECAE6;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:visited {
-    color: #AA5EFF;
+    color: #8ECAE6;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:hover {
-    color: #AA5EFF;
+    color: #8ECAE6;
     background-color: transparent;
     text-decoration: underline;
 }
 
 a:active {
-    color: #AA5EFF;
+    color: #8ECAE6;
     background-color: transparent;
     text-decoration: underline;
 }
@@ -291,7 +122,7 @@ select {
     margin: auto;
     width: 90%;
     border-radius: 24px;
-    padding: 32px;
+    padding: 0px 32px 32px 32px;
     margin-bottom: 20px;
 }
 
@@ -330,12 +161,26 @@ select {
     margin-left: 10px;
     border-radius: 5px;
     border: none;
-    background-color: #AA5EFF;
-    color: white;
+    background-color: #8ECAE6;
+    color: #333333;
     padding: 5px 10px;
     cursor: pointer;
 }
 
 .chat-input button:hover {
-    background-color: #9C3DF0;
+    background-color: #80A9D7;
+    color: #333333;
+}
+
+.userMessage {
+    text-align: left;
+    max-width: 500px;
+    border: 1px solid #80A9D7;
+    box-shadow: 0 0 8px rgba(0, 0, 0, .3);
+    padding: 5px 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #80A9D7;
+    color: #333333;
+    margin-left: auto;
 }
