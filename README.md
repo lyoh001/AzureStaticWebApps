@@ -36,6 +36,7 @@ A Power BI dashboard is available to provide a visual representation of the data
 
 Experience the capabilities of various machine learning models through interactive web application demos. Check out the following demos:
 
+- [LLM (Large Language Model) Web Application Demo 1](https://lyoh001.com/mlgpt2)
 - [RNN (Recurrent Neural Network - LSTM) Web Application Demo 1](https://lyoh001.com/mlvmaudit)
 - [RNN (Recurrent Neural Network - LSTM) Web Application Demo 2](https://lyoh001.com/mlcloudaudit)
 - [CNN (Convolutional Neural Network) Web Application Demo 1](https://lyoh001.com/mlcoffeeplantdiseases)
