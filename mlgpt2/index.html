@@ -1,4 +1,4 @@
-<html>
+<!-- <html>
 
 <head>
     <link href="/mlgpt2/styles.css" rel="stylesheet">
@@ -67,6 +67,127 @@
                             if (index >= response.length) {
                                 clearInterval(interval);
                             }
+                        }, 10);
+                    }
+                </script>
+            </section>
+        </article>
+    </main>
+    <footer id="footer">
+        <hr>
+        <ul class="social">
+            <li><a href="https://github.com/lyoh001"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/in/lyoh001"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://lyoh001.com"><i class="fa fa-home"></i></a></li>
+            <li><a href="mailto:lyoh001@gmail.com"><i class="fa fa-envelope"></i></a></li>
+        </ul>
+    </footer>
+</body>
+
+</html> -->
+
+
+<html>
+
+<head>
+    <link href="/mlgpt2/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>GPT2</title>
+</head>
+
+<body onload="load()">
+    <script>
+        function load() {
+            var http = new XMLHttpRequest();
+            http.open("POST", "api/mlload", true);
+            http.setRequestHeader("Content-Type", "application/json");
+            http.onreadystatechange = function () {
+                var response = http.responseText
+                document.getElementById("prediction").innerHTML = "Ready.";
+            }
+            http.send();
+        }
+    </script>
+    <header id="dashboard">
+        <h1><b>AI</b> GPT2</h1>
+        <hr>
+        AI Text Generator powered by a Large Language Model
+        <hr>
+    </header>
+    <main>
+        <article id="mainRight">
+            <section>
+                <h2>AI-Powered Text Generation</h2>
+                <!-- <p>Please enter text.</p> -->
+                <!-- Add a chat window -->
+                <div class="chat-window" id="chat-window"></div>
+                <!-- Add a chat input -->
+                <div class="chat-input">
+                    <input type="text" id="feature1" placeholder="Type your message here...">
+                    <button onclick="predict()">Send</button>
+                </div>
+                <script>
+                    function predict() {
+                        var feature1 = document.getElementById("feature1").value;
+
+                        // Add user message to the chat window
+                        var chatWindow = document.getElementById("chat-window");
+                        var userMessage = document.createElement("div");
+                        userMessage.textContent = feature1;
+                        userMessage.style.textAlign = "right";
+                        chatWindow.appendChild(userMessage);
+
+                        // Clear the input field
+                        document.getElementById("feature1").value = "";
+
+                        // Add AI thinking message to the chat window
+                        var thinkingMessage = document.createElement("div");
+                        thinkingMessage.textContent = "Thinking...It may take up to 30 seconds due to compute resources.";
+                        thinkingMessage.style.textAlign = "left";
+                        thinkingMessage.style.color = "#AA5EFF";
+                        chatWindow.appendChild(thinkingMessage);
+
+                        // Scroll to the bottom of the chat window
+                        chatWindow.scrollTop = chatWindow.scrollHeight;
+
+                        var http = new XMLHttpRequest();
+                        http.open("POST", "api/mlgpt2", true);
+                        http.setRequestHeader("Content-Type", "application/json");
+                        http.onreadystatechange = function () {
+                            if (http.readyState == 4 && http.status == 200) {
+                                var response = http.responseText;
+
+                                // Remove the AI thinking message from the chat window
+                                chatWindow.removeChild(thinkingMessage);
+
+                                displayResponse(response);
+                            }
+                        };
+                        http.send(JSON.stringify({ "text": [feature1] }));
+                    }
+                    function displayResponse(response) {
+                        var index = 0;
+
+                        // Add AI response message to the chat window
+                        var aiResponseMessage = document.createElement("div");
+                        aiResponseMessage.style.textAlign = "left";
+                        aiResponseMessage.style.color = "#AA5EFF";
+                        var chatWindow = document.getElementById("chat-window");
+                        chatWindow.appendChild(aiResponseMessage);
+
+                        var interval = setInterval(function () {
+                            if (index === 0) {
+                                aiResponseMessage.textContent = response[index];
+                            } else {
+                                aiResponseMessage.textContent += response[index];
+                            }
+                            index++;
+                            if (index >= response.length) {
+                                clearInterval(interval);
+                            }
+
+                            // Scroll to the bottom of the chat window
+                            chatWindow.scrollTop = chatWindow.scrollHeight;
                         }, 10);
                     }
                 </script>
