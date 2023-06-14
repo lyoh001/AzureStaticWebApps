@@ -129,7 +129,7 @@ select {
 .chat-window {
     display: flex;
     flex-direction: column;
-    height: 200px;
+    height: 300px;
     border: 1px solid #ccc;
     border-radius: 15px;
     overflow-y: scroll;
