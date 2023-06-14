@@ -8,25 +8,25 @@ body {
 }
 
 a:link {
-    color: #EE6009;
+    color: #AA5EFF;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:visited {
-    color: #EE6009;
+    color: #AA5EFF;
     background-color: transparent;
     text-decoration: none;
 }
 
 a:hover {
-    color: #EE6009;
+    color: #AA5EFF;
     background-color: transparent;
     text-decoration: underline;
 }
 
 a:active {
-    color: #EE6009;
+    color: #AA5EFF;
     background-color: transparent;
     text-decoration: underline;
 }
@@ -122,8 +122,6 @@ select {
     width: 20%;
 }
 
-/* styles.css */
-/* Add styles for the chat window */
 .chat-window {
     display: flex;
     flex-direction: column;
@@ -143,7 +141,6 @@ select {
     outline: 1px solid slategrey;
 }
 
-/* Add styles for the chat input */
 .chat-input {
     display: flex;
     margin-top: 10px;
