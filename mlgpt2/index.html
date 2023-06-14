@@ -48,12 +48,19 @@
                 <h2>AI-Powered Text Generator</h2>
                 <div class="chat-window" id="chat-window"></div>
                 <div class="chat-input">
-                    <input type="text" g id="feature1" placeholder="Type your message here...">
+                    <input type="text" id="feature1" placeholder="Type your message here..."
+                        onkeydown="handleKeyPress(event)">
                     <button onclick="predict()">Send</button>
                 </div>
                 <script>
+                    function handleKeyPress(event) {
+                        if (event.keyCode === 13) {
+                            event.preventDefault();
+                            predict();
+                        }
+                    }
                     function predict() {
-                        var feature1 = document.getElementById("feature1").value;
+                        var feature1 = document.getElementById("feature1").value.trim() || " ";
                         var chatWindow = document.getElementById("chat-window");
                         var userMessage = document.createElement("div");
                         userMessage.textContent = feature1;
@@ -66,6 +73,8 @@
                         thinkingMessage.style.textAlign = "left";
                         thinkingMessage.style.color = "#8ECAE6";
                         thinkingMessage.style.fontWeight = "bold";
+                        thinkingMessage.style.maxWidth = "500px";
+                        thinkingMessage.style.marginBottom = "10px"
                         chatWindow.appendChild(thinkingMessage);
                         chatWindow.scrollTop = chatWindow.scrollHeight;
 
@@ -88,6 +97,7 @@
                         aiResponseMessage.style.color = "#8ECAE6";
                         aiResponseMessage.style.fontWeight = "bold";
                         aiResponseMessage.style.maxWidth = "500px";
+                        aiResponseMessage.style.marginBottom = "10px"
                         var chatWindow = document.getElementById("chat-window");
                         chatWindow.appendChild(aiResponseMessage);
 
