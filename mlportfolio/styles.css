@@ -37,6 +37,24 @@ h2 {
   padding-bottom: 1em;
 }
 
+hr {
+  border: none;
+  background-color: lightgray;
+  height: 1px;
+}
+
+
+p {
+  margin: .2em auto;
+  margin-bottom: 10px;
+  color: #a7a7a7;
+  
+}
+
+i {
+  margin-right: .5em;
+}
+
 main {
   place-items: center;
   margin-top: 1.5em;
@@ -81,23 +99,6 @@ section {
   padding: 32px;
   margin-bottom: 20px;
   border: 1px solid rgba(255, 255, 255, .08);
-}
-
-i {
-  margin-right: .5em;
-}
-
-p {
-  margin: .2em auto;
-  margin-bottom: 10px;
-  color: #a7a7a7;
-
-}
-
-hr {
-  border: none;
-  background-color: lightgray;
-  height: 1px;
 }
 
 h1,

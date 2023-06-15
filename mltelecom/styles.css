@@ -68,7 +68,7 @@ main {
   display: grid;
   grid-template-columns: 25% 75%;
   margin-top: 3em;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 220px);
 }
 
 #mainLeft {
