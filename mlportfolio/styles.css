@@ -43,16 +43,27 @@ hr {
   height: 1px;
 }
 
-
 p {
   margin: .2em auto;
   margin-bottom: 10px;
   color: #a7a7a7;
-  
 }
 
 i {
   margin-right: .5em;
+}
+
+input,
+select {
+  text-align: left;
+  width: 20%;
+}
+
+/* Layout Styles */
+header,
+footer {
+  text-align: center;
+  margin: auto 2em;
 }
 
 main {
@@ -60,14 +71,19 @@ main {
   margin-top: 1.5em;
 }
 
-header {
-  text-align: center;
-  margin: auto 2em;
+section {
+  margin: auto;
+  width: 90%;
+  background-color: #161B22;
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, .08);
 }
 
+/* Footer Styles */
 footer {
-  text-align: center;
-  margin: auto 2em;
+  bottom: 0;
 }
 
 footer .social {
@@ -88,31 +104,5 @@ footer .social li a {
 }
 
 footer .social li a:hover {
-  color: #FFFFFF;
-}
-
-section {
-  margin: auto;
-  width: 90%;
-  background-color: #161B22;
-  border-radius: 24px;
-  padding: 32px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, .08);
-}
-
-h1,
-h2 {
-  font-weight: 100;
-  margin-bottom: 0;
-}
-
-input {
-  text-align: left;
-  width: 20%;
-}
-
-select {
-  text-align: left;
-  width: 20%;
+  color: #fff;
 }
