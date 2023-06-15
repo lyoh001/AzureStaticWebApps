@@ -45,6 +45,8 @@ hr {
 
 p {
   margin: .2em auto;
+  margin-bottom: 10px;
+  color: #a7a7a7;
 }
 
 i {
@@ -66,8 +68,8 @@ footer {
 
 main {
   display: grid;
+  margin-top: 1.5em;
   grid-template-columns: 25% 75%;
-  margin-top: 3em;
   height: calc(100vh - 320px);
 }
 
