@@ -68,7 +68,7 @@ main {
     display: grid;
     grid-template-columns: 25% 75%;
     margin-top: 3em;
-    height: calc(100vh - 300px);
+    height: calc(100vh - 320px);
 }
 
 #mainLeft {
@@ -87,7 +87,7 @@ section {
 footer {
     position: fixed;
     bottom: 0;
-    width: 88%;
+    width: 85%;
 }
 
 footer .social {
