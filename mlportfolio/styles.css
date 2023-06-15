@@ -1,41 +1,35 @@
+/* Global Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
+  color: #fff;
+  background-color: #0D1117;
   max-width: 88%;
   margin: auto;
-  color: #FFFFFF;
-  background-color: #0D1117;
 }
 
-a:link {
-  color: #EE6009;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:visited {
-  color: #EE6009;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #EE6009;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
+a:link,
+a:visited,
+a:hover,
 a:active {
   color: #EE6009;
-  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
   text-decoration: underline;
+}
+
+h1,
+h2 {
+  margin-bottom: 0;
 }
 
 h1 {
   font-size: 3em;
   letter-spacing: .6em;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding: 1em 0;
 }
 
 h2 {
