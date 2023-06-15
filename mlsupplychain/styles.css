@@ -1,41 +1,35 @@
+/* Global Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
+  color: #fff;
+  background-color: #0D0F12;
   max-width: 88%;
   margin: auto;
-  color: #FFFFFF;
-  background-color: #0D0F12;
 }
 
-a:link {
-  color: #8ECAE6;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:visited {
-  color: #8ECAE6;
-  background-color: transparent;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #8ECAE6;
-  background-color: transparent;
-  text-decoration: underline;
-}
-
+a:link,
+a:visited,
+a:hover,
 a:active {
   color: #8ECAE6;
-  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
   text-decoration: underline;
+}
+
+h1,
+h2 {
+  margin-bottom: 0;
 }
 
 h1 {
   font-size: 3em;
   letter-spacing: .6em;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding: 1em 0;
 }
 
 h2 {
@@ -43,20 +37,55 @@ h2 {
   padding-bottom: 1em;
 }
 
+hr {
+  border: none;
+  background-color: lightgray;
+  height: 1px;
+}
+
+p {
+  margin: .2em auto;
+}
+
+i {
+  margin-right: .5em;
+}
+
+input,
+select {
+  text-align: left;
+  width: 20%;
+}
+
+/* Layout Styles */
+header,
+footer {
+  text-align: center;
+  margin: auto 2em;
+}
+
 main {
   display: grid;
   grid-template-columns: 25% 75%;
   margin-top: 3em;
+  height: calc(100vh - 320px);
 }
 
-header {
-  text-align: center;
-  margin: auto 2em;
+#mainLeft {
+  padding-left: 20%;
 }
 
+#mainRight {
+  height: 100%;
+}
+
+section {
+  margin: auto 2em 2em 1em;
+}
+
+/* Footer Styles */
 footer {
-  text-align: center;
-  margin: auto 2em;
+  bottom: 0;
 }
 
 footer .social {
@@ -77,43 +106,5 @@ footer .social li a {
 }
 
 footer .social li a:hover {
-  color: #FFFFFF;
-}
-
-section {
-  margin: auto 1em 2em 2em;
-}
-
-i {
-  margin-right: .5em;
-}
-
-p {
-  margin: .2em auto
-}
-
-hr {
-  border: none;
-  background-color: lightgray;
-  height: 1px;
-}
-
-h1,
-h2 {
-  font-weight: 100;
-  margin-bottom: 0;
-}
-
-input {
-  text-align: left;
-  width: 20%;
-}
-
-select {
-  text-align: left;
-  width: 20%;
-}
-
-#mainLeft {
-  border-right: 1px solid lightgray;
+  color: #fff;
 }
