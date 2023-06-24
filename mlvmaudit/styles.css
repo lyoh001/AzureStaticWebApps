@@ -2,7 +2,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 12px;
-  color: #fff;
+  color: #FFFFFF;
   background-color: #023047;
   max-width: 88%;
   margin: auto;
@@ -12,13 +12,14 @@ a:link,
 a:visited,
 a:hover,
 a:active {
-  color: #8ECAE6;
+  font-weight: bold;
+  color: #FFFFFF;
   text-decoration: none;
 }
 
 a:hover,
 a:active {
-  text-decoration: underline;
+  color: #8ECAE6;
 }
 
 h1,
@@ -104,9 +105,9 @@ footer .social li {
 }
 
 footer .social li a {
-  color: #fff;
+  color: #FFFFFF;
 }
 
 footer .social li a:hover {
-  color: #fff;
+  color: #FFFFFF;
 }
