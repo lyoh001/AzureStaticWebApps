@@ -134,9 +134,10 @@ footer .social li a:hover {
     height: calc(100vh - 420px);
 }
 
-@media (max-width: 767px) {
+@media screen and (max-width: 480px) {
     .chat-window {
-        height: calc(100vh - 620px);
+        height: 200px;
+        /* height: calc(100vh - 820px); */
     }
 }
 
