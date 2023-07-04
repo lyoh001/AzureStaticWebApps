@@ -132,6 +132,7 @@ footer .social li a:hover {
     overflow-y: scroll;
     padding: 20px;
     height: calc(100vh - 420px);
+    min-height: -webkit-fill-available;
 }
 
 .chat-window::-webkit-scrollbar {
