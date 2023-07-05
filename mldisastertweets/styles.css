@@ -2,8 +2,8 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 12px;
-    color: #FFFFFF;
-    background-color: #0D0F12;
+    color: #DEDDE5;
+    background-color: #0B0F19;
     max-width: 88%;
     margin: auto;
     overflow: hidden;
@@ -14,7 +14,7 @@ a:visited,
 a:hover,
 a:active {
     font-weight: bold;
-    color: #FFFFFF;
+    color: #DEDDE5;
     text-decoration: none;
 }
 
@@ -107,11 +107,11 @@ footer .social li {
 }
 
 footer .social li a {
-    color: #FFFFFF;
+    color: #DEDDE5;
 }
 
 footer .social li a:hover {
-    color: #FFFFFF;
+    color: #DEDDE5;
 }
 
 /* Chat Styles */
