@@ -83,8 +83,10 @@
                         thinkingMessage.style.maxWidth = "500px";
                         thinkingMessage.style.marginBottom = "10px"
                         chatWindow.appendChild(thinkingMessage);
+                        setTimeout(function () {
+                            thinkingMessage.textContent = "Still thinking...Please wait.";
+                        }, 30000);
                         chatWindow.scrollTop = chatWindow.scrollHeight;
-
                         var http = new XMLHttpRequest();
                         http.open("POST", "api/mldisastertweets", true);
                         http.setRequestHeader("Content-Type", "application/json");
