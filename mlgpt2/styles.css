@@ -188,3 +188,9 @@ footer .social li a:hover {
     margin-bottom: 10px;
     margin-left: auto;
 }
+
+@media (orientation: portrait) {
+    .chat-window {
+        height: calc(100vh - 700px);
+    }
+}
