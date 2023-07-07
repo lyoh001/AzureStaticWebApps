@@ -11,6 +11,7 @@ body {
     max-width: 88%;
     margin: auto;
     overflow: hidden;
+    height: var(--doc-height);
 }
 
 a:link,
@@ -135,8 +136,8 @@ footer .social li a:hover {
     border-radius: 15px;
     overflow-y: scroll;
     padding: 20px;
-    height: var(--doc-height);
     height: calc(100vh - 470px);
+    /* height: var(--doc-height); */
 }
 
 .chat-window::-webkit-scrollbar {

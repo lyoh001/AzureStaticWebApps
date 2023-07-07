@@ -10,6 +10,7 @@ body {
   background-color: #0D0F12;
   max-width: 88%;
   margin: auto;
+  height: var(--doc-height);
 }
 
 a:link,
