@@ -52,6 +52,11 @@
             <section class="chat-selection" id="chat-selection">
                 <h2>Generative AI-Powered Knowledge Base Bot</h2>
                 <div class="chat-window" id="chat-window"></div>
+                <select name="chat-mode" id="feature2">
+                    <option value="Cenitex">Chat Mode</option>
+                    <option value="Cenitex">Cenitex</option>
+                    <option value="General">General</option>
+                </select>
                 <div class="chat-input">
                     <input type="text" id="feature1" placeholder="Type your message here..."
                         onkeydown="handleKeyPress(event)">
@@ -66,6 +71,7 @@
                     }
                     function predict() {
                         var feature1 = document.getElementById("feature1").value.trim() || " ";
+                        var feature2 = document.getElementById("feature2").value;
                         var chatWindow = document.getElementById("chat-window");
                         var userMessage = document.createElement("div");
                         userMessage.textContent = feature1;
@@ -99,7 +105,7 @@
                                 displayResponse(response);
                             }
                         };
-                        http.send(JSON.stringify({ "text": [feature1] }));
+                        http.send(JSON.stringify({ "text": [feature1], "mode": [feature2] }));
                     }
                     function displayResponse(response) {
                         var index = 0;
