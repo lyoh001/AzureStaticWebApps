@@ -3,34 +3,16 @@
 <head>
     <link href="styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>Cenitex KB Bot</title>
+    <title>Cenitex KB</title>
 </head>
 
 <body>
     <header id="dashboard">
-        <h1><b>CENITEX</b> KB BOT</h1>
-        <hr>
-        AI Knowledge Base Chatbot powered by a Large Language Model
-        <hr>
+        <h1><b>CENITEX</b> KB</h1>
+        AI Knowledge Base Chatbot Powered by a Large Language Model
     </header>
     <main>
         <article id="mainLeft">
-            <section>
-                <h2>KB</h2>
-                <p>
-                    <i class="fab fa-microsoft" aria-hidden="true"></i>
-                    <a
-                        href="https://vicgov.sharepoint.com/:w:/r/sites/VG001921/Shared%20Documents/Operations/How%20to%27s/Activate%20or%20Approve%20Mailbox%20for%20Dynamics%20365.docx?d=w04bec640b4c643df81341c3d79317da9&csf=1&web=1&e=lemli9">Dynamics
-                        Mailbox</a>
-                </p>
-            </section>
-            <section>
-                <h2>DESIGN</h2>
-                <p>
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                    <a href="https://github.com/lyoh001/AzureFunctions">Architectural Design</a>
-                </p>
-            </section>
             <section>
                 <h2>CODE</h2>
                 <p>
@@ -42,10 +24,44 @@
                     <a href="https://github.com/lyoh001/AzureKB/blob/main/notebook/deploy.ipynb">Deployment</a>
                 </p>
             </section>
+            <section>
+                <h2>DESIGN</h2>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/AzureFunctions">Architectural Design</a>
+                </p>
+            </section>
+            <section>
+                <h2>KB LINKS</h2>
+                <p>
+                    <i class="fab fa-microsoft" aria-hidden="true"></i>
+                    <a
+                        href="https://vicgov.sharepoint.com/:w:/r/sites/VG001921/Shared%20Documents/Operations/How%20to%27s/Activate%20or%20Approve%20Mailbox%20for%20Dynamics%20365.docx?d=w04bec640b4c643df81341c3d79317da9&csf=1&web=1&e=lemli9">Dynamics</a>
+                </p>
+                <p>
+                    <i class="fab fa-microsoft" aria-hidden="true"></i>
+                    <a
+                        href="https://vicgov.sharepoint.com/:b:/r/sites/VG001921/Shared%20Documents/Operations/How%20to%27s/How%20to%20-%20Gather%20Information%20to%20Raise%20a%20Support%20Request%20with%20Interactive%20(or%20HP).pdf?csf=1&web=1&e=gfTDLb">Interactive</a>
+                </p>
+                <p>
+                    <i class="fab fa-microsoft" aria-hidden="true"></i>
+                    <a
+                        href="https://opswiki-vicgov.msappproxy.net/mediawiki/index.php/McAfee_ENS_introduction_-_Windows_Services">McAfee</a>
+                </p>
+                <p>
+                    <i class="fab fa-microsoft" aria-hidden="true"></i>
+                    <a
+                        href="https://vicgov.sharepoint.com/:w:/r/sites/VG001921/Shared%20Documents/Operations/Technical%20Documents/SpecOps/Functional%20Summary.docx?d=w0bffed0e68414786aaf0e354e5885531&csf=1&web=1&e=fHgM1N">SpecOps</a>
+                </p>
+                <p>
+                    <i class="fab fa-microsoft" aria-hidden="true"></i>
+                    <a
+                        href="https://vicgov.sharepoint.com/:w:/r/sites/VG001921/Shared%20Documents/Operations/Technical%20Documents/Tenable/Tenable%20Agent%20Troubleshooting%20Guide.docx?d=w02e3fb1e634641c28c7a85a31712a0a9&csf=1&web=1&e=5M2PMq">Tenable</a>
+                </p>
+            </section>
         </article>
         <article id="mainRight">
             <section class="chat-selection" id="chat-selection">
-                <h2>Generative AI-Powered Knowledge Base Bot</h2>
                 <div class="chat-window" id="chat-window"></div>
                 <select name="chat-mode" id="feature2">
                     <option value="General">Chat Mode</option>
@@ -76,11 +92,7 @@
 
                         var thinkingMessage = document.createElement("div");
                         thinkingMessage.textContent = "Thinking...It may take up to 30 seconds due to compute resources.";
-                        thinkingMessage.style.textAlign = "left";
-                        thinkingMessage.style.color = "#1DB2A9";
-                        thinkingMessage.style.fontWeight = "bold";
-                        thinkingMessage.style.maxWidth = "80%";
-                        thinkingMessage.style.marginBottom = "10px"
+                        thinkingMessage.classList.add("thinkingMessage"); // Add the class to the created element
                         chatWindow.appendChild(thinkingMessage);
                         chatWindow.scrollTop = chatWindow.scrollHeight;
 
@@ -108,11 +120,7 @@
                         var lineIndex = 0;
                         var wordIndex = 0;
                         var aiResponseMessage = document.createElement("div");
-                        aiResponseMessage.style.textAlign = "left";
-                        aiResponseMessage.style.color = "#1DB2A9";
-                        aiResponseMessage.style.fontWeight = "bold";
-                        aiResponseMessage.style.maxWidth = "80%";
-                        aiResponseMessage.style.marginBottom = "10px";
+                        aiResponseMessage.classList.add("aiResponseMessage"); // Add the class to the created element
                         chatWindow.appendChild(aiResponseMessage);
 
                         var interval = setInterval(function () {
@@ -130,11 +138,7 @@
                                 if (lineIndex < lines.length) {
                                     aiResponseMessage.textContent += "\n";
                                     aiResponseMessage = document.createElement("div");
-                                    aiResponseMessage.style.textAlign = "left";
-                                    aiResponseMessage.style.color = "#1DB2A9";
-                                    aiResponseMessage.style.fontWeight = "bold";
-                                    aiResponseMessage.style.maxWidth = "80%";
-                                    aiResponseMessage.style.marginBottom = "10px";
+                                    aiResponseMessage.classList.add("aiResponseMessage"); // Add the class to the created element
                                     chatWindow.appendChild(aiResponseMessage);
                                 } else {
                                     clearInterval(interval);
@@ -147,15 +151,6 @@
             </section>
         </article>
     </main>
-    <footer id="footer">
-        <hr>
-        <ul class="social">
-            <li><a href="https://github.com/lyoh001"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/in/lyoh001"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://lyoh001.com"><i class="fa fa-home"></i></a></li>
-            <li><a href="mailto:lyoh001@gmail.com"><i class="fa fa-envelope"></i></a></li>
-        </ul>
-    </footer>
 </body>
 
 </html>
