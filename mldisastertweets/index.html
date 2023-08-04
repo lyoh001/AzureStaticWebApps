@@ -110,28 +110,44 @@
                         http.send(JSON.stringify({ "text": [feature1] }));
                     }
                     function displayResponse(response) {
-                        var index = 0;
+                        var chatWindow = document.getElementById("chat-window");
+                        var lines = response.split("\n");
+                        var lineIndex = 0;
+                        var wordIndex = 0;
                         var aiResponseMessage = document.createElement("div");
                         aiResponseMessage.style.textAlign = "left";
                         aiResponseMessage.style.color = "#8ECAE6";
                         aiResponseMessage.style.fontWeight = "bold";
                         aiResponseMessage.style.maxWidth = "80%";
-                        aiResponseMessage.style.marginBottom = "10px"
-                        var chatWindow = document.getElementById("chat-window");
+                        aiResponseMessage.style.marginBottom = "10px";
                         chatWindow.appendChild(aiResponseMessage);
 
                         var interval = setInterval(function () {
-                            if (index === 0) {
-                                aiResponseMessage.textContent = response[index];
+                            var currentLine = lines[lineIndex];
+                            if (wordIndex < currentLine.length) {
+                                if (wordIndex === 0) {
+                                    aiResponseMessage.textContent = currentLine[wordIndex];
+                                } else {
+                                    aiResponseMessage.textContent += currentLine[wordIndex];
+                                }
+                                wordIndex++;
                             } else {
-                                aiResponseMessage.textContent += response[index];
+                                wordIndex = 0;
+                                lineIndex++;
+                                if (lineIndex < lines.length) {
+                                    aiResponseMessage.textContent += "\n";
+                                    aiResponseMessage = document.createElement("div");
+                                    aiResponseMessage.style.textAlign = "left";
+                                    aiResponseMessage.style.color = "#8ECAE6";
+                                    aiResponseMessage.style.fontWeight = "bold";
+                                    aiResponseMessage.style.maxWidth = "80%";
+                                    aiResponseMessage.style.marginBottom = "10px";
+                                    chatWindow.appendChild(aiResponseMessage);
+                                } else {
+                                    clearInterval(interval);
+                                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                                }
                             }
-                            index++;
-                            if (index >= response.length) {
-                                clearInterval(interval);
-                            }
-
-                            chatWindow.scrollTop = chatWindow.scrollHeight;
                         }, 10);
                     }
                 </script>
