@@ -1,24 +1,12 @@
 <html>
 
 <head>
-    <link href="/mlcenitex/styles.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Cenitex KB Bot</title>
 </head>
 
-<body onload="load()">
-    <script>
-        function load() {
-            var http = new XMLHttpRequest();
-            http.open("POST", "api/mlload", true);
-            http.setRequestHeader("Content-Type", "application/json");
-            http.onreadystatechange = function () {
-                var response = http.responseText
-                document.getElementById("prediction").innerHTML = "Ready.";
-            }
-            http.send();
-        }
-    </script>
+<body>
     <header id="dashboard">
         <h1><b>CENITEX</b> KB BOT</h1>
         <hr>
@@ -28,16 +16,12 @@
     <main>
         <article id="mainLeft">
             <section>
-                <h2>CODE</h2>
+                <h2>KB</h2>
                 <p>
-                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <i class="fab fa-microsoft" aria-hidden="true"></i>
                     <a
-                        href="https://github.com/lyoh001/AzureStaticWebApps/blob/main/mlcenitex/notebook/fine_tune.ipynb">Fine-tuning</a>
-                </p>
-                <p>
-                    <i class="fab fa-github" aria-hidden="true"></i>
-                    <a
-                        href="https://github.com/lyoh001/AzureStaticWebApps/blob/main/mlcenitex/notebook/deploy.ipynb">Deployment</a>
+                        href="https://vicgov.sharepoint.com/:w:/r/sites/VG001921/Shared%20Documents/Operations/How%20to%27s/Activate%20or%20Approve%20Mailbox%20for%20Dynamics%20365.docx?d=w04bec640b4c643df81341c3d79317da9&csf=1&web=1&e=lemli9">Dynamics
+                        Mailbox</a>
                 </p>
             </section>
             <section>
@@ -47,15 +31,26 @@
                     <a href="https://github.com/lyoh001/AzureFunctions">Architectural Design</a>
                 </p>
             </section>
+            <section>
+                <h2>CODE</h2>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/AzureKB/blob/main/notebook/fine_tune.ipynb">Fine-tuning</a>
+                </p>
+                <p>
+                    <i class="fab fa-github" aria-hidden="true"></i>
+                    <a href="https://github.com/lyoh001/AzureKB/blob/main/notebook/deploy.ipynb">Deployment</a>
+                </p>
+            </section>
         </article>
         <article id="mainRight">
             <section class="chat-selection" id="chat-selection">
                 <h2>Generative AI-Powered Knowledge Base Bot</h2>
                 <div class="chat-window" id="chat-window"></div>
                 <select name="chat-mode" id="feature2">
-                    <option value="Cenitex">Chat Mode</option>
-                    <option value="Cenitex">Cenitex</option>
+                    <option value="General">Chat Mode</option>
                     <option value="General">General</option>
+                    <option value="Cenitex">Cenitex</option>
                 </select>
                 <div class="chat-input">
                     <input type="text" id="feature1" placeholder="Type your message here..."
@@ -90,7 +85,7 @@
                         chatWindow.scrollTop = chatWindow.scrollHeight;
 
                         var http = new XMLHttpRequest();
-                        http.open("POST", "api/mlcenitex", true);
+                        http.open("POST", "api/azureai", true);
                         http.setRequestHeader("Content-Type", "application/json");
                         http.timeout = 120000;
                         http.ontimeout = function () {
@@ -108,28 +103,44 @@
                         http.send(JSON.stringify({ "text": [feature1], "mode": [feature2] }));
                     }
                     function displayResponse(response) {
-                        var index = 0;
+                        var chatWindow = document.getElementById("chat-window");
+                        var lines = response.split("\n");
+                        var lineIndex = 0;
+                        var wordIndex = 0;
                         var aiResponseMessage = document.createElement("div");
                         aiResponseMessage.style.textAlign = "left";
                         aiResponseMessage.style.color = "#1DB2A9";
                         aiResponseMessage.style.fontWeight = "bold";
                         aiResponseMessage.style.maxWidth = "80%";
-                        aiResponseMessage.style.marginBottom = "10px"
-                        var chatWindow = document.getElementById("chat-window");
+                        aiResponseMessage.style.marginBottom = "10px";
                         chatWindow.appendChild(aiResponseMessage);
 
                         var interval = setInterval(function () {
-                            if (index === 0) {
-                                aiResponseMessage.textContent = response[index];
+                            var currentLine = lines[lineIndex];
+                            if (wordIndex < currentLine.length) {
+                                if (wordIndex === 0) {
+                                    aiResponseMessage.textContent = currentLine[wordIndex];
+                                } else {
+                                    aiResponseMessage.textContent += currentLine[wordIndex];
+                                }
+                                wordIndex++;
                             } else {
-                                aiResponseMessage.textContent += response[index];
+                                wordIndex = 0;
+                                lineIndex++;
+                                if (lineIndex < lines.length) {
+                                    aiResponseMessage.textContent += "\n";
+                                    aiResponseMessage = document.createElement("div");
+                                    aiResponseMessage.style.textAlign = "left";
+                                    aiResponseMessage.style.color = "#1DB2A9";
+                                    aiResponseMessage.style.fontWeight = "bold";
+                                    aiResponseMessage.style.maxWidth = "80%";
+                                    aiResponseMessage.style.marginBottom = "10px";
+                                    chatWindow.appendChild(aiResponseMessage);
+                                } else {
+                                    clearInterval(interval);
+                                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                                }
                             }
-                            index++;
-                            if (index >= response.length) {
-                                clearInterval(interval);
-                            }
-
-                            chatWindow.scrollTop = chatWindow.scrollHeight;
                         }, 10);
                     }
                 </script>
