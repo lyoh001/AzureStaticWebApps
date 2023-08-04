@@ -97,30 +97,47 @@
                         http.send(JSON.stringify({ "text": [feature1] }));
                     }
                     function displayResponse(response) {
-                        var index = 0;
-                        var aiResponseMessage = document.createElement("div");
-                        aiResponseMessage.style.textAlign = "left";
-                        aiResponseMessage.style.color = "#8ECAE6";
-                        aiResponseMessage.style.fontWeight = "bold";
-                        aiResponseMessage.style.maxWidth = "80%";
-                        aiResponseMessage.style.marginBottom = "10px"
                         var chatWindow = document.getElementById("chat-window");
-                        chatWindow.appendChild(aiResponseMessage);
+                        var lines = response.split("\n");
 
-                        var interval = setInterval(function () {
-                            if (index === 0) {
-                                aiResponseMessage.textContent = response[index];
-                            } else {
-                                aiResponseMessage.textContent += response[index];
-                            }
-                            index++;
-                            if (index >= response.length) {
-                                clearInterval(interval);
-                            }
+                        for (var i = 0; i < lines.length; i++) {
+                            var aiResponseMessage = document.createElement("div");
+                            aiResponseMessage.textContent = lines[i];
+                            aiResponseMessage.style.textAlign = "left";
+                            aiResponseMessage.style.color = "#1DB2A9";
+                            aiResponseMessage.style.fontWeight = "bold";
+                            aiResponseMessage.style.maxWidth = "80%";
+                            aiResponseMessage.style.marginBottom = "10px"
+                            chatWindow.appendChild(aiResponseMessage);
+                        }
 
-                            chatWindow.scrollTop = chatWindow.scrollHeight;
-                        }, 10);
+                        chatWindow.scrollTop = chatWindow.scrollHeight;
                     }
+                    // function displayResponse(response) {
+                    //     var index = 0;
+                    //     var aiResponseMessage = document.createElement("div");
+                    //     aiResponseMessage.style.textAlign = "left";
+                    //     aiResponseMessage.style.color = "#8ECAE6";
+                    //     aiResponseMessage.style.fontWeight = "bold";
+                    //     aiResponseMessage.style.maxWidth = "80%";
+                    //     aiResponseMessage.style.marginBottom = "10px"
+                    //     var chatWindow = document.getElementById("chat-window");
+                    //     chatWindow.appendChild(aiResponseMessage);
+
+                    //     var interval = setInterval(function () {
+                    //         if (index === 0) {
+                    //             aiResponseMessage.textContent = response[index];
+                    //         } else {
+                    //             aiResponseMessage.textContent += response[index];
+                    //         }
+                    //         index++;
+                    //         if (index >= response.length) {
+                    //             clearInterval(interval);
+                    //         }
+
+                    //         chatWindow.scrollTop = chatWindow.scrollHeight;
+                    //     }, 10);
+                    // }
                 </script>
             </section>
         </article>
