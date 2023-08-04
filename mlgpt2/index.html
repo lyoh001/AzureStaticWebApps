@@ -99,20 +99,44 @@
                     function displayResponse(response) {
                         var chatWindow = document.getElementById("chat-window");
                         var lines = response.split("\n");
+                        var lineIndex = 0;
+                        var wordIndex = 0;
+                        var aiResponseMessage = document.createElement("div");
+                        aiResponseMessage.style.textAlign = "left";
+                        aiResponseMessage.style.color = "#8ECAE6";
+                        aiResponseMessage.style.fontWeight = "bold";
+                        aiResponseMessage.style.maxWidth = "80%";
+                        aiResponseMessage.style.marginBottom = "10px";
+                        chatWindow.appendChild(aiResponseMessage);
 
-                        for (var i = 0; i < lines.length; i++) {
-                            var aiResponseMessage = document.createElement("div");
-                            aiResponseMessage.textContent = lines[i];
-                            aiResponseMessage.style.textAlign = "left";
-                            aiResponseMessage.style.color = "#1DB2A9";
-                            aiResponseMessage.style.fontWeight = "bold";
-                            aiResponseMessage.style.maxWidth = "80%";
-                            aiResponseMessage.style.marginBottom = "10px"
-                            chatWindow.appendChild(aiResponseMessage);
-                        }
-
-                        chatWindow.scrollTop = chatWindow.scrollHeight;
+                        var interval = setInterval(function () {
+                            var currentLine = lines[lineIndex];
+                            if (wordIndex < currentLine.length) {
+                                if (wordIndex === 0) {
+                                    aiResponseMessage.textContent = currentLine[wordIndex];
+                                } else {
+                                    aiResponseMessage.textContent += currentLine[wordIndex];
+                                }
+                                wordIndex++;
+                            } else {
+                                wordIndex = 0;
+                                lineIndex++;
+                                if (lineIndex < lines.length) {
+                                    aiResponseMessage = document.createElement("div");
+                                    aiResponseMessage.style.textAlign = "left";
+                                    aiResponseMessage.style.color = "#8ECAE6";
+                                    aiResponseMessage.style.fontWeight = "bold";
+                                    aiResponseMessage.style.maxWidth = "80%";
+                                    aiResponseMessage.style.marginBottom = "10px";
+                                    chatWindow.appendChild(aiResponseMessage);
+                                } else {
+                                    clearInterval(interval);
+                                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                                }
+                            }
+                        }, 10);
                     }
+
                     // function displayResponse(response) {
                     //     var index = 0;
                     //     var aiResponseMessage = document.createElement("div");
