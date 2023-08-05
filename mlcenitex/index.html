@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <link href="styles.css" rel="stylesheet">
+    <link href="/mlcenitex/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Cenitex KB</title>
 </head>
@@ -92,12 +92,12 @@
 
                         var thinkingMessage = document.createElement("div");
                         thinkingMessage.textContent = "Thinking...It may take up to 30 seconds due to compute resources.";
-                        thinkingMessage.classList.add("thinkingMessage"); // Add the class to the created element
+                        thinkingMessage.classList.add("thinkingMessage");
                         chatWindow.appendChild(thinkingMessage);
                         chatWindow.scrollTop = chatWindow.scrollHeight;
 
                         var http = new XMLHttpRequest();
-                        http.open("POST", "api/azureai", true);
+                        http.open("POST", "api/mlcenitex", true);
                         http.setRequestHeader("Content-Type", "application/json");
                         http.timeout = 120000;
                         http.ontimeout = function () {
@@ -120,7 +120,7 @@
                         var lineIndex = 0;
                         var wordIndex = 0;
                         var aiResponseMessage = document.createElement("div");
-                        aiResponseMessage.classList.add("aiResponseMessage"); // Add the class to the created element
+                        aiResponseMessage.classList.add("aiResponseMessage");
                         chatWindow.appendChild(aiResponseMessage);
 
                         var interval = setInterval(function () {
@@ -138,7 +138,7 @@
                                 if (lineIndex < lines.length) {
                                     aiResponseMessage.textContent += "\n";
                                     aiResponseMessage = document.createElement("div");
-                                    aiResponseMessage.classList.add("aiResponseMessage"); // Add the class to the created element
+                                    aiResponseMessage.classList.add("aiResponseMessage");
                                     chatWindow.appendChild(aiResponseMessage);
                                 } else {
                                     clearInterval(interval);

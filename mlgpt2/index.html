@@ -21,9 +21,7 @@
     </script>
     <header id="dashboard">
         <h1><b>AI</b> CHATBOT</h1>
-        <hr>
         AI Chatbot powered by a Large Language Model
-        <hr>
     </header>
     <main>
         <article id="mainLeft">
@@ -45,7 +43,6 @@
         </article>
         <article id="mainRight">
             <section class="chat-selection" id="chat-selection">
-                <h2>Generative AI-Powered Q&A Chatbot</h2>
                 <div class="chat-window" id="chat-window"></div>
                 <div class="chat-input">
                     <input type="text" id="feature1" placeholder="Type your message here..."
@@ -70,11 +67,7 @@
 
                         var thinkingMessage = document.createElement("div");
                         thinkingMessage.textContent = "Thinking...It may take up to 30 seconds due to compute resources.";
-                        thinkingMessage.style.textAlign = "left";
-                        thinkingMessage.style.color = "#8ECAE6";
-                        thinkingMessage.style.fontWeight = "bold";
-                        thinkingMessage.style.maxWidth = "80%";
-                        thinkingMessage.style.marginBottom = "10px"
+                        thinkingMessage.classList.add("thinkingMessage");
                         chatWindow.appendChild(thinkingMessage);
                         chatWindow.scrollTop = chatWindow.scrollHeight;
 
@@ -102,11 +95,7 @@
                         var lineIndex = 0;
                         var wordIndex = 0;
                         var aiResponseMessage = document.createElement("div");
-                        aiResponseMessage.style.textAlign = "left";
-                        aiResponseMessage.style.color = "#8ECAE6";
-                        aiResponseMessage.style.fontWeight = "bold";
-                        aiResponseMessage.style.maxWidth = "80%";
-                        aiResponseMessage.style.marginBottom = "10px";
+                        aiResponseMessage.classList.add("aiResponseMessage");
                         chatWindow.appendChild(aiResponseMessage);
 
                         var interval = setInterval(function () {
@@ -124,11 +113,7 @@
                                 if (lineIndex < lines.length) {
                                     aiResponseMessage.textContent += "\n";
                                     aiResponseMessage = document.createElement("div");
-                                    aiResponseMessage.style.textAlign = "left";
-                                    aiResponseMessage.style.color = "#8ECAE6";
-                                    aiResponseMessage.style.fontWeight = "bold";
-                                    aiResponseMessage.style.maxWidth = "80%";
-                                    aiResponseMessage.style.marginBottom = "10px";
+                                    aiResponseMessage.classList.add("aiResponseMessage");
                                     chatWindow.appendChild(aiResponseMessage);
                                 } else {
                                     clearInterval(interval);
@@ -142,7 +127,6 @@
         </article>
     </main>
     <footer id="footer">
-        <hr>
         <ul class="social">
             <li><a href="https://github.com/lyoh001"><i class="fab fa-github"></i></a></li>
             <li><a href="https://linkedin.com/in/lyoh001"><i class="fab fa-linkedin"></i></a></li>

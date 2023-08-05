@@ -7,10 +7,14 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 12px;
     color: #FFFFFF;
-    background-color: #0D0F12;
+    background-color: #1F232C;
     max-width: 88%;
     margin: auto;
     overflow: hidden;
+    background-image: url('/mlgpt2/bg.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
     height: var(--doc-height);
 }
 
@@ -25,7 +29,7 @@ a:active {
 
 a:hover,
 a:active {
-    color: #8ECAE6;
+    color: #525E69;
 }
 
 h1,
@@ -76,7 +80,7 @@ footer {
 main {
     display: grid;
     margin-top: 1.5em;
-    grid-template-columns: 25% 75%;
+    grid-template-columns: 17% 83%;
 }
 
 #mainLeft {
@@ -132,11 +136,9 @@ footer .social li a:hover {
     display: flex;
     flex-direction: column;
     height: 65%;
-    border: 1px solid #ccc;
-    border-radius: 15px;
     overflow-y: scroll;
     padding: 20px;
-    height: calc(100vh - 470px);
+    height: calc(100vh - 300px);
 }
 
 .chat-window::-webkit-scrollbar {
@@ -164,33 +166,53 @@ footer .social li a:hover {
     margin-left: 10px;
     border-radius: 5px;
     border: none;
-    background-color: #8ECAE6;
-    color: #333;
+    background-color: #525E69;
+    color: #FFFFFF;
     padding: 5px 10px;
     cursor: pointer;
 }
 
 .chat-input button:hover {
-    background-color: #80A9D7;
-    color: #333;
+    background-color: #444E58;
+    color: #FFFFFF;
 }
 
 .userMessage {
     text-align: left;
     max-width: 80%;
-    border: 1px solid #80A9D7;
+    border: 1px solid #444E58;
     box-shadow: 0 0 8px rgba(0, 0, 0, .3);
     padding: 5px 10px;
     border-radius: 5px;
     box-sizing: border-box;
-    background-color: #80A9D7;
-    color: #333;
+    background-color: #444E58;
+    color: #FFFFFF;
     margin-bottom: 10px;
     margin-left: auto;
 }
 
+.thinkingMessage {
+    text-align: left;
+    max-width: 80%;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    margin-left: 0%;
+    margin-right: auto;
+    font-weight: bold;
+}
+
+.aiResponseMessage {
+    text-align: left;
+    max-width: 80%;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    margin-left: 0%;
+    margin-right: auto;
+    font-weight: bold;
+}
+
 @media (orientation: portrait) {
     .chat-window {
-        height: calc(100vh - 700px);
+        height: calc(100vh - 300px);
     }
 }
