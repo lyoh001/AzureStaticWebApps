@@ -139,15 +139,11 @@ footer .social li a:hover {
     overflow-y: scroll;
     padding: 20px;
     height: calc(100vh - 300px);
+    scrollbar-width: none;
 }
 
 .chat-window::-webkit-scrollbar {
-    width: 6px;
-}
-
-.chat-window::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
+    display: none;
 }
 
 .chat-input {
