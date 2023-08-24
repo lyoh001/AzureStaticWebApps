@@ -29,7 +29,7 @@ a:active {
 
 a:hover,
 a:active {
-    color: #1DB2A9;
+    color: #525E69;
 }
 
 h1,
@@ -110,16 +110,12 @@ section {
     height: 65%;
     overflow-y: scroll;
     padding: 20px;
-    height: calc(100vh - 270px);
+    height: calc(100vh - 280px);
+    scrollbar-width: none;
 }
 
 .chat-window::-webkit-scrollbar {
-    width: 6px;
-}
-
-.chat-window::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
+    display: none;
 }
 
 .chat-input {
@@ -185,6 +181,6 @@ section {
 
 @media (orientation: portrait) {
     .chat-window {
-        height: calc(100vh - 270px);
+        height: calc(100vh - 280px);
     }
 }
