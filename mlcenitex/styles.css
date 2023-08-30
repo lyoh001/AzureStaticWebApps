@@ -11,11 +11,24 @@ body {
     max-width: 88%;
     margin: auto;
     overflow: hidden;
-    background-image: url('/mlcenitex/bg.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
     height: var(--doc-height);
+}
+
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.content {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 a:link,
@@ -29,7 +42,7 @@ a:active {
 
 a:hover,
 a:active {
-    color: #525E69;
+    color: #476D76;
 }
 
 h1,
@@ -134,26 +147,26 @@ section {
     margin-left: 10px;
     border-radius: 5px;
     border: none;
-    background-color: #525E69;
+    background-color: #476D76;
     color: #FFFFFF;
     padding: 5px 10px;
     cursor: pointer;
 }
 
 .chat-input button:hover {
-    background-color: #444E58;
+    background-color: #04182D;
     color: #FFFFFF;
 }
 
 .userMessage {
     text-align: left;
     max-width: 80%;
-    border: 1px solid #444E58;
+    border: 1px solid #04182D;
     box-shadow: 0 0 8px rgba(0, 0, 0, .3);
     padding: 5px 10px;
     border-radius: 5px;
     box-sizing: border-box;
-    background-color: #444E58;
+    background-color: #04182D;
     color: #FFFFFF;
     margin-bottom: 10px;
     margin-left: auto;
