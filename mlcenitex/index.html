@@ -211,12 +211,9 @@
 
                             var interval = setInterval(function () {
                                 var currentLine = lines[lineIndex];
-                                if (wordIndex < currentLine.length) {
-                                    if (wordIndex === 0) {
-                                        aiResponseMessage.textContent = currentLine[wordIndex];
-                                    } else {
-                                        aiResponseMessage.textContent += currentLine[wordIndex];
-                                    }
+                                var words = currentLine.split(" ");
+                                if (wordIndex < words.length) {
+                                    aiResponseMessage.textContent += words[wordIndex] + " ";
                                     wordIndex++;
                                 } else {
                                     wordIndex = 0;
@@ -231,7 +228,7 @@
                                         chatWindow.scrollTop = chatWindow.scrollHeight;
                                     }
                                 }
-                            }, 5);
+                            }, 30);
                         }
                     </script>
                 </section>
