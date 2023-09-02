@@ -1,58 +1,29 @@
 :root {
-    --doc-height: 100%
+    --doc-height: 100%;
 }
 
+/* Typography */
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 12px;
-    color: #E0E1DD;
-    background-color: #1B263B;
+    font: 12px "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #e0e1dd;
+    background: #1b263b;
     max-width: 88%;
     margin: auto;
     overflow: hidden;
     height: var(--doc-height);
 }
 
-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-}
-
-.content {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-a:link,
-a:visited,
-a:hover,
-a:active {
-    font-weight: bold;
-    color: #E0E1DD;
-    text-decoration: none;
-}
-
-a:hover,
-a:active {
-    color: #415A77;
-}
-
-h1,
-h2 {
-    margin-bottom: 0;
-}
-
 h1 {
-    font-size: 2.5em;
-    letter-spacing: .6em;
+    font-size: 1.5rem;
+    letter-spacing: 0.6em;
     padding: 0.5em 0;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1rem;
+    }
 }
 
 h2 {
@@ -60,27 +31,23 @@ h2 {
     padding-bottom: 1em;
 }
 
-hr {
-    border: none;
-    background-color: lightgray;
-    height: 1px;
-}
-
 p {
-    margin: .2em auto;
-    margin-bottom: 10px;
+    margin: 0.2em auto 0.2em 0;
     color: #a7a7a7;
 }
 
-i {
-    margin-right: .5em;
+a {
+    font-weight: bold;
+    color: #e0e1dd;
+    text-decoration: none;
 }
 
-input,
-select {
-    text-align: left;
-    width: 20%;
+a:hover,
+a:active {
+    color: #415a77;
 }
+
+/* Layout */
 
 header,
 footer {
@@ -88,10 +55,29 @@ footer {
     margin: auto 2em;
 }
 
+header {
+    height: 10vh;
+}
+
 main {
     display: grid;
     margin-top: 1.5em;
-    grid-template-columns: 17% 83%;
+}
+
+@media (min-width: 100vh) {
+    main {
+        grid-template-columns: 17% 83%;
+    }
+}
+
+@media (max-width: 100vh) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    #mainLeft {
+        display: none;
+    }
 }
 
 #mainLeft {
@@ -106,30 +92,22 @@ section {
     margin: auto 2em 2em 1em;
 }
 
-.kblinks {
-    list-style-type: none;
-    padding: 0;
-}
-
-.kblinks li {
-    margin-bottom: 6px;
-}
+/* Chat */
 
 .chat-selection {
     margin: auto;
-    width: 90%;
+    width: 80%;
     border-radius: 24px;
-    padding: 0 32px 32px 32px;
-    margin-bottom: 20px;
+    padding: 0 32px 32px;
+    height: 70vh;
 }
 
 .chat-window {
     display: flex;
     flex-direction: column;
-    height: 65%;
+    height: 100%;
     overflow-y: scroll;
     padding: 20px;
-    height: calc(100vh - 280px);
     scrollbar-width: none;
 }
 
@@ -153,53 +131,82 @@ section {
     margin-left: 10px;
     border-radius: 5px;
     border: none;
-    background-color: #415A77;
-    color: #E0E1DD;
+    background: #415a77;
+    color: #e0e1dd;
     padding: 5px 10px;
     cursor: pointer;
 }
 
 .chat-input button:hover {
-    background-color: #1B263B;
-    color: #E0E1DD;
+    background: #1b263b;
+    color: #e0e1dd;
 }
 
 .userMessage {
     text-align: left;
     max-width: 80%;
-    border: 1px solid #1B263B;
+    border: 1px solid #1b263b;
     box-shadow: 0 0 8px rgba(0, 0, 0, .3);
     padding: 5px 10px;
     border-radius: 5px;
     box-sizing: border-box;
-    background-color: #1B263B;
-    color: #E0E1DD;
+    background: #1b263b;
+    color: #e0e1dd;
     margin-bottom: 10px;
     margin-left: auto;
 }
 
-.thinkingMessage {
-    text-align: left;
-    max-width: 80%;
-    color: #E0E1DD;
-    margin-bottom: 10px;
-    margin-left: 0%;
-    margin-right: auto;
-    font-weight: bold;
-}
-
+.thinkingMessage,
 .aiResponseMessage {
     text-align: left;
     max-width: 80%;
-    color: #E0E1DD;
+    color: #e0e1dd;
     margin-bottom: 10px;
-    margin-left: 0%;
+    margin-left: 0;
     margin-right: auto;
     font-weight: bold;
 }
 
-@media (orientation: portrait) {
-    .chat-window {
-        height: calc(100vh - 280px);
-    }
+/* Misc */
+
+hr {
+    border: none;
+    background: lightgray;
+    height: 1px;
+}
+
+i {
+    margin-right: .5em;
+}
+
+input,
+select {
+    text-align: left;
+    width: 20%;
+}
+
+.kblinks {
+    list-style-type: none;
+    padding: 0;
+}
+
+.kblinks li {
+    margin-bottom: 6px;
+}
+
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.content {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    background: rgba(0, 0, 0, .5);
 }
