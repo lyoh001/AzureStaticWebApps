@@ -114,6 +114,12 @@ section {
     }
 }
 
+@media (max-width: 1024px) {
+    .chat-selection {
+        height: 63vh;
+    }
+}
+
 @media (max-width: 600px) {
     .chat-selection {
         height: 60vh;
