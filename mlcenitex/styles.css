@@ -1,8 +1,6 @@
 :root {
     --doc-height: 100%;
     --font: 12px 'Open Sans', sans-serif;
-
-    /* Colors */
     --bg: #1b263b;
     --text: #e0e1dd;
     --link: #415a77;
@@ -10,7 +8,6 @@
     --shadow: 0 0 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Typography */
 body {
     font: var(--font);
     color: var(--text);
@@ -21,8 +18,7 @@ body {
     height: var(--doc-height);
 }
 
-h1,
-h2 {
+h1 {
     letter-spacing: 0.6em;
     padding: 0.5em 0;
 }
@@ -37,16 +33,6 @@ h1 {
     }
 }
 
-h2 {
-    font-size: 1.5em;
-    padding-bottom: 1em;
-}
-
-p {
-    margin: 0.2em 0;
-    color: #a7a7a7;
-}
-
 a {
     font-weight: bold;
     color: var(--text);
@@ -58,9 +44,7 @@ a:active {
     color: var(--link);
 }
 
-/* Layout */
-header,
-footer {
+header {
     text-align: center;
     margin: auto 2em;
 }
@@ -102,7 +86,6 @@ section {
     margin: auto 2em 2em 1em;
 }
 
-/* Chat */
 .chat-selection {
     margin: auto;
     width: 80%;
@@ -194,13 +177,6 @@ section {
     margin-left: 0;
     margin-right: auto;
     font-weight: bold;
-}
-
-/* Misc */
-hr {
-    border: none;
-    background: lightgray;
-    height: 1px;
 }
 
 i {
