@@ -16,6 +16,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
     && apt-get dist-upgrade -y \
     && apt-get install git -y \
     && apt-get install nodejs -y \
+    && apt-get install python3-pip -y \
+    && apt-get install python3-venv -y \
     && npm install -g npm@latest \
     && npm install -g @azure/static-web-apps-cli \
     && sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"

@@ -21,9 +21,6 @@ body {
 h1 {
     letter-spacing: 0.6em;
     padding: 0.5em 0;
-}
-
-h1 {
     font-size: 1.5rem;
 }
 
@@ -47,9 +44,6 @@ a:active {
 header {
     text-align: center;
     margin: auto 2em;
-}
-
-header {
     height: 10vh;
 }
 
@@ -219,10 +213,11 @@ select {
 video,
 .content {
     position: fixed;
-    right: 0;
-    bottom: 0;
+    right: 50%;
+    bottom: 50%;
     min-width: 100%;
     min-height: 100%;
+    transform: translateX(50%) translateY(50%);
 }
 
 .content {

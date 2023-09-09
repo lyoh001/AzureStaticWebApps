@@ -12,7 +12,7 @@
 <body>
     <video autoplay muted loop id="video"></video>
     <script>
-        var videoSources = ["/mlcenitex/bg0.mp4", "/mlcenitex/bg1.mp4", "/mlcenitex/bg2.mp4"];
+        var videoSources = ["/mlcenitex/bg0.mp4", "/mlcenitex/bg1.mp4"];
         var randomIndex = Math.floor(Math.random() * videoSources.length);
         var video = document.getElementById("video");
         video.src = videoSources[randomIndex];
@@ -20,7 +20,7 @@
     <div class="content">
         <header id="dashboard">
             <h1><b>CENITEX</b> KB</h1>
-            Knowledge Base Chatbot Powered by LLM
+            Knowledge Base Chatbot Powered by GenAI
         </header>
         <main>
             <article id="mainLeft">
@@ -105,9 +105,8 @@
                 <section class="chat-selection" id="chat-selection">
                     <div class="chat-window" id="chat-window"></div>
                     <select name="chat-mode" id="feature2">
-                        <option value="General">General Mode</option>
-                        <option value="Cenitex">Cenitex Mode</option>
                         <option value="Agent">Agent Mode</option>
+                        <option value="Cenitex">Cenitex Mode</option>
                     </select>
                     <div class="chat-input">
                         <input type="text" id="feature1" placeholder="Type your message here..."
@@ -125,32 +124,33 @@
                 predict();
             }
         }
-
         function predict() {
-            var feature1 = document.getElementById("feature1").value.trim() || " ";
-            var feature2 = document.getElementById("feature2").value;
+            var input = document.getElementById("feature1");
             var chatWindow = document.getElementById("chat-window");
+            var message = input.value.trim();
+            if (!message) {
+                var errorMessage = document.createElement("div");
+                errorMessage.textContent = "Please enter a message before sending";
+                errorMessage.classList.add("thinkingMessage");
+                chatWindow.appendChild(errorMessage);
+                setTimeout(() => {
+                    chatWindow.removeChild(errorMessage);
+                }, 3000);
+                return;
+            }
             var userMessage = document.createElement("div");
-            userMessage.textContent = feature1;
+            userMessage.textContent = message;
             userMessage.classList.add("userMessage");
             chatWindow.appendChild(userMessage);
-            document.getElementById("feature1").value = "";
-
+            input.value = "";
             var thinkingMessage = document.createElement("div");
-            thinkingMessage.textContent = "Thinking...It may take up to 30 seconds due to compute resources.";
+            thinkingMessage.textContent = "Thinking...";
             thinkingMessage.classList.add("thinkingMessage");
             chatWindow.appendChild(thinkingMessage);
             chatWindow.scrollTop = chatWindow.scrollHeight;
-
             var http = new XMLHttpRequest();
             http.open("POST", "api/mlcenitex", true);
             http.setRequestHeader("Content-Type", "application/json");
-            http.timeout = 120000;
-            http.ontimeout = function () {
-                console.log('Request timed out');
-                chatWindow.removeChild(thinkingMessage);
-                displayResponse('Request timed out');
-            };
             http.onreadystatechange = function () {
                 if (http.readyState == 4 && http.status == 200) {
                     var response = http.responseText;
@@ -158,9 +158,12 @@
                     displayResponse(response);
                 }
             };
-            http.send(JSON.stringify({ "text": [feature1], "mode": [feature2] }));
+            var data = {
+                text: [message],
+                mode: [document.getElementById("feature2").value]
+            };
+            http.send(JSON.stringify(data));
         }
-
         function displayResponse(response) {
             var chatWindow = document.getElementById("chat-window");
             var lines = response.split("\n");

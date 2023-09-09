@@ -7,10 +7,10 @@
 		"terminal.integrated.defaultProfile.linux": "zsh"
 	},
 	"extensions": [
+		"ms-azuretools.vscode-azurefunctions",
 		"ms-azuretools.vscode-azureresourcegroups",
 		"ms-azuretools.vscode-azurestaticwebapps",
 		"ms-vscode.azure-account",
-		"ms-vscode.live-server"
 	],
 	"forwardPorts": [
 		7000

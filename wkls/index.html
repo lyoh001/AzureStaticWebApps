@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/wkls/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>WKLS</title>
+</head>
+
+<body>
+    <video autoplay muted loop id="video"></video>
+    <script>
+        var videoSources = ["/wkls/bg.mp4"];
+        var randomIndex = Math.floor(Math.random() * videoSources.length);
+        var video = document.getElementById("video");
+        video.src = videoSources[randomIndex];
+    </script>
+    <div class="content">
+        <h1><b>WKLS</b></h1>
+        <div class="subtitle">
+            Student Report Generator Powered by GenAI
+        </div>
+        <div class="container">
+            <div class="input">
+                <h2>Report Form</h2>
+                <label>Name:</label>
+                <input type="text" id="name"><br>
+                <label>Grade:</label>
+                <input type="text" id="grade"><br>
+                <label>Student Attendance:</label>
+                <input type="text" id="attendance"><br>
+                <div id="english">
+                    <h3>English</h3>
+                    <input type="checkbox" id="english1"> Can write 50 words<br>
+                    <input type="checkbox" id="english2"> Can read 50 words<br>
+                    <input type="checkbox" id="english3"> Can understand spoken English<br>
+                    <input type="checkbox" id="english4"> Knows grammar rules<br>
+                    <input type="checkbox" id="english5"> Has good vocabulary<br>
+                    <button id="englishBrushButton">Brush</button>
+                </div>
+                <div id="math">
+                    <h3>Math</h3>
+                    <input type="checkbox" id="math1"> Can add and subtract <br>
+                    <input type="checkbox" id="math2"> Understands place values<br>
+                    <input type="checkbox" id="math3"> Can multiply single digit numbers<br>
+                    <input type="checkbox" id="math4"> Can divide single digit numbers<br>
+                    <input type="checkbox" id="math5"> Knows times tables<br>
+                    <button id="mathBrushButton">Brush</button>
+                </div>
+                <div id="science">
+                    <h3>Science</h3>
+                    <input type="checkbox" id="science1"> Understands living vs nonliving<br>
+                    <input type="checkbox" id="science2"> Knows parts of a plant<br>
+                    <input type="checkbox" id="science3"> Knows types of animals<br>
+                    <input type="checkbox" id="science4"> Understands water cycle<br>
+                    <input type="checkbox" id="science5"> Understands seasons<br>
+                    <button id="scienceBrushButton">Brush</button>
+                </div>
+                <div id="history">
+                    <h3>History</h3>
+                    <input type="checkbox" id="history1"> Knows important dates<br>
+                    <input type="checkbox" id="history2"> Understands timelines<br>
+                    <input type="checkbox" id="history3"> Knows important people<br>
+                    <input type="checkbox" id="history4"> Understands cause and effect<br>
+                    <input type="checkbox" id="history5"> Can read maps<br>
+                    <button id="historyBrushButton">Brush</button>
+                </div>
+            </div>
+            <div class="report">
+                <h2>Report Preview</h2>
+                <h3>Name</h3>
+                <p id="studentName"></p>
+                <h3>Grade</h3>
+                <p id="studentGrade"></p>
+                <h3>Student Attendance</h3>
+                <p id="studentAttendancePreview"></p>
+                <h3>English</h3>
+                <textarea id="englishPreview" rows="10"></textarea>
+                <h3>Math</h3>
+                <textarea id="mathPreview" rows="10"></textarea>
+                <h3>Science</h3>
+                <textarea id="sciencePreview" rows="10"></textarea>
+                <h3>History</h3>
+                <textarea id="historyPreview" rows="10"></textarea>
+            </div>
+        </div>
+        <script>
+            const nameInput = document.getElementById("name");
+            const gradeInput = document.getElementById("grade");
+            const attendanceInput = document.getElementById("attendance");
+            const namePreview = document.getElementById("studentName");
+            const gradePreview = document.getElementById("studentGrade");
+            const attendancePreview = document.getElementById("studentAttendancePreview");
+
+            nameInput.addEventListener("input", () => {
+                namePreview.textContent = nameInput.value;
+            });
+
+            gradeInput.addEventListener("input", () => {
+                gradePreview.textContent = gradeInput.value;
+            });
+
+            attendanceInput.addEventListener("input", () => {
+                const attendance = parseFloat(attendanceInput.value);
+                const attendancePercentage = (attendance / 70) * 100;
+                attendancePreview.textContent = `${attendance} days (${attendancePercentage.toFixed(2)}%)`;
+            });
+
+            function updatePreview(checkBoxes, preview) {
+                let skills = "";
+                checkBoxes.forEach(box => {
+                    if (box.checked) {
+                        skills += `${box.nextSibling.textContent}\n`;
+                    }
+                });
+                preview.textContent = skills;
+            }
+
+            const englishCheckboxes = document.querySelectorAll("#english input");
+            const englishPreview = document.getElementById("englishPreview");
+            englishCheckboxes.forEach(box => {
+                box.addEventListener("change", () => {
+                    updatePreview(englishCheckboxes, englishPreview);
+                });
+            });
+
+            const mathCheckboxes = document.querySelectorAll("#math input");
+            const mathPreview = document.getElementById("mathPreview");
+            mathCheckboxes.forEach(box => {
+                box.addEventListener("change", () => {
+                    updatePreview(mathCheckboxes, mathPreview);
+                });
+            });
+
+            const scienceCheckboxes = document.querySelectorAll("#science input");
+            const sciencePreview = document.getElementById("sciencePreview");
+            scienceCheckboxes.forEach(box => {
+                box.addEventListener("change", () => {
+                    updatePreview(scienceCheckboxes, sciencePreview);
+                });
+            });
+
+            const historyCheckboxes = document.querySelectorAll("#history input");
+            const historyPreview = document.getElementById("historyPreview");
+            historyCheckboxes.forEach(box => {
+                box.addEventListener("change", () => {
+                    updatePreview(historyCheckboxes, historyPreview);
+                });
+            });
+
+            const englishBrushButton = document.getElementById("englishBrushButton");
+            englishBrushButton.addEventListener("click", () => {
+
+                const name = nameInput.value;
+                const grade = gradeInput.value;
+                const attendance = parseFloat(attendanceInput.value);
+                const attendancePercentage = (attendance / 70) * 100;
+                const englishCheckboxes = document.querySelectorAll("#english input:checked");
+                const englishSkills = [];
+                englishCheckboxes.forEach(box => {
+                    englishSkills.push(box.nextSibling.textContent);
+                });
+
+                const data = {
+                    name: name,
+                    grade: grade,
+                    studentAttendance: attendancePercentage.toFixed(2),
+                    skills: englishSkills
+                };
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "/api/brush");
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        const brushedText = xhr.responseText;
+                        englishPreview.textContent = brushedText;
+                    }
+                };
+
+                xhr.send(JSON.stringify(data));
+
+            });
+
+            const mathBrushButton = document.getElementById("mathBrushButton");
+            mathBrushButton.addEventListener("click", () => {
+
+                const name = nameInput.value;
+                const grade = gradeInput.value;
+                const attendance = parseFloat(attendanceInput.value);
+                const attendancePercentage = (attendance / 70) * 100;
+                const mathCheckboxes = document.querySelectorAll("#math input:checked");
+                const mathSkills = [];
+                mathCheckboxes.forEach(box => {
+                    mathSkills.push(box.nextSibling.textContent);
+                });
+
+                const data = {
+                    name: name,
+                    grade: grade,
+                    studentAttendance: attendancePercentage.toFixed(2),
+                    skills: mathSkills
+                };
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "/api/brush");
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        const brushedText = xhr.responseText;
+                        mathPreview.textContent = brushedText;
+                    }
+                };
+
+                xhr.send(JSON.stringify(data));
+
+            });
+
+            const scienceBrushButton = document.getElementById("scienceBrushButton");
+            scienceBrushButton.addEventListener("click", () => {
+
+                const name = nameInput.value;
+                const grade = gradeInput.value;
+                const attendance = parseFloat(attendanceInput.value);
+                const attendancePercentage = (attendance / 70) * 100;
+                const scienceCheckboxes = document.querySelectorAll("#science input:checked");
+                const scienceSkills = [];
+                scienceCheckboxes.forEach(box => {
+                    scienceSkills.push(box.nextSibling.textContent);
+                });
+
+                const data = {
+                    name: name,
+                    grade: grade,
+                    studentAttendance: attendancePercentage.toFixed(2),
+                    skills: scienceSkills
+                };
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "/api/mlwkls");
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        const brushedText = xhr.responseText;
+                        sciencePreview.textContent = brushedText;
+                    }
+                };
+
+                xhr.send(JSON.stringify(data));
+
+            });
+
+            const historyBrushButton = document.getElementById("historyBrushButton");
+            historyBrushButton.addEventListener("click", () => {
+
+                const name = nameInput.value;
+                const grade = gradeInput.value;
+                const attendance = parseFloat(attendanceInput.value);
+                const attendancePercentage = (attendance / 70) * 100;
+                const historyCheckboxes = document.querySelectorAll("#history input:checked");
+                const historySkills = [];
+                historyCheckboxes.forEach(box => {
+                    historySkills.push(box.nextSibling.textContent);
+                });
+
+                const data = {
+                    name: name,
+                    grade: grade,
+                    studentAttendance: attendancePercentage.toFixed(2),
+                    skills: historySkills
+                };
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "/api/brush");
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        const brushedText = xhr.responseText;
+                        historyPreview.textContent = brushedText;
+                    }
+                };
+
+                xhr.send(JSON.stringify(data));
+
+            });
+
+        </script>
+    </div>
+</body>
+
+</html>
