@@ -152,13 +152,10 @@ section {
     text-align: left;
     max-width: 80%;
     margin-bottom: 20px;
+    opacity: 0.8;
 }
 
 .userMessage {
-    text-align: left;
-    max-width: 80%;
-    margin-bottom: 20px;
-    opacity: 0.8;
     box-shadow: var(--shadow);
     padding: 5px 10px;
     border-radius: 5px;
@@ -202,15 +199,36 @@ select {
     padding: 3px 3px;
     border-radius: 5px;
     transition: 0.2s;
+    text-shadow: 0 0 10px rgba(65, 90, 119, 0.8);
+    background-size: 400% 400%;
+    animation: gradientBG 5s ease infinite;
 }
 
-.kblinks a:hover {
-    background: #ddd;
+@keyframes gradientBG {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .kblinks i {
+    color: #e0e1dd;
+    text-shadow: 0 0 10px #415a77;
     width: 15px;
     color: var(--link);
+}
+
+.kblinks a:hover {
+    transform: translateY(-2px);
+    transition: .2s;
+    background: rgba(221, 221, 221, 0.8);
 }
 
 video,
