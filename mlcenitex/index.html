@@ -55,10 +55,6 @@
             <article id="mainRight">
                 <section class="chat-selection" id="chat-selection">
                     <div class="chat-window" id="chat-window"></div>
-                    <select name="chat-mode" id="feature2">
-                        <option value="Agent">Agent Mode</option>
-                        <option value="Cenitex">Cenitex Mode</option>
-                    </select>
                     <div class="chat-input">
                         <input type="text" id="feature1" placeholder="Type your message here..."
                             onkeydown="handleKeyPress(event)">
@@ -111,7 +107,7 @@
             };
             var data = {
                 text: [message],
-                mode: [document.getElementById("feature2").value]
+                mode: ["Agent"]
             };
             http.send(JSON.stringify(data));
         }
@@ -128,16 +124,16 @@
                 var currentLine = lines[lineIndex];
                 var words = currentLine.split(" ");
                 if (wordIndex < words.length) {
-                    aiResponseMessage.textContent += words[wordIndex] + " ";
+                    var word = document.createElement("span");
+                    word.textContent = words[wordIndex] + " ";
+                    aiResponseMessage.appendChild(word);
                     wordIndex++;
                 } else {
                     wordIndex = 0;
                     lineIndex++;
                     if (lineIndex < lines.length) {
-                        aiResponseMessage.textContent += "\n";
-                        aiResponseMessage = document.createElement("div");
-                        aiResponseMessage.classList.add("aiResponseMessage");
-                        chatWindow.appendChild(aiResponseMessage);
+                        aiResponseMessage.appendChild(document.createElement("br")); // Add a line break
+                        aiResponseMessage.appendChild(document.createElement("br")); // Add a line break
                     } else {
                         clearInterval(interval);
                         chatWindow.scrollTop = chatWindow.scrollHeight;
