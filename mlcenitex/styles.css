@@ -161,7 +161,7 @@ section {
 
 .thinkingMessage,
 .aiResponseMessage {
-    text-align: right;
+    text-align: left;
     max-width: 80%;
     margin-bottom: 20px;
     opacity: 0.8;
