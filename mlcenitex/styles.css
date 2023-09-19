@@ -154,7 +154,7 @@ section {
     padding: 12px 12px;
     border-radius: 20px 20px 0 20px;
     box-sizing: border-box;
-    background: linear-gradient(rgba(150, 175, 200, 0.8), var(--bg));
+    background: linear-gradient(rgba(65, 90, 119, 0.8), var(--bg));
     margin-left: auto;
     margin-right: 0;
 }
@@ -169,9 +169,10 @@ section {
     padding: 12px 12px;
     border-radius: 0 20px 20px 20px;
     box-sizing: border-box;
-    background: linear-gradient(rgba(65, 90, 119, 0.8), var(--bg));
+    background: linear-gradient(rgba(65, 90, 119, 0), var(--bg));
     margin-left: 0;
     margin-right: auto;
+    white-space: pre-line; 
 }
 
 i {
