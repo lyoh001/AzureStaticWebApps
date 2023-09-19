@@ -49,27 +49,19 @@ header {
 
 main {
     margin-top: 1.5em;
+    display: grid;
+    grid-template-columns: 1fr;
 }
 
 @media (min-width: 150vh) {
     main {
-        display: grid;
         grid-template-columns: 17% 83%;
-    }
-}
-
-@media (max-width: 150vh) {
-    main {
-        grid-template-columns: 1fr;
-    }
-
-    #mainLeft {
-        display: none;
     }
 }
 
 #mainLeft {
     padding-left: 20%;
+    display: block;
 }
 
 #mainRight {
@@ -153,28 +145,37 @@ section {
     max-width: 80%;
     margin-bottom: 20px;
     opacity: 0.8;
+    font-weight: bold;
+    color: var(--text);
 }
 
 .userMessage {
     box-shadow: var(--shadow);
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 12px 12px;
+    border-radius: 20px 20px 0 20px;
     box-sizing: border-box;
-    background: rgba(65, 90, 119, 0.8);
-    color: var(--text);
+    background: linear-gradient(rgba(150, 175, 200, 0.8), var(--bg));
     margin-left: auto;
+    margin-right: 0;
 }
 
 .thinkingMessage,
 .aiResponseMessage {
-    color: var(--text);
+    text-align: right;
+    max-width: 80%;
+    margin-bottom: 20px;
+    opacity: 0.8;
+    box-shadow: var(--shadow);
+    padding: 12px 12px;
+    border-radius: 0 20px 20px 20px;
+    box-sizing: border-box;
+    background: linear-gradient(rgba(65, 90, 119, 0.8), var(--bg));
     margin-left: 0;
     margin-right: auto;
-    font-weight: bold;
 }
 
 i {
-    margin-right: .5em;
+    margin-right: 0.5em;
 }
 
 input,
@@ -227,7 +228,7 @@ select {
 
 .kblinks a:hover {
     transform: translateY(-2px);
-    transition: .2s;
+    transition: 0.2s;
     background: rgba(221, 221, 221, 0.8);
 }
 
@@ -242,5 +243,5 @@ video,
 }
 
 .content {
-    background: rgba(0, 0, 0, .5);
+    background: rgba(0, 0, 0, 0.5);
 }
