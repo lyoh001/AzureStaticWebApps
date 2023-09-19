@@ -49,19 +49,27 @@ header {
 
 main {
     margin-top: 1.5em;
-    display: grid;
-    grid-template-columns: 1fr;
 }
 
 @media (min-width: 150vh) {
     main {
+        display: grid;
         grid-template-columns: 17% 83%;
+    }
+}
+
+@media (max-width: 150vh) {
+    main {
+        grid-template-columns: 1fr;
+    }
+
+    #mainLeft {
+        display: none;
     }
 }
 
 #mainLeft {
     padding-left: 20%;
-    display: block;
 }
 
 #mainRight {
@@ -154,25 +162,17 @@ section {
     padding: 12px 12px;
     border-radius: 20px 20px 0 20px;
     box-sizing: border-box;
-    background: linear-gradient(rgba(65, 90, 119, 0.8), var(--bg));
+    background: linear-gradient(rgba(65, 90, 119, 0), var(--bg));
     margin-left: auto;
     margin-right: 0;
 }
 
 .thinkingMessage,
 .aiResponseMessage {
-    text-align: left;
-    max-width: 80%;
-    margin-bottom: 20px;
-    opacity: 0.8;
-    box-shadow: var(--shadow);
-    padding: 12px 12px;
-    border-radius: 0 20px 20px 20px;
-    box-sizing: border-box;
-    background: linear-gradient(rgba(65, 90, 119, 0), var(--bg));
+    color: var(--text);
     margin-left: 0;
     margin-right: auto;
-    white-space: pre-line; 
+    font-weight: bold;
 }
 
 i {
