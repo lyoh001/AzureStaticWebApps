@@ -162,16 +162,16 @@ section {
 .thinkingMessage,
 .aiResponseMessage {
     text-align: left;
-    max-width: 80%;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     opacity: 0.8;
     font-weight: bold;
     color: var(--text);
 }
 
 .userMessage {
+    max-width: 45%;
     box-shadow: var(--shadow);
-    padding: 12px 12px;
+    padding: 20px 20px;
     border-radius: 20px 20px 0 20px;
     box-sizing: border-box;
     background: linear-gradient(rgba(65, 90, 119, 0.1), var(--bg));
@@ -181,6 +181,7 @@ section {
 
 .thinkingMessage,
 .aiResponseMessage {
+    max-width: 90%;
     color: var(--text);
     margin-left: 0;
     margin-right: auto;
