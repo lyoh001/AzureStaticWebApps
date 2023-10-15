@@ -177,8 +177,13 @@
                 xhr.onload = () => {
                     if (xhr.status === 200) {
                         const brushedText = xhr.responseText;
+                        // englishPreview.textContent = brushedText;
+                        // const newHeight = englishPreview.scrollHeight + "px";
+                        // englishPreview.style.height = newHeight;
+                        englishPreview.style.height = "auto";
                         englishPreview.textContent = brushedText;
-                        const newHeight = englishPreview.scrollHeight + "px";
+                        const maxHeight = 200;
+                        const newHeight = Math.min(englishPreview.scrollHeight, maxHeight) + "px";
                         englishPreview.style.height = newHeight;
                     }
                 };
@@ -252,6 +257,8 @@
                     if (xhr.status === 200) {
                         const brushedText = xhr.responseText;
                         sciencePreview.textContent = brushedText;
+                        const newHeight = sciencePreview.scrollHeight + "px";
+                        sciencePreview.style.height = newHeight;
                     }
                 };
 
@@ -287,6 +294,8 @@
                     if (xhr.status === 200) {
                         const brushedText = xhr.responseText;
                         historyPreview.textContent = brushedText;
+                        const newHeight = historyPreview.scrollHeight + "px";
+                        historyPreview.style.height = newHeight;
                     }
                 };
 
