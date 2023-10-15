@@ -178,6 +178,8 @@
                     if (xhr.status === 200) {
                         const brushedText = xhr.responseText;
                         englishPreview.textContent = brushedText;
+                        const newHeight = englishPreview.scrollHeight + "px";
+                        englishPreview.style.height = newHeight;
                     }
                 };
 
@@ -213,6 +215,8 @@
                     if (xhr.status === 200) {
                         const brushedText = xhr.responseText;
                         mathPreview.textContent = brushedText;
+                        const newHeight = mathPreview.scrollHeight + "px";
+                        mathPreview.style.height = newHeight;
                     }
                 };
 
