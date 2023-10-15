@@ -171,15 +171,13 @@
                 };
 
                 const xhr = new XMLHttpRequest();
-                xhr.open("POST", "/api/mlwkls");
+                xhr.open("POST", "https://lyoh001.com/api/mlwkls");
+                // xhr.open("POST", "/api/mlwkls");
                 xhr.setRequestHeader("Content-Type", "application/json");
 
                 xhr.onload = () => {
                     if (xhr.status === 200) {
                         const brushedText = xhr.responseText;
-                        // englishPreview.textContent = brushedText;
-                        // const newHeight = englishPreview.scrollHeight + "px";
-                        // englishPreview.style.height = newHeight;
                         englishPreview.style.height = "auto";
                         englishPreview.textContent = brushedText;
                         const maxHeight = 300;
@@ -219,8 +217,10 @@
                 xhr.onload = () => {
                     if (xhr.status === 200) {
                         const brushedText = xhr.responseText;
+                        mathPreview.style.height = "auto";
                         mathPreview.textContent = brushedText;
-                        const newHeight = mathPreview.scrollHeight + "px";
+                        const maxHeight = 300;
+                        const newHeight = Math.min(mathPreview.scrollHeight, maxHeight) + "px";
                         mathPreview.style.height = newHeight;
                     }
                 };
@@ -256,8 +256,10 @@
                 xhr.onload = () => {
                     if (xhr.status === 200) {
                         const brushedText = xhr.responseText;
+                        sciencePreview.style.height = "auto";
                         sciencePreview.textContent = brushedText;
-                        const newHeight = sciencePreview.scrollHeight + "px";
+                        const maxHeight = 300;
+                        const newHeight = Math.min(sciencePreview.scrollHeight, maxHeight) + "px";
                         sciencePreview.style.height = newHeight;
                     }
                 };
@@ -293,8 +295,10 @@
                 xhr.onload = () => {
                     if (xhr.status === 200) {
                         const brushedText = xhr.responseText;
+                        historyPreview.style.height = "auto";
                         historyPreview.textContent = brushedText;
-                        const newHeight = historyPreview.scrollHeight + "px";
+                        const maxHeight = 300;
+                        const newHeight = Math.min(historyPreview.scrollHeight, maxHeight) + "px";
                         historyPreview.style.height = newHeight;
                     }
                 };
