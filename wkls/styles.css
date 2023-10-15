@@ -131,6 +131,30 @@ p {
     margin-bottom: 20px;
 }
 
+#englishBrushButton,
+#mathBrushButton,
+#scienceBrushButton,
+#historyBrushButton {
+    border-radius: 15px;
+    border: none;
+    background: linear-gradient(rgba(65, 90, 119, 0.8), var(--bg));
+    box-shadow: var(--box-shadow);
+    color: var(--text);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 10px;
+}
+
+#englishBrushButton:hover,
+#mathBrushButton:hover,
+#scienceBrushButton:hover,
+#historyBrushButton:hover {
+    background: linear-gradient(rgba(65, 90, 119, 1.0), var(--bg));
+    color: var(--text);
+    transform: scale(1.05);
+}
+
 /* Media queries */
 @media (max-width: 768px) {
 
