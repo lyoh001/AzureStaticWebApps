@@ -57,8 +57,7 @@
                 step="1">
             <span class="slider-value" id="listeningPreviousSemesterValue">Level 1</span>
             <div class="slider-label">Current Semester:</div>
-            <input type="range" id="listeningCurrentSemester" name="listeningCurrentSemester" min="0" max="4"
-                step="1">
+            <input type="range" id="listeningCurrentSemester" name="listeningCurrentSemester" min="0" max="4" step="1">
             <span class="slider-value" id="listeningCurrentSemesterValue">Level 1</span>
             <div class="checkboxes" id="listeningCheckboxes"></div>
         </div>
@@ -66,12 +65,10 @@
         <div class="section">
             <h2>Reading</h2>
             <div class="slider-label">Previous Semester:</div>
-            <input type="range" id="readingPreviousSemester" name="readingPreviousSemester" min="0" max="4"
-                step="1">
+            <input type="range" id="readingPreviousSemester" name="readingPreviousSemester" min="0" max="4" step="1">
             <span class="slider-value" id="readingPreviousSemesterValue">Level 1</span>
             <div class="slider-label">Current Semester:</div>
-            <input type="range" id="readingCurrentSemester" name="readingCurrentSemester" min="0" max="4"
-                step="1">
+            <input type="range" id="readingCurrentSemester" name="readingCurrentSemester" min="0" max="4" step="1">
             <span class="slider-value" id="readingCurrentSemesterValue">Level 1</span>
             <div class="checkboxes" id="readingCheckboxes"></div>
         </div>
@@ -79,12 +76,10 @@
         <div class="section">
             <h2>Speaking</h2>
             <div class="slider-label">Previous Semester:</div>
-            <input type="range" id="speakingPreviousSemester" name="speakingPreviousSemester" min="0" max="4"
-                step="1">
+            <input type="range" id="speakingPreviousSemester" name="speakingPreviousSemester" min="0" max="4" step="1">
             <span class="slider-value" id="speakingPreviousSemesterValue">Level 1</span>
             <div class="slider-label">Current Semester:</div>
-            <input type="range" id="speakingCurrentSemester" name="speakingCurrentSemester" min="0" max="4"
-                step="1">
+            <input type="range" id="speakingCurrentSemester" name="speakingCurrentSemester" min="0" max="4" step="1">
             <span class="slider-value" id="speakingCurrentSemesterValue">Level 1</span>
             <div class="checkboxes" id="speakingCheckboxes"></div>
         </div>
@@ -92,12 +87,10 @@
         <div class="section">
             <h2>Writing</h2>
             <div class="slider-label">Previous Semester:</div>
-            <input type="range" id="writingPreviousSemester" name="writingPreviousSemester" min="0" max="4"
-                step="1">
+            <input type="range" id="writingPreviousSemester" name="writingPreviousSemester" min="0" max="4" step="1">
             <span class="slider-value" id="writingPreviousSemesterValue">Level 1</span>
             <div class="slider-label">Current Semester:</div>
-            <input type="range" id="writingCurrentSemester" name="writingCurrentSemester" min="0" max="4"
-                step="1">
+            <input type="range" id="writingCurrentSemester" name="writingCurrentSemester" min="0" max="4" step="1">
             <span class="slider-value" id="writingCurrentSemesterValue">Level 1</span>
             <div class="checkboxes" id="writingCheckboxes"></div>
         </div>
@@ -224,7 +217,7 @@
             });
         });
 
-        document.getElementById('generateReportBtn').addEventListener('click', function(event) {
+        document.getElementById('generateReportBtn').addEventListener('click', function (event) {
             const studentName = document.getElementById('studentName');
             const grade = document.getElementById('grade');
             const attendance = document.getElementById('attendance');
@@ -280,25 +273,25 @@
                 },
                 body: JSON.stringify(data)
             })
-            .then(response => {
-                if (response.ok) {
-                    return response.blob();
-                }
-                throw new Error('Network response was not ok.');
-            })
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'report.pdf';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            })
-            .catch(error => {
-                console.error('Error generating report:', error);
-            });
+                .then(response => {
+                    if (response.ok) {
+                        return response.blob();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'report.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                })
+                .catch(error => {
+                    console.error('Error generating report:', error);
+                });
         });
     </script>
 </body>
