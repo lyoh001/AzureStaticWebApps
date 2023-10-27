@@ -95,9 +95,10 @@
             <div class="checkboxes" id="writingCheckboxes"></div>
         </div>
 
-        <div class="section">
+        <div class="section" label="Overall Comment:">
             <label for="overallComment">Overall Comment:</label>
             <textarea id="overallComment" class="comment-box"></textarea>
+            <span id="characterCount">0/400</span>
         </div>
 
         <div class="section">
@@ -280,19 +281,36 @@
                     throw new Error('Network response was not ok.');
                 })
                 .then(blob => {
-                    const url = window.URL.createObjectURL(blob);
+                    const studentName = document.getElementById('studentName').value.replace(/[^a-zA-Z0-9]/g, '_');
+                    const blobWithStudentName = new Blob([blob], { type: 'application/pdf' });
                     const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'report.pdf';
+                    a.href = window.URL.createObjectURL(blobWithStudentName);
+                    a.download = `${studentName}.pdf`;
                     document.body.appendChild(a);
                     a.click();
-                    window.URL.revokeObjectURL(url);
+                    window.URL.revokeObjectURL(a.href);
                     document.body.removeChild(a);
                 })
                 .catch(error => {
                     console.error('Error generating report:', error);
                 });
+
         });
+
+        const maxCharacters = 400;
+        const overallCommentTextarea = document.getElementById('overallComment');
+        const characterCountSpan = document.getElementById('characterCount');
+
+        overallCommentTextarea.addEventListener('input', function () {
+            const characterCount = overallCommentTextarea.value.length;
+            characterCountSpan.textContent = `${characterCount}/${maxCharacters}`;
+
+            if (characterCount > maxCharacters) {
+                overallCommentTextarea.value = overallCommentTextarea.value.substring(0, maxCharacters);
+                characterCountSpan.textContent = `${maxCharacters}/${maxCharacters}`;
+            }
+        });
+
     </script>
 </body>
 
