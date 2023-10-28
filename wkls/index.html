@@ -9,21 +9,19 @@
 </head>
 
 <body>
-    <video autoplay muted loop id="video"></video>
-    <script>
-        var videoSources = ["/wkls/bg.mp4"];
-        var randomIndex = Math.floor(Math.random() * videoSources.length);
-        var video = document.getElementById("video");
-        video.src = videoSources[randomIndex];
-    </script>
+    <div class="video-container">
+        <video autoplay muted loop id="video">
+            <source src="/wkls/bg.mp4" type="video/mp4">
+        </video>
+    </div>
     <div class="container">
         <h1>Student Report Card</h1>
-        <div class="section">
-            <label for="studentName">Student's Name:</label>
-            <input type="text" id="studentName" name="studentName">
+        <div class="form-section">
+            <label for="studentName">Student's Name</label>
+            <input type="text" id="studentName" name="studentName" placeholder="Enter student's name">
         </div>
-        <div class="section">
-            <label for="grade">Grade:</label>
+        <div class="form-section">
+            <label for="grade">Grade</label>
             <select id="grade" name="grade">
                 <option value="Prep">Prep</option>
                 <option value="1">1</option>
@@ -34,23 +32,23 @@
                 <option value="6">6</option>
             </select>
         </div>
-        <div class="section">
-            <div class="slider-label">Attendance:</div>
+        <div class="slider-section">
+            <div class="slider-label">Attendance</div>
             <input type="range" id="attendance" name="attendance" min="0" max="3" step="1">
             <span class="slider-value" id="attendanceValue">Very Good</span>
         </div>
-        <div class="section">
+        <div class="slider-section">
             <div class="slider-label">Effort:</div>
             <input type="range" id="effort" name="effort" min="0" max="3" step="1">
             <span class="slider-value" id="effortValue">Very Good</span>
         </div>
-        <div class="section">
+        <div class="slider-section">
             <div class="slider-label">Behavior:</div>
             <input type="range" id="behavior" name="behavior" min="0" max="3" step="1">
             <span class="slider-value" id="behaviorValue">Very Good</span>
         </div>
 
-        <div class="section">
+        <div class="checkbox-section">
             <h2>Listening</h2>
             <div class="slider-label">Previous Semester:</div>
             <input type="range" id="listeningPreviousSemester" name="listeningPreviousSemester" min="0" max="4"
@@ -62,7 +60,7 @@
             <div class="checkboxes" id="listeningCheckboxes"></div>
         </div>
 
-        <div class="section">
+        <div class="checkbox-section">
             <h2>Reading</h2>
             <div class="slider-label">Previous Semester:</div>
             <input type="range" id="readingPreviousSemester" name="readingPreviousSemester" min="0" max="4" step="1">
@@ -73,7 +71,7 @@
             <div class="checkboxes" id="readingCheckboxes"></div>
         </div>
 
-        <div class="section">
+        <div class="checkbox-section">
             <h2>Speaking</h2>
             <div class="slider-label">Previous Semester:</div>
             <input type="range" id="speakingPreviousSemester" name="speakingPreviousSemester" min="0" max="4" step="1">
@@ -84,7 +82,7 @@
             <div class="checkboxes" id="speakingCheckboxes"></div>
         </div>
 
-        <div class="section">
+        <div class="checkbox-section">
             <h2>Writing</h2>
             <div class="slider-label">Previous Semester:</div>
             <input type="range" id="writingPreviousSemester" name="writingPreviousSemester" min="0" max="4" step="1">
@@ -95,15 +93,14 @@
             <div class="checkboxes" id="writingCheckboxes"></div>
         </div>
 
-        <div class="section" label="Overall Comment:">
+        <div class="comment-section" label="Overall Comment:">
             <label for="overallComment">Overall Comment:</label>
             <textarea id="overallComment" class="comment-box"></textarea>
             <span id="characterCount">0/400</span>
         </div>
 
-        <div class="section">
-            <button id="generateReportBtn">Generate Report</button>
-        </div>
+        <button id="generateReportBtn">Generate Report</button>
+
     </div>
 
     <script>
@@ -179,10 +176,10 @@
                         selectedValue = 'Needs Attention';
                         break;
                     case '1':
-                        selectedValue = 'Satisfactory';
+                        selectedValue = 'Fair';
                         break;
                     case '2':
-                        selectedValue = 'Very Good';
+                        selectedValue = 'Good';
                         break;
                     case '3':
                         selectedValue = 'Excellent';
@@ -191,6 +188,7 @@
                 valueSpan.textContent = `${selectedValue}`;
             });
         });
+
         const skillSliders = ['listeningPreviousSemester', 'listeningCurrentSemester', 'readingPreviousSemester', 'readingCurrentSemester', 'speakingPreviousSemester', 'speakingCurrentSemester', 'writingPreviousSemester', 'writingCurrentSemester'];
         skillSliders.forEach(sliderId => {
             const slider = document.getElementById(sliderId);
