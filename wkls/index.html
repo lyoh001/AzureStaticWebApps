@@ -22,32 +22,38 @@
             <input type="text" id="studentName" name="studentName" placeholder="Enter student's name">
         </div>
         <div class="slider-section">
-            <div class="slider-label">Attendance</div>
-            <input type="range" id="attendance" name="attendance" min="0" max="3" step="1">
-            <span class="slider-value" id="attendanceValue">Very Good</span>
-        </div>
-        <div class="slider-section">
-            <div class="slider-label">Effort:</div>
-            <input type="range" id="effort" name="effort" min="0" max="3" step="1">
-            <span class="slider-value" id="effortValue">Very Good</span>
-        </div>
-        <div class="slider-section">
-            <div class="slider-label">Behavior:</div>
-            <input type="range" id="behavior" name="behavior" min="0" max="3" step="1">
-            <span class="slider-value" id="behaviorValue">Very Good</span>
+            <div class="slider-container">
+                <label class="slider-label" for="grade">Grade</label>
+                <input type="range" id="grade" name="grade" min="0" max="6" step="1">
+                <span class="slider-value" id="gradeValue">3</span>
+            </div>
+
+            <div class="slider-container">
+                <label class="slider-label" for="attendance">Attendance</label>
+                <input type="range" id="attendance" name="attendance" min="0" max="4" step="1">
+                <span class="slider-value" id="attendanceValue">Satisfactory</span>
+            </div>
         </div>
 
-        <div class="checkbox-section">
-            <h2>Listening</h2>
-            <div class="slider-label">Previous Semester:</div>
-            <input type="range" id="listeningPreviousSemester" name="listeningPreviousSemester" min="0" max="4"
-                step="1">
-            <span class="slider-value" id="listeningPreviousSemesterValue">Level 1</span>
-            <div class="slider-label">Current Semester:</div>
-            <input type="range" id="listeningCurrentSemester" name="listeningCurrentSemester" min="0" max="4" step="1">
-            <span class="slider-value" id="listeningCurrentSemesterValue">Level 1</span>
-            <div class="checkboxes" id="listeningCheckboxes"></div>
+        <div class="slider-section">
+            <div class="slider-container">
+                <label class="slider-label" for="behaviour">Behaviour:</label>
+                <input type="range" id="behaviour" name="behaviour" min="0" max="4" step="1">
+                <span class="slider-value" id="behaviourValue">Satisfactory</span>
+            </div>
+
+            <div class="slider-container">
+                <label class="slider-label" for="effort">Effort:</label>
+                <input type="range" id="effort" name="effort" min="0" max="4" step="1">
+                <span class="slider-value" id="effortValue">Satisfactory</span>
+            </div>
         </div>
+
+        <div class="checkbox-group">
+            <div class="checkbox-group-item">
+                <h2>Listening</h2>
+                <div class="checkboxes" id="listeningCheckboxes"></div>
+            </div>
 
             <div class="checkbox-group-item">
                 <h2>Reading</h2>
@@ -199,7 +205,16 @@
             "Generates simple sentences and spells new words based on familiar sounds"
         ], 3);
 
-        const sliders = ['attendance', 'effort', 'behavior'];
+        const gradeSlider = document.getElementById('grade');
+        const gradeValueSpan = document.getElementById('gradeValue');
+        gradeSlider.addEventListener('input', () => {
+            if (gradeSlider.value === '0') {
+                gradeValueSpan.textContent = 'Prep';
+            } else {
+                gradeValueSpan.textContent = gradeSlider.value;
+            }
+        });
+        const sliders = ['attendance', 'effort', 'behaviour'];
         sliders.forEach(sliderId => {
             const slider = document.getElementById(sliderId);
             const valueSpan = document.getElementById(sliderId + 'Value');
@@ -213,7 +228,7 @@
                         selectedValue = 'Needs Attention';
                         break;
                     case '2':
-                        selectedValue = 'Good';
+                        selectedValue = 'Satisfactory';
                         break;
                     case '3':
                         selectedValue = 'High';
@@ -226,47 +241,12 @@
             });
         });
 
-        const skillSliders = ['listeningPreviousSemester', 'listeningCurrentSemester', 'readingPreviousSemester', 'readingCurrentSemester', 'speakingPreviousSemester', 'speakingCurrentSemester', 'writingPreviousSemester', 'writingCurrentSemester'];
-        skillSliders.forEach(sliderId => {
-            const slider = document.getElementById(sliderId);
-            const valueSpan = document.getElementById(sliderId + 'Value');
-            slider.addEventListener('input', () => {
-                let selectedValue = '';
-                switch (slider.value) {
-                    case '0':
-                        selectedValue = 'Level D';
-                        break;
-                    case '1':
-                        selectedValue = 'Foundation';
-                        break;
-                    case '2':
-                        selectedValue = 'Level 1';
-                        break;
-                    case '3':
-                        selectedValue = 'Level 2';
-                        break;
-                    case '4':
-                        selectedValue = 'Level 3';
-                        break;
-                }
-                valueSpan.textContent = `${selectedValue}`;
-            });
-        });
-
-        document.getElementById('generateReportBtn').addEventListener('click', function (event) {
+        document.getElementById('brushBtn').addEventListener('click', function (event) {
             const studentName = document.getElementById('studentName');
             const grade = document.getElementById('grade');
             const attendance = document.getElementById('attendance');
             const effort = document.getElementById('effort');
-            const behavior = document.getElementById('behavior');
-            const listeningPreviousSemester = document.getElementById('listeningPreviousSemester');
-            const listeningCurrentSemester = document.getElementById('listeningCurrentSemester');
-            const readingPreviousSemester = document.getElementById('readingPreviousSemester');
-            const readingCurrentSemester = document.getElementById('readingCurrentSemester');
-            const speakingPreviousSemester = document.getElementById('speakingPreviousSemester');
-            const speakingCurrentSemester = document.getElementById('speakingCurrentSemester');
-            const writingPreviousSemester = document.getElementById('writingPreviousSemester');
-            const writingCurrentSemester = document.getElementById('writingCurrentSemester');
+            const behaviour = document.getElementById('behaviour');
             const overallComment = document.getElementById('overallComment');
             const listeningCheckboxes = document.getElementsByName('listeningCheckboxes');
             const readingCheckboxes = document.getElementsByName('readingCheckboxes');
@@ -288,7 +268,67 @@
                 listeningSkills: getSelectedCheckboxValues(listeningCheckboxes),
                 readingSkills: getSelectedCheckboxValues(readingCheckboxes),
                 speakingSkills: getSelectedCheckboxValues(speakingCheckboxes),
-                writingSkills: getSelectedCheckboxValues(writingCheckboxes)
+                writingSkills: getSelectedCheckboxValues(writingCheckboxes),
+                attendance: attendance.value,
+                effort: effort.value,
+                behaviour: behaviour.value,
+            };
+            fetch('/api/mlwklsbrush', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(responseData => {
+                    overallComment.value = responseData.updatedComment;
+                    const characterCount = overallComment.value.length;
+                    characterCountSpan.textContent = `${characterCount}/${maxCharacters}`;
+                })
+                .catch(error => {
+                    console.error('Error making API call:', error);
+                });
+        });
+
+
+        document.getElementById('generateReportBtn').addEventListener('click', function (event) {
+            const studentName = document.getElementById('studentName');
+            const grade = document.getElementById('grade');
+            const attendance = document.getElementById('attendance');
+            const effort = document.getElementById('effort');
+            const behaviour = document.getElementById('behaviour');
+            const overallComment = document.getElementById('overallComment');
+            const listeningCheckboxes = document.getElementsByName('listeningCheckboxes');
+            const readingCheckboxes = document.getElementsByName('readingCheckboxes');
+            const speakingCheckboxes = document.getElementsByName('speakingCheckboxes');
+            const writingCheckboxes = document.getElementsByName('writingCheckboxes');
+
+            function getSelectedCheckboxValues(checkboxes) {
+                const selectedValues = [];
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        selectedValues.push(checkbox.value);
+                    }
+                });
+                return selectedValues;
+            }
+            const data = {
+                studentName: studentName.value,
+                grade: grade.value,
+                listeningSkills: getSelectedCheckboxValues(listeningCheckboxes),
+                readingSkills: getSelectedCheckboxValues(readingCheckboxes),
+                speakingSkills: getSelectedCheckboxValues(speakingCheckboxes),
+                writingSkills: getSelectedCheckboxValues(writingCheckboxes),
+                attendance: attendance.value,
+                effort: effort.value,
+                behaviour: behaviour.value,
+                overallComment: overallComment.value
             };
             fetch('/api/mlwklsgenerate', {
                 method: 'POST',
