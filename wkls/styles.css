@@ -28,12 +28,15 @@ body {
 
 .container {
     background-color: rgba(255, 206, 88, 0.1);
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.9);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.1);
     padding: 40px;
     border-radius: 50px;
-    width: 80%;
-    max-width: 400px;
-    margin: 0 auto;
+    width: 70%;
+    max-width: 1000px;
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 h1 {
@@ -41,7 +44,6 @@ h1 {
     margin-bottom: 20px;
     color: #1ab0fa;
 }
-
 
 form {
     margin-bottom: 20px;
@@ -68,6 +70,16 @@ select {
 
 .slider-section {
     margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slider-container {
+    width: 45%;
+}
+
+.slider-container input[type="range"] {
+    width: 100%;
 }
 
 .slider-label {
@@ -82,28 +94,28 @@ select {
     font-weight: bold;
 }
 
-.slider-section input[type="range"] {
-    width: 100%;
-}
-
 .checkbox-group {
     display: flex;
-    flex-direction: column;
-    text-align: left;
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.checkbox-section input[type="checkbox"] {
-    margin-right: 10px;
+.checkbox-group-item {
+    width: 45%;
+    text-align: left;
 }
 
-.checkbox-section input[type="range"] {
-    width: 100%;
+.checkboxes {
+    display: inline-block;
+}
+
+.checkboxes input[type="checkbox"] {
+    margin-right: 10px;
 }
 
 .comment-box {
     width: calc(100% - 24px);
-    height: 100px;
+    height: 150px;
     padding: 12px;
     margin-bottom: 10px;
     box-sizing: border-box;
@@ -118,7 +130,6 @@ select {
     color: #555;
 }
 
-
 button {
     background-color: rgba(255, 66, 122, 0.8);
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
@@ -129,6 +140,10 @@ button {
     border: none;
     border-radius: 15px;
     transition: background 0.3s ease, transform 0.3s ease;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button:hover {

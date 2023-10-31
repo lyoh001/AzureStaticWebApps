@@ -15,82 +15,61 @@
         </video>
     </div>
     <div class="container">
-        <h1>Student Report Card</h1>
+        <h1>WKLS Report</h1>
         <div class="form-section">
             <label for="studentName">Student's Name</label>
             <input type="text" id="studentName" name="studentName" placeholder="Enter student's name">
         </div>
-        <div class="form-section">
-            <label for="grade">Grade</label>
-            <select id="grade" name="grade">
-                <option value="Prep">Prep</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-        </div>
         <div class="slider-section">
-            <div class="slider-label">Attendance</div>
-            <input type="range" id="attendance" name="attendance" min="0" max="3" step="1">
-            <span class="slider-value" id="attendanceValue">Very Good</span>
+            <div class="slider-container">
+                <label for="grade">Grade</label>
+                <input type="range" id="grade" name="grade" min="0" max="6" step="1">
+                <span class="slider-value" id="gradeValue">3</span>
+            </div>
+
+            <div class="slider-container">
+                <label class="slider-label" for="attendance">Attendance</label>
+                <input type="range" id="attendance" name="attendance" min="0" max="3" step="1">
+                <span class="slider-value" id="attendanceValue">Very Good</span>
+            </div>
         </div>
+
         <div class="slider-section">
-            <div class="slider-label">Effort:</div>
-            <input type="range" id="effort" name="effort" min="0" max="3" step="1">
-            <span class="slider-value" id="effortValue">Very Good</span>
-        </div>
-        <div class="slider-section">
-            <div class="slider-label">Behavior:</div>
-            <input type="range" id="behavior" name="behavior" min="0" max="3" step="1">
-            <span class="slider-value" id="behaviorValue">Very Good</span>
+            <div class="slider-container">
+                <label class="slider-label" for="behavior">Behavior:</label>
+                <input type="range" id="behavior" name="behavior" min="0" max="3" step="1">
+                <span class="slider-value" id="behaviorValue">Very Good</span>
+            </div>
+
+            <div class="slider-container">
+                <label class="slider-label" for="effort">Effort:</label>
+                <input type="range" id="effort" name="effort" min="0" max="3" step="1">
+                <span class="slider-value" id="effortValue">Very Good</span>
+            </div>
         </div>
 
-        <div class="checkbox-section">
-            <h2>Listening</h2>
-            <div class="slider-label">Previous Semester:</div>
-            <input type="range" id="listeningPreviousSemester" name="listeningPreviousSemester" min="0" max="4"
-                step="1">
-            <span class="slider-value" id="listeningPreviousSemesterValue">Level 1</span>
-            <div class="slider-label">Current Semester:</div>
-            <input type="range" id="listeningCurrentSemester" name="listeningCurrentSemester" min="0" max="4" step="1">
-            <span class="slider-value" id="listeningCurrentSemesterValue">Level 1</span>
-            <div class="checkboxes" id="listeningCheckboxes"></div>
+        <div class="checkbox-group">
+            <div class="checkbox-group-item">
+                <h2>Listening</h2>
+                <div class="checkboxes" id="listeningCheckboxes"></div>
+            </div>
+
+            <div class="checkbox-group-item">
+                <h2>Reading</h2>
+                <div class="checkboxes" id="readingCheckboxes"></div>
+            </div>
         </div>
 
-        <div class="checkbox-section">
-            <h2>Reading</h2>
-            <div class="slider-label">Previous Semester:</div>
-            <input type="range" id="readingPreviousSemester" name="readingPreviousSemester" min="0" max="4" step="1">
-            <span class="slider-value" id="readingPreviousSemesterValue">Level 1</span>
-            <div class="slider-label">Current Semester:</div>
-            <input type="range" id="readingCurrentSemester" name="readingCurrentSemester" min="0" max="4" step="1">
-            <span class="slider-value" id="readingCurrentSemesterValue">Level 1</span>
-            <div class="checkboxes" id="readingCheckboxes"></div>
-        </div>
+        <div class="checkbox-group">
+            <div class="checkbox-group-item">
+                <h2>Speaking</h2>
+                <div class="checkboxes" id="speakingCheckboxes"></div>
+            </div>
 
-        <div class="checkbox-section">
-            <h2>Speaking</h2>
-            <div class="slider-label">Previous Semester:</div>
-            <input type="range" id="speakingPreviousSemester" name="speakingPreviousSemester" min="0" max="4" step="1">
-            <span class="slider-value" id="speakingPreviousSemesterValue">Level 1</span>
-            <div class="slider-label">Current Semester:</div>
-            <input type="range" id="speakingCurrentSemester" name="speakingCurrentSemester" min="0" max="4" step="1">
-            <span class="slider-value" id="speakingCurrentSemesterValue">Level 1</span>
-            <div class="checkboxes" id="speakingCheckboxes"></div>
-        </div>
-
-        <div class="checkbox-section">
-            <h2>Writing</h2>
-            <div class="slider-label">Previous Semester:</div>
-            <input type="range" id="writingPreviousSemester" name="writingPreviousSemester" min="0" max="4" step="1">
-            <span class="slider-value" id="writingPreviousSemesterValue">Level 1</span>
-            <div class="slider-label">Current Semester:</div>
-            <input type="range" id="writingCurrentSemester" name="writingCurrentSemester" min="0" max="4" step="1">
-            <span class="slider-value" id="writingCurrentSemesterValue">Level 1</span>
-            <div class="checkboxes" id="writingCheckboxes"></div>
+            <div class="checkbox-group-item">
+                <h2>Writing</h2>
+                <div class="checkboxes" id="writingCheckboxes"></div>
+            </div>
         </div>
 
         <div class="comment-section" label="Overall Comment:">
@@ -138,37 +117,101 @@
         }
 
         createCheckboxes('listeningCheckboxes', [
-            "answers questions about texts being studied",
-            "appears to enjoy listening to texts and is able to answer questions about them",
-            "attentively repeats teacher-modelled use of the language and participates in oral use of the language",
-            "comprehends words and phrases by responding to questions and routine classroom instructions",
-            // ... (add more options)
+            "Responds to inquiries related to studied texts",
+            "Displays enthusiasm for listening to texts and successfully answers corresponding questions",
+            "Attentively replicates language usage modeled by the teacher and actively engages in oral language activities",
+            "Comprehends words and phrases by responding to questions and following routine classroom instructions",
+            "Proficiently counts and identifies colors, shapes, and objects in the language",
+            "Demonstrates the capacity to comprehend aural texts, extracting and recording received information",
+            "Exhibits exceptional understanding of classroom instructions and directions",
+            "Demonstrates proficient sound discrimination skills",
+            "Eagerly participates in dramatizations, including role-plays, singing, and games",
+            "Effectively listens to aural texts, accurately analyzes information, and utilizes it in spoken responses",
+            "Listens to brief texts and exhibits understanding",
+            "Displays excellent familiarity with the studied language while listening to spoken words",
+            "Grasps both the main points and specific details in listening tasks",
+            "Shows enjoyment in listening to stories and consistently answers related questions",
+            "Makes attempts to incorporate familiar words in class discussions",
+            "Conveys the main points of spoken texts by responding orally to questions",
+            "Demonstrates understanding by answering questions correctly, selecting suitable responses, and completing charts",
+            "Displays a solid understanding of instructions and directions given in class",
         ], 3);
 
         createCheckboxes('readingCheckboxes', [
-            "actively participates in choral reading situations and is able to recognize familiar words",
-            "actively participates in shared reading activities",
-            "confidently identifies letter-sound relationships",
-            "confidently locates particular words in familiar texts and is able to sound out words",
-            // ... (add more options)
+            "Participates actively in choral reading sessions and can identify familiar words",
+            "Engages actively in shared reading exercises",
+            "Confidently discerns letter-sound relationships",
+            "Successfully finds specific words in familiar texts and can sound out words",
+            "Reads aloud confidently with accurate pronunciation, appropriate pace, and expression",
+            "Displays a strong understanding of texts covering various topics",
+            "Demonstrates clear language pronunciation",
+            "Derives enjoyment from reading passages and readily answers questions about the material",
+            "Fluently reads aloud, grasping the meaning",
+            "Identifies specific characters in flashcard games",
+            "Identifies specific letters in flashcard games",
+            "Recognizes and names many alphabet letters, demonstrating their corresponding sounds",
+            "Reads and comprehends simple and familiar texts",
+            "Reads familiar texts with confidence, often locating specific words",
+            "Accurately and fluently reads homework assignments",
+            "Reads with high accuracy and understanding",
+            "Reads words and phrases in familiar texts and provides key terms during shared reading activities",
+            "Recognizes and can name all alphabet letters along with their corresponding sounds",
+            "Identifies the names and sounds of numerous letters",
+            "Regularly practices reading at home"
         ], 3);
 
         createCheckboxes('speakingCheckboxes', [
-            "actively participates in class discussions and shares ideas using familiar words",
-            "actively participates in class language games",
-            "actively takes part in short drama activities and has demonstrated very good pronunciation",
-            "appears to enjoy singing songs learnt in class time and confidently sings these songs when required",
-            // ... (add more options)
+            "Actively engages in classroom discussions, expressing ideas using familiar vocabulary",
+            "Participates enthusiastically in language games during class",
+            "Takes an active role in short drama activities, showcasing excellent pronunciation",
+            "Enjoys singing songs learned in class and confidently performs them when required",
+            "Effectively communicates with partners, utilizing various strategies to sustain and enhance conversations",
+            "Presented a well-prepared and confidently delivered speaking task, showing continuous improvement in this area",
+            "Conducted an oral presentation that was thoroughly researched, highly informative, and engaging",
+            "Demonstrated a strong command of relevant vocabulary and sentence structures, successfully exchanging information",
+            "Displayed a solid ability to converse in the language, incorporating appropriate expression, pronunciation, and intonation",
+            "Showed the ability to communicate fluently and purposefully in various situations",
+            "Engaged in conversations confidently and fluently",
+            "Expresses preferences and dislikes using the language",
+            "Delivers fluent introductions and can greet, bid farewell, express gratitude, and apologize in the language",
+            "Greets the teacher and peers using culturally appropriate language and gestures",
+            "Identifies the names of visible objects and items from auditory and visual cues",
+            "Learned how to make introductions and greet and bid farewell to others using language appropriate for different situations",
+            "Oral skills were of a high caliber, reflecting an understanding of cultural nuances, excellent pronunciation, and intonation",
+            "Performed oral tasks at this level clearly, demonstrating preparedness and appropriate skills and expression",
         ], 3);
 
         createCheckboxes('writingCheckboxes', [
-            "a thoughtful and diligent student who has displayed a sound standard in presentation and written expression",
-            "accurately copies words and/or sentences",
-            "applied knowledge and skills to a high standard in writing tasks",
-            "completed charts, captions and comprehension activities to a very high standard",
-            // ... (add more options)
+            "A conscientious and diligent student demonstrating a proficient level in presentations and written expression",
+            "Accurately duplicates words and/or sentences",
+            "Applies knowledge and skills to a high degree in writing assignments",
+            "Communicates effectively, reproducing and creating new language sequences based on modeled written activities",
+            "Completes charts, captions, and comprehension tasks to an exceptionally high standard",
+            "Solves simple crosswords and matches topics covered in class competently",
+            "Carries out written activities with competence",
+            "Mimics characters from provided examples",
+            "Imitates characters to label illustrations",
+            "Reproduces simple sentences from modeled examples",
+            "Duplicates words and sentences to label illustrations",
+            "Copies words and sentences to label illustrations related to class topics",
+            "Composes basic original texts tailored for specific audiences and purposes, utilizing precise language for the chosen topic",
+            "Demonstrates meticulous attention to detail, including the use of accents and punctuation",
+            "Exhibits excellent skills and cultural awareness in selecting appropriate and accurate vocabulary and sentence patterns in writing",
+            "Shows the ability to compose emails and understand conventions for letter writing",
+            "Displays enthusiasm for learning the language, evident through the eagerness to acquire new vocabulary and incorporate it into various text types",
+            "Enthusiastic language learner keen on acquiring new vocabulary and structures, integrating them into language tasks",
+            "Generates simple sentences and spells new words based on familiar sounds"
         ], 3);
 
+        const gradeSlider = document.getElementById('grade');
+        const gradeValueSpan = document.getElementById('gradeValue');
+        gradeSlider.addEventListener('input', () => {
+            if (gradeSlider.value === '0') {
+                gradeValueSpan.textContent = 'Prep';
+            } else {
+                gradeValueSpan.textContent = gradeSlider.value;
+            }
+        });
         const sliders = ['attendance', 'effort', 'behavior'];
         sliders.forEach(sliderId => {
             const slider = document.getElementById(sliderId);
@@ -183,7 +226,7 @@
                         selectedValue = 'Fair';
                         break;
                     case '2':
-                        selectedValue = 'Good';
+                        selectedValue = 'Very Good';
                         break;
                     case '3':
                         selectedValue = 'Excellent';
@@ -193,32 +236,6 @@
             });
         });
 
-        const skillSliders = ['listeningPreviousSemester', 'listeningCurrentSemester', 'readingPreviousSemester', 'readingCurrentSemester', 'speakingPreviousSemester', 'speakingCurrentSemester', 'writingPreviousSemester', 'writingCurrentSemester'];
-        skillSliders.forEach(sliderId => {
-            const slider = document.getElementById(sliderId);
-            const valueSpan = document.getElementById(sliderId + 'Value');
-            slider.addEventListener('input', () => {
-                let selectedValue = '';
-                switch (slider.value) {
-                    case '0':
-                        selectedValue = 'Level D';
-                        break;
-                    case '1':
-                        selectedValue = 'Foundation';
-                        break;
-                    case '2':
-                        selectedValue = 'Level 1';
-                        break;
-                    case '3':
-                        selectedValue = 'Level 2';
-                        break;
-                    case '4':
-                        selectedValue = 'Level 3';
-                        break;
-                }
-                valueSpan.textContent = `${selectedValue}`;
-            });
-        });
 
         document.getElementById('generateReportBtn').addEventListener('click', function (event) {
             const studentName = document.getElementById('studentName');
@@ -226,14 +243,6 @@
             const attendance = document.getElementById('attendance');
             const effort = document.getElementById('effort');
             const behavior = document.getElementById('behavior');
-            const listeningPreviousSemester = document.getElementById('listeningPreviousSemester');
-            const listeningCurrentSemester = document.getElementById('listeningCurrentSemester');
-            const readingPreviousSemester = document.getElementById('readingPreviousSemester');
-            const readingCurrentSemester = document.getElementById('readingCurrentSemester');
-            const speakingPreviousSemester = document.getElementById('speakingPreviousSemester');
-            const speakingCurrentSemester = document.getElementById('speakingCurrentSemester');
-            const writingPreviousSemester = document.getElementById('writingPreviousSemester');
-            const writingCurrentSemester = document.getElementById('writingCurrentSemester');
             const overallComment = document.getElementById('overallComment');
             const listeningCheckboxes = document.getElementsByName('listeningCheckboxes');
             const readingCheckboxes = document.getElementsByName('readingCheckboxes');
@@ -252,22 +261,14 @@
             const data = {
                 studentName: studentName.value,
                 grade: grade.value,
-                attendance: attendance.value,
-                effort: effort.value,
-                behavior: behavior.value,
-                listeningPreviousSemester: listeningPreviousSemester.value,
-                listeningCurrentSemester: listeningCurrentSemester.value,
-                readingPreviousSemester: readingPreviousSemester.value,
-                readingCurrentSemester: readingCurrentSemester.value,
-                speakingPreviousSemester: speakingPreviousSemester.value,
-                speakingCurrentSemester: speakingCurrentSemester.value,
-                writingPreviousSemester: writingPreviousSemester.value,
-                writingCurrentSemester: writingCurrentSemester.value,
-                overallComment: overallComment.value,
                 listeningSkills: getSelectedCheckboxValues(listeningCheckboxes),
                 readingSkills: getSelectedCheckboxValues(readingCheckboxes),
                 speakingSkills: getSelectedCheckboxValues(speakingCheckboxes),
-                writingSkills: getSelectedCheckboxValues(writingCheckboxes)
+                writingSkills: getSelectedCheckboxValues(writingCheckboxes),
+                attendance: attendance.value,
+                effort: effort.value,
+                behavior: behavior.value,
+                overallComment: overallComment.value
             };
             fetch('/api/mlwkls', {
                 method: 'POST',
