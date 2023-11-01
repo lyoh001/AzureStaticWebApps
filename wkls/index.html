@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/wkls/styles.css">
+    <link rel="icon" href="/wkls/favicon.png">
     <title>WKLS Report Generator</title>
 </head>
 
@@ -16,7 +17,7 @@
         </video>
     </div>
     <div class="container">
-        <h1>WKLS Report</h1>
+        <h1>Report Generator</h1>
         <div class="form-section">
             <label for="studentName">Student's Name</label>
             <input type="text" id="studentName" name="studentName" placeholder="Enter student's name">
@@ -75,7 +76,8 @@
 
         <div class="comment-section">
             <label for="overallComment">Overall Comment:</label>
-            <textarea id="overallComment" class="comment-box" placeholder="Enter your overall feedback here. Need help? Click the 'Brush' button below for AI-generated suggestions."></textarea>
+            <textarea id="overallComment" class="comment-box"
+                placeholder="Enter your overall feedback here. Need help? Click the 'Brush' button below for AI-generated suggestions."></textarea>
             <span id="characterCount">0/1500</span>
         </div>
         <button id="brushBtn"><i class="fas fa-magic"></i></button>

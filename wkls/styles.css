@@ -1,5 +1,14 @@
+@font-face {
+    font-family: 'Pangea';
+    src: url('path/to/pangea-font.woff2') format('woff2'), /* Modern Browsers */
+         url('path/to/pangea-font.woff') format('woff'); /* Legacy Browsers */
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Pangea', sans-serif;
+    font-size: 14px;
     margin: 0;
     padding: 0;
     align-items: center;
@@ -40,7 +49,7 @@ body {
 }
 
 h1 {
-    font-size: 28px;
+    font-size: 24px;
     margin-bottom: 20px;
     color: #0c7bbf;
 }
@@ -51,7 +60,7 @@ form {
 
 label {
     display: block;
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
     margin-bottom: 8px;
     text-align: left;
@@ -111,13 +120,13 @@ select {
 }
 
 .slider-label {
-    font-size: 16px;
+    font-size: 14px;
     color: #333;
 
 }
 
 .slider-value {
-    font-size: 15px;
+    font-size: 14px;
     color: #ffffff;
     font-weight: bold;
 }
@@ -149,7 +158,7 @@ select {
     box-sizing: border-box;
     border: 1px solid #333;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 14px;
     resize: vertical;
     background-color: rgba(255, 255, 255, 0.5);
 }
@@ -164,7 +173,7 @@ button {
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
     color: var(--text);
     padding: 14px 24px;
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     border: none;
     border-radius: 15px;
