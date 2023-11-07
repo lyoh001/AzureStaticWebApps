@@ -28,6 +28,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     justify-content: center;
 }
 
@@ -215,6 +216,7 @@ body {
 
 .video-container {
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     left: 0;
     overflow: hidden;
     position: fixed;
