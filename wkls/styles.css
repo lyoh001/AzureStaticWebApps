@@ -30,10 +30,10 @@ body {
 .container {
     background-color: rgba(0, 0, 0, 0.5);
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.9);
-    padding: 40px;
-    border-radius: 30px;
-    width: 80%;
-    max-width: 1000px;
+    padding: 30px;
+    border-radius: 20px;
+    width: 75%;
+    max-width: 1024px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin-left: auto;
@@ -214,4 +214,22 @@ button {
 button:hover {
     background: linear-gradient(to bottom left, rgba(67, 241, 155, 0.7) 20%, rgba(0, 162, 249, 0.7) 100%);
     transform: scale(1.03);
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #220e41;
+
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #ca3570;
+    border-radius: 5px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #ca3570;
 }
