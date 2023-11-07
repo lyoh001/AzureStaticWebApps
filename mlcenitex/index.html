@@ -151,24 +151,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="whidth=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
-    <link rel="stylesheet" href="/mlcenitex/dark.css" id="theme-stylesheet" data-theme="dark">
+    <link rel="stylesheet" href="/mlcenitex/light.css" id="theme-stylesheet" data-theme="light">
     <script>
         function toggleTheme() {
             const themeStylesheet = document.getElementById("theme-stylesheet");
             const currentTheme = themeStylesheet.getAttribute("data-theme");
             const videoElement = document.getElementById("video");
 
-            if (currentTheme === "dark") {
-                themeStylesheet.href = "/mlcenitex/light.css";
-                themeStylesheet.setAttribute("data-theme", "light");
-                videoElement.src = "/mlcenitex/light.mp4";
-            } else {
+            if (currentTheme === "light") {
                 themeStylesheet.href = "/mlcenitex/dark.css";
                 themeStylesheet.setAttribute("data-theme", "dark");
                 videoElement.src = "/mlcenitex/bg.mp4";
+            } else {
+                themeStylesheet.href = "/mlcenitex/light.css";
+                themeStylesheet.setAttribute("data-theme", "light");
+                videoElement.src = "/mlcenitex/bg1.mp4";
             }
         }
     </script>
@@ -179,7 +179,7 @@
 <body>
     <div class="video-container">
         <video autoplay muted loop id="video">
-            <source src="/mlcenitex/bg.mp4" type="video/mp4">
+            <source src="/mlcenitex/bg1.mp4" type="video/mp4">
         </video>
     </div>
     <div class="sidebar">

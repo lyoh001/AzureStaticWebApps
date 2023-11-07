@@ -142,7 +142,7 @@ body {
 .theme-toggle-slider {
     width: 40px;
     height: 20px;
-    background-color: #e97117;
+    background-color: #008080;
     border-radius: 10px;
     display: inline-block;
     position: relative;
@@ -163,7 +163,7 @@ body {
 }
 
 .theme-toggle-checkbox:checked+.theme-toggle-slider {
-    background-color: #008080;
+    background-color: #e97117;
 }
 
 .theme-toggle-checkbox:checked+.theme-toggle-slider:after {
