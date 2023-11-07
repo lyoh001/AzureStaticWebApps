@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -141,6 +141,272 @@
                 }
             }, 20);
         }
+    </script>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
+    <link rel="stylesheet" href="/mlcenitex/dark.css" id="theme-stylesheet" data-theme="dark">
+    <script>
+        function toggleTheme() {
+            const themeStylesheet = document.getElementById("theme-stylesheet");
+            const currentTheme = themeStylesheet.getAttribute("data-theme");
+            const videoElement = document.getElementById("video");
+
+            if (currentTheme === "dark") {
+                themeStylesheet.href = "/mlcenitex/light.css";
+                themeStylesheet.setAttribute("data-theme", "light");
+                videoElement.src = "/mlcenitex/light.mp4";
+            } else {
+                themeStylesheet.href = "/mlcenitex/dark.css";
+                themeStylesheet.setAttribute("data-theme", "dark");
+                videoElement.src = "/mlcenitex/bg.mp4";
+            }
+        }
+    </script>
+    <link rel="icon" href="/mlcenitex/favicon.png">
+    <title>Cenitex KB</title>
+</head>
+
+<body>
+    <div class="video-container">
+        <video autoplay muted loop id="video">
+            <source src="/mlcenitex/bg.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="sidebar">
+        <div class="sidebar-content">
+            <label for="dropdown1">Select Option 1:</label>
+            <select id="dropdown1">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+            </select>
+            <label for="dropdown2">Select Option 2:</label>
+            <select id="dropdown2">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+            </select>
+            <label for="dropdown3">Select Option 3:</label>
+            <select id="dropdown3">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+            </select>
+            <label for="dropdown4">Select Option 4:</label>
+            <select id="dropdown4">
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+            </select>
+
+            <label for="slider1">Slider 1:</label>
+            <input type="range" id="slider1" min="0" max="100" value="50">
+
+            <label for="slider2">Slider 2:</label>
+            <input type="range" id="slider2" min="0" max="100" value="50">
+
+            <label for="slider3">Slider 3:</label>
+            <input type="range" id="slider3" min="0" max="100" value="50">
+
+            <label for="slider3">Slider 4:</label>
+            <input type="range" id="slider4g" min="0" max="100" value="50">
+        </div>
+    </div>
+    <div class="content-container">
+        <div class="content">
+            <header class="header">
+                <img src="/mlcenitex/logo.png" alt="Logo" class="logo">
+                <h1>CENITEX KB</h1>
+            </header>
+            <main class="chat-container">
+                <div class="chat-header">
+                    <div class="header-text">Knowledge Base Chatbot Powered by GenAI</div>
+                    <div class="toggle-container">
+                        <input type="checkbox" class="theme-toggle-checkbox" id="theme-toggle">
+                        <label for="theme-toggle" class="theme-toggle-slider"></label>
+                    </div>
+                </div>
+                <div class="chat-messages" id="chat-window">
+                </div>
+                <div class="user-input">
+                    <button onclick="resetMemory()" class="reset-button"><i class="fas fa-magic"></i></button>
+                    <input type="text" id="feature1" placeholder="Type your message here..."
+                        onkeydown="handleKeyPress(event)">
+                    <button onclick="predict()" class="send-button"><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script>
+        function handleKeyPress(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                predict();
+            }
+        }
+        function updateMemory(question, answer, url) {
+            fetch(url + 'update', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    text: [question, answer],
+                }),
+            })
+                .then(() => {
+                    console.log('Memory has been updated successfully:');
+                })
+                .catch(error => {
+                    console.error('Error updating memory:', error);
+                });
+        }
+        function resetMemory() {
+            const url = ["http://localhost:8000/", "https://cenitexcloudhosting.com/"][0];
+            fetch(url + 'reset', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then(() => {
+                    console.log('Memory has been reset successfully:');
+                    var chatWindow = document.getElementById("chat-window");
+                    chatWindow.innerHTML = "";
+                })
+                .catch(error => {
+                    console.error('Error resetting memory:', error);
+                });
+        }
+        function predict() {
+            const url = ["http://localhost:8000/", "https://cenitexcloudhosting.com/"][0];
+            var input = document.getElementById("feature1");
+            var chatWindow = document.getElementById("chat-window");
+            var question = input.value.trim();
+            if (!question) {
+                var errorMessage = document.createElement("div");
+                errorMessage.textContent = "Please enter a message before sending";
+                errorMessage.classList.add("thinkingMessage");
+                chatWindow.appendChild(errorMessage);
+                setTimeout(() => {
+                    chatWindow.removeChild(errorMessage);
+                }, 1000);
+                return;
+            }
+            var userMessage = document.createElement("div");
+            userMessage.classList.add("userMessage");
+            var userIconContainer = document.createElement("div");
+            userIconContainer.classList.add("iconContainer");
+            var userIcon = document.createElement("img");
+            userIcon.src = "/mlcenitex/user.png";
+            userIcon.classList.add("userIcon");
+            userIconContainer.appendChild(userIcon);
+            var userMessageText = document.createElement("div");
+            userMessageText.textContent = question;
+            userMessageText.classList.add("messageText");
+            userMessage.appendChild(userIconContainer);
+            userMessage.appendChild(userMessageText);
+            chatWindow.appendChild(userMessage);
+
+            var aiResponseMessage = document.createElement("div");
+            aiResponseMessage.classList.add("aiResponseMessage");
+            var aiIconContainer = document.createElement("div");
+            aiIconContainer.classList.add("iconContainer");
+            var aiIcon = document.createElement("img");
+            aiIcon.src = "/mlcenitex/ai.png";
+            aiIcon.classList.add("aiIcon");
+            aiIconContainer.appendChild(aiIcon);
+            aiResponseMessage.appendChild(aiIconContainer);
+
+            var thinkingMessage = document.createElement("div");
+            thinkingMessage.classList.add("thinkingMessage");
+            chatWindow.appendChild(thinkingMessage);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            var chars = ["⠙", "⠘", "⠰", "⠴", "⠤", "⠦", "⠆", "⠃", "⠋", "⠉"];
+            var charIndex = 0;
+            var interval = setInterval(function () {
+                thinkingMessage.textContent = chars[charIndex] + " AI Responding...";
+                charIndex = (charIndex + 1) % chars.length;
+            }, 100);
+
+            fetch(url + 'chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    text: question,
+                }),
+            })
+                .then(response => {
+                    const reader = response.body.getReader();
+                    let partialMessage = '';
+                    let answer = '';
+                    function read() {
+                        return reader.read().then(({ done, value }) => {
+                            if (done) {
+                                updateMemory(question, answer, url);
+                                clearInterval(interval);
+                                thinkingMessage.textContent = "";
+                                chatWindow.scrollTop = chatWindow.scrollHeight;
+                                return;
+                            }
+                            var text = new TextDecoder().decode(value);
+                            var combinedString = (partialMessage + text);
+                            if (combinedString[combinedString.length - 1] != "\\") {
+                                combinedString = combinedString.replace(/"/g, "").replace(/\\n/g, "\n").replace(/\\ n/g, "\n");
+                                var lines = combinedString.split("\n");
+                                lines.forEach(line => {
+                                    var words = line.split(" ");
+                                    if (words.length >= 1) {
+                                        words.forEach(word => {
+                                            var wordElement = document.createElement("span");
+                                            if (word == words[words.length - 1]) {
+                                                wordElement.textContent = word
+                                            }
+                                            else {
+                                                wordElement.textContent = word + " ";
+                                            }
+                                            aiResponseMessage.appendChild(wordElement);
+                                        });
+                                        if (line !== lines[lines.length - 1]) {
+                                            aiResponseMessage.appendChild(document.createElement("br"));
+                                            aiResponseMessage.appendChild(document.createElement("br"));
+                                        }
+                                    }
+                                });
+                                partialMessage = ""
+                            }
+                            else {
+                                var wordElement = document.createElement("span");
+                                wordElement.textContent = combinedString.slice(0, -1);
+                                aiResponseMessage.appendChild(wordElement);
+                                partialMessage = "\\"
+                            }
+                            answer += text;
+                            chatWindow.appendChild(aiResponseMessage);
+                            chatWindow.scrollTop = chatWindow.scrollHeight;
+                            return read();
+                        });
+                    }
+                    return read();
+                })
+                .catch(error => {
+                    clearInterval(interval);
+                    thinkingMessage.textContent = "Error: " + error;
+                    chatWindow.scrollTop = chatWindow.scrollHeight;
+                });
+            input.value = "";
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("theme-toggle").addEventListener("change", toggleTheme);
+        });
     </script>
 </body>
 
