@@ -3,154 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/mlcenitex/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>Cenitex KB</title>
-</head>
-
-<body>
-    <video autoplay muted loop id="video"></video>
-    <script>
-        var videoSources = ["/mlcenitex/bg.mp4"];
-        var randomIndex = Math.floor(Math.random() * videoSources.length);
-        var video = document.getElementById("video");
-        video.src = videoSources[randomIndex];
-    </script>
-    <div class="content">
-        <header id="dashboard">
-            <h1><b>CENITEX</b> KB</h1>
-            Knowledge Base Chatbot Powered by GenAI
-        </header>
-        <main>
-            <article id="mainLeft">
-                <section>
-                    <ul class="kblinks">
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>KB Link</a></li>
-                    </ul>
-                </section>
-            </article>
-            <article id="mainRight">
-                <section class="chat-selection" id="chat-selection">
-                    <div class="chat-window" id="chat-window"></div>
-                    <div class="chat-input">
-                        <input type="text" id="feature1" placeholder="Type your message here..."
-                            onkeydown="handleKeyPress(event)">
-                        <button onclick="predict()">Send</button>
-                    </div>
-                </section>
-            </article>
-        </main>
-    </div>
-    <script>
-        function handleKeyPress(event) {
-            if (event.keyCode === 13) {
-                event.preventDefault();
-                predict();
-            }
-        }
-        function predict() {
-            var input = document.getElementById("feature1");
-            var chatWindow = document.getElementById("chat-window");
-            var message = input.value.trim();
-            if (!message) {
-                var errorMessage = document.createElement("div");
-                errorMessage.textContent = "Please enter a message before sending";
-                errorMessage.classList.add("thinkingMessage");
-                chatWindow.appendChild(errorMessage);
-                setTimeout(() => {
-                    chatWindow.removeChild(errorMessage);
-                }, 3000);
-                return;
-            }
-            var userMessage = document.createElement("div");
-            userMessage.textContent = message;
-            userMessage.classList.add("userMessage");
-            chatWindow.appendChild(userMessage);
-            input.value = "";
-            var thinkingMessage = document.createElement("div");
-            thinkingMessage.textContent = "Thinking...";
-            thinkingMessage.classList.add("thinkingMessage");
-            chatWindow.appendChild(thinkingMessage);
-            chatWindow.scrollTop = chatWindow.scrollHeight;
-            var http = new XMLHttpRequest();
-            http.open("POST", "api/mlcenitex", true);
-            http.setRequestHeader("Content-Type", "application/json");
-            http.onreadystatechange = function () {
-                if (http.readyState == 4 && http.status == 200) {
-                    var response = http.responseText;
-                    chatWindow.removeChild(thinkingMessage);
-                    displayResponse(response);
-                }
-            };
-            var data = {
-                text: [message],
-                mode: ["Agent"]
-            };
-            http.send(JSON.stringify(data));
-        }
-        function displayResponse(response) {
-            var chatWindow = document.getElementById("chat-window");
-            var lines = response.split("\n");
-            var lineIndex = 0;
-            var wordIndex = 0;
-            var aiResponseMessage = document.createElement("div");
-            aiResponseMessage.classList.add("aiResponseMessage");
-            chatWindow.appendChild(aiResponseMessage);
-
-            var interval = setInterval(function () {
-                var currentLine = lines[lineIndex];
-                var words = currentLine.split(" ");
-                if (wordIndex < words.length) {
-                    var word = document.createElement("span");
-                    word.textContent = words[wordIndex] + " ";
-                    aiResponseMessage.appendChild(word);
-                    wordIndex++;
-                } else {
-                    wordIndex = 0;
-                    lineIndex++;
-                    if (lineIndex < lines.length) {
-                        aiResponseMessage.appendChild(document.createElement("br")); // Add a line break
-                        aiResponseMessage.appendChild(document.createElement("br")); // Add a line break
-                    } else {
-                        clearInterval(interval);
-                        chatWindow.scrollTop = chatWindow.scrollHeight;
-                    }
-                }
-            }, 20);
-        }
-    </script>
-</body>
-
-</html> -->
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="whidth=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap">
@@ -413,6 +265,152 @@
         document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("theme-toggle").addEventListener("change", toggleTheme);
         });
+    </script>
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/mlcenitex/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Cenitex KB</title>
+</head>
+
+<body>
+    <video autoplay muted loop id="video"></video>
+    <script>
+        var videoSources = ["/mlcenitex/bg.mp4"];
+        var randomIndex = Math.floor(Math.random() * videoSources.length);
+        var video = document.getElementById("video");
+        video.src = videoSources[randomIndex];
+    </script>
+    <div class="content">
+        <header id="dashboard">
+            <h1><b>CENITEX</b> KB</h1>
+            Knowledge Base Chatbot Powered by GenAI
+        </header>
+        <main>
+            <article id="mainLeft">
+                <section>
+                    <ul class="kblinks">
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>ADDR</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>Alsid</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>AVS</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>AWS</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>BMC Patrol</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>Decom</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>DHCP</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>Dom Register</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>DOT</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>Dynamics</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>Elastic</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>ESU FAQ</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>FS</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>iLO</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>Interactive</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>McAfee</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>MFA</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>Modern Auth</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>RDS</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>Scorch</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>SOE</a></li>
+                        <li><a href="#"><i class="fab fa-windows" aria-hidden="true"></i>SSL Certs</a></li>
+                    </ul>
+                </section>
+            </article>
+            <article id="mainRight">
+                <section class="chat-selection" id="chat-selection">
+                    <div class="chat-window" id="chat-window"></div>
+                    <div class="chat-input">
+                        <input type="text" id="feature1" placeholder="Type your message here..."
+                            onkeydown="handleKeyPress(event)">
+                        <button onclick="predict()">Send</button>
+                    </div>
+                </section>
+            </article>
+        </main>
+    </div>
+    <script>
+        function handleKeyPress(event) {
+            if (event.keyCode === 13) {
+                event.preventDefault();
+                predict();
+            }
+        }
+        function predict() {
+            var input = document.getElementById("feature1");
+            var chatWindow = document.getElementById("chat-window");
+            var message = input.value.trim();
+            if (!message) {
+                var errorMessage = document.createElement("div");
+                errorMessage.textContent = "Please enter a message before sending";
+                errorMessage.classList.add("thinkingMessage");
+                chatWindow.appendChild(errorMessage);
+                setTimeout(() => {
+                    chatWindow.removeChild(errorMessage);
+                }, 3000);
+                return;
+            }
+            var userMessage = document.createElement("div");
+            userMessage.textContent = message;
+            userMessage.classList.add("userMessage");
+            chatWindow.appendChild(userMessage);
+            input.value = "";
+            var thinkingMessage = document.createElement("div");
+            thinkingMessage.textContent = "Thinking...";
+            thinkingMessage.classList.add("thinkingMessage");
+            chatWindow.appendChild(thinkingMessage);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+            var http = new XMLHttpRequest();
+            http.open("POST", "api/mlcenitex", true);
+            http.setRequestHeader("Content-Type", "application/json");
+            http.onreadystatechange = function () {
+                if (http.readyState == 4 && http.status == 200) {
+                    var response = http.responseText;
+                    chatWindow.removeChild(thinkingMessage);
+                    displayResponse(response);
+                }
+            };
+            var data = {
+                text: [message],
+                mode: ["Agent"]
+            };
+            http.send(JSON.stringify(data));
+        }
+        function displayResponse(response) {
+            var chatWindow = document.getElementById("chat-window");
+            var lines = response.split("\n");
+            var lineIndex = 0;
+            var wordIndex = 0;
+            var aiResponseMessage = document.createElement("div");
+            aiResponseMessage.classList.add("aiResponseMessage");
+            chatWindow.appendChild(aiResponseMessage);
+
+            var interval = setInterval(function () {
+                var currentLine = lines[lineIndex];
+                var words = currentLine.split(" ");
+                if (wordIndex < words.length) {
+                    var word = document.createElement("span");
+                    word.textContent = words[wordIndex] + " ";
+                    aiResponseMessage.appendChild(word);
+                    wordIndex++;
+                } else {
+                    wordIndex = 0;
+                    lineIndex++;
+                    if (lineIndex < lines.length) {
+                        aiResponseMessage.appendChild(document.createElement("br")); // Add a line break
+                        aiResponseMessage.appendChild(document.createElement("br")); // Add a line break
+                    } else {
+                        clearInterval(interval);
+                        chatWindow.scrollTop = chatWindow.scrollHeight;
+                    }
+                }
+            }, 20);
+        }
     </script>
 </body>
 
