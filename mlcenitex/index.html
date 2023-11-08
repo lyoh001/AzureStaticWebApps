@@ -1,4 +1,4 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -36,38 +36,49 @@
     </div>
     <div class="sidebar">
         <div class="sidebar-content">
-            <label for="dropdown1">Select Option 1:</label>
-            <select id="dropdown1">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-            </select>
-            <label for="dropdown2">Select Option 2:</label>
-            <select id="dropdown2">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-            </select>
-            <label for="dropdown3">Select Option 3:</label>
-            <select id="dropdown3">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-            </select>
-            <label for="dropdown4">Select Option 4:</label>
-            <select id="dropdown4">
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
+            <label for="modelDropdown">Model:</label>
+            <select id="modelDropdown">
+                <option value="option1">GPT 3.5 (Azure)</option>
+                <option value="option2">GPT 4.0 (Azure)</option>
+                <option value="option3">Claude 2.0 (AWS Bedrock)</option>
+                <option value="option4">Cohere Cmd (AWS Bedrock)</option>
+                <option value="option5">Mistral 7B (AWS Sagemaker)</option>
+                <option value="option6">Llama2 7B (On Premise)</option>
             </select>
 
-            <label for="slider1">Slider 1:</label>
-            <input type="range" id="slider1" min="0" max="100" value="50">
+            <label for="promptDropdown">System Prompt:</label>
+            <select id="promptDropdown">
+                <option value="option1">Provide an exhaustive and detailed response, covering all relevant aspects thoroughly.</option>
+                <option value="option2">You are an expert summarizer. Provide a concise summary of the following text.</option>
+                <option value="option3">You are an expert text classifier. Categorize the following text into appropriate labels.</option>
+                <option value="option4">You are an expert SQL DBA. Generate an SQL command for the following query.</option>
+                <option value="option5">You are an expert Python programmer. Write a function for the following query.</option>
+                <option value="option6">You are an expert PowerShell scripter. Create a script for the following query.</option>
+                <option value="option7">You are an expert JavaScript developer. Write a function for the following query.</option>
+                <option value="option8">You are an expert mathematician. Solve the following query.</option>
+                <option value="option9">You are an educator. Explain the following query.</option>
+            </select>
 
-            <label for="slider2">Slider 2:</label>
-            <input type="range" id="slider2" min="0" max="100" value="50">
+            <label for="sampleDropdown">Do Sample:</label>
+            <select id="sampleDropdown">
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
 
-            <label for="slider3">Slider 3:</label>
-            <input type="range" id="slider3" min="0" max="100" value="50">
+            <label for="temperatureSlider">Temperature:</label>
+            <input type="range" id="temperatureSlider" min="0" max="100" value="50">
 
-            <label for="slider3">Slider 4:</label>
-            <input type="range" id="slider4g" min="0" max="100" value="50">
+            <label for="maxTokensSlider">Max Tokens:</label>
+            <input type="range" id="maxTokensSlider" min="0" max="100" value="50">
+
+            <label for="repetitionPenaltySlider">Repetition Penalty:</label>
+            <input type="range" id="repetitionPenaltySlider" min="0" max="100" value="50">
+
+            <label for="topKSlider">Top K:</label>
+            <input type="range" id="topKSlider" min="0" max="100" value="50">
+
+            <label for="topPSlider">Top P:</label>
+            <input type="range" id="topPSlider" min="0" max="100" value="50">
         </div>
     </div>
     <div class="content-container">
@@ -268,8 +279,9 @@
     </script>
 </body>
 
-</html> -->
-<!DOCTYPE html>
+</html>
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -414,4 +426,4 @@
     </script>
 </body>
 
-</html>
+</html> -->
