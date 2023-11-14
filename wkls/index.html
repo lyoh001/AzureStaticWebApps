@@ -1,240 +1,400 @@
-import base64
-import logging
-import os
-import shutil
-from io import BytesIO
+<!DOCTYPE html>
+<html lang="en">
 
-import azure.functions as func
-import requests
-from PyPDF2 import PdfReader, PdfWriter
-from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.pdfgen import canvas
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/wkls/styles.css">
+    <link rel="icon" href="/wkls/favicon.png">
+    <title>WKLS Report Generator</title>
+</head>
 
-max_width = 492
-input_pdf_path = "input_pdf.pdf"
-output_pdf_path = "output_pdf_with_text.pdf"
-korean_font_path = "/tmp/gulim.ttf"
-korean_font_url = "https://github.com/lyoh001/AzureStaticWebApps/raw/main/wkls/font.ttf"
+<body>
+    <div class="video-container">
+        <video autoplay muted loop id="video">
+            <source src="/wkls/bg.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="container">
+        <h1><img src="/wkls/logo.png" alt="Logo" class="h1logo">Report Generator</h1>
+        <div class="form-section">
+            <label class="label" for="studentName">Student's Name</label>
+            <input type="text" id="studentName" name="studentName" placeholder="Enter student's name">
+        </div>
+        <div class="slider-section">
+            <div class="slider-container">
+                <label class="slider-label" for="grade">Grade</label>
+                <input type="range" id="grade" name="grade" min="0" max="9" step="1" value="0">
+                <span class="slider-value" id="gradeValue">Prep</span>
+            </div>
 
+            <div class="slider-container">
+                <label class="slider-label" for="attendance">Attendance</label>
+                <input type="range" id="attendance" name="attendance" min="0" max="4" step="1">
+                <span class="slider-value" id="attendanceValue">Satisfactory</span>
+            </div>
+        </div>
 
-def download_korean_font(font_url, font_path):
-    response = requests.get(font_url)
-    with open(font_path, "wb") as font_file:
-        font_file.write(response.content)
+        <div class="slider-section">
+            <div class="slider-container">
+                <label class="slider-label" for="behaviour">Behaviour:</label>
+                <input type="range" id="behaviour" name="behaviour" min="0" max="4" step="1">
+                <span class="slider-value" id="behaviourValue">Satisfactory</span>
+            </div>
 
+            <div class="slider-container">
+                <label class="slider-label" for="effort">Effort:</label>
+                <input type="range" id="effort" name="effort" min="0" max="4" step="1">
+                <span class="slider-value" id="effortValue">Satisfactory</span>
+            </div>
+        </div>
 
-def encode_font_to_base64(font_path):
-    with open(font_path, "rb") as font_file:
-        font_base64 = base64.b64encode(font_file.read()).decode("utf-8")
-    return font_base64
+        <div class="checkbox-group">
+            <div class="checkbox-group-item">
+                <h2><img src="/wkls/communication.png" alt="Communication Icon" class="h2logo">Communication</h2>
+                <div class="checkboxes" id="communicationCheckboxes"></div>
+            </div>
 
+            <div class="checkbox-group-item">
+                <h2><img src="/wkls/understanding.png" alt="Understanding Icon" class="h2logo">Understanding</h2>
+                <div class="checkboxes" id="understandingCheckboxes"></div>
+            </div>
+        </div>
 
-def load_template(id: str) -> str:
-    src_path = "./mlwklsgenerate/template"
-    dst_path = os.path.join("/tmp", id)
-    if not os.path.exists(dst_path):
-        os.mkdir(dst_path)
-    for item in os.listdir(src_path):
-        item_path = os.path.join(src_path, item)
-        if os.path.isdir(item_path):
-            shutil.copytree(item_path, os.path.join(dst_path, item))
-        else:
-            shutil.copy2(item_path, dst_path)
-    return dst_path
+        <div class="comment-section">
+            <h2><img src="/wkls/comment.png" alt="Comment Icon" class="h2logo">Overall Comment</h2>
+            <textarea id="overallComment" class="comment-box"
+                placeholder="Enter your overall feedback here. Need help? Click the 'Brush' button below for AI-generated suggestions."></textarea>
+            <span id="characterCount">0/1500</span>
+        </div>
+        <button id="brushBtn"><i class="fas fa-magic"></i></button>
+        <button id="generateReportBtn">Generate Report</button>
+    </div>
 
+    <script>
+        function createCheckboxes(containerId, options, maxAllowed, gradeGroup) {
+            const container = document.getElementById(containerId);
+            let selectedCheckboxes = 0;
 
-def generate_chart(score):
-    if score == "0":
-        text_x = 167
-    elif score == "1":
-        text_x = 253
-    elif score == "2":
-        text_x = 337
-    elif score == "3":
-        text_x = 423
-    else:
-        text_x = 509
-    return text_x, "X"
+            const checkboxes = options[gradeGroup];
+            checkboxes.forEach(option => {
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = containerId;
+                checkbox.value = option;
 
+                const label = document.createElement('label');
+                label.className = 'checkbox-label';
+                label.appendChild(checkbox);
 
-def add_text_to_pdf(input_path, output_path, text_content, x, y, max_width, font_size):
-    pdf_reader = PdfReader(input_path)
-    pdf_writer = PdfWriter()
+                if (option.includes('[High]')) {
+                    checkbox.style.border = '2px solid #00a2f9';
+                } else if (option.includes('[Medium]')) {
+                    checkbox.style.border = '2px solid #f9c542';
+                } else if (option.includes('[Low]')) {
+                    checkbox.style.border = '2px solid #ff686b';
+                }
 
-    for page_num in range(len(pdf_reader.pages)):
-        page = pdf_reader.pages[page_num]
-        packet = BytesIO()
-        c = canvas.Canvas(packet)
-        c.setFont("gulim", font_size)
-        lines = []
-        current_line = ""
-        text_lines = text_content.split("\n")
-        for line in text_lines:
-            words = line.split()
-            for word in words:
-                test_line = current_line + word + " "
-                width = c.stringWidth(test_line, "gulim", font_size)
-                if width <= max_width:
-                    current_line = test_line
-                else:
-                    lines.append(current_line.strip())
-                    current_line = word + " "
-            lines.append(current_line.strip())
-            current_line = ""
+                label.appendChild(document.createTextNode(option.replace(/\[.*?\]/, '')));
+                container.appendChild(label);
+                container.appendChild(document.createElement('br'));
+                checkbox.addEventListener('change', () => {
+                    if (checkbox.checked) {
+                        checkbox.style.backgroundColor = getCheckboxBackgroundColor(option);
+                        selectedCheckboxes++;
+                    } else {
+                        checkbox.style.backgroundColor = '';
+                        selectedCheckboxes--;
+                    }
 
-        text_x = x
-        text_y = y
+                    if (selectedCheckboxes > maxAllowed) {
+                        checkbox.checked = false;
+                        checkbox.style.backgroundColor = '';
+                        selectedCheckboxes--;
+                    }
+                });
+            });
 
-        for line in lines:
-            c.drawString(text_x, text_y, line)
-            text_y -= font_size * 1.2
-        c.save()
-        packet.seek(0)
-        modified_page = PdfReader(packet).pages[0]
-        page.merge_page(modified_page)
-        pdf_writer.add_page(page)
+            function getCheckboxBackgroundColor(option) {
+                if (option.includes('[High]')) {
+                    return '#00a2f9';
+                } else if (option.includes('[Medium]')) {
+                    return '#f9c542';
+                } else if (option.includes('[Low]')) {
+                    return '#ff686b';
+                }
+                return '';
+            }
+        }
 
-    with open(output_path, "wb") as output_file:
-        pdf_writer.write(output_file)
+        const gradeSlider = document.getElementById('grade');
+        const communicationCheckboxesContainer = document.getElementById('communicationCheckboxes');
+        const understandingCheckboxesContainer = document.getElementById('understandingCheckboxes');
 
+        window.addEventListener('load', () => {
+            createCheckboxes('communicationCheckboxes', [
+                ["[High] can confidently exchange simple Korean greetings, using appropriate experssion and body language.",
+                    "[High] confidently participates in songs and chants by singing and performing actions.",
+                    "[High] can confidently demonstrate their understanding of early literacy skils by labelling, matching, drawing and using gestures to locate and use information.",
+                    "[Medium] can satisfactorily exchanges simple Korean greetings, using appropriate expression and body language.",
+                    "[Medium] can satisfactorily participate in songs and chants by singing and performing actions.",
+                    "[Medium] can satisfactorily follow simple classroom instructions.",
+                    "[Low] is beginning to exchange simple Korean greetings, using some appropriate expression and body language.",
+                    "[Low] is beginning to participate in songs and chants by singing and performing simple actions.",
+                    "[Low] is beginning to make simple statements about themselves, including who they are and their personal preferences.",]
+            ], 5, 0);
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info("*******Starting Generate function*******")
-    download_korean_font(korean_font_url, korean_font_path)
-    pdfmetrics.registerFont(TTFont("gulim", korean_font_path))
-    try:
-        user_input = req.get_json()
-        student_name = user_input["studentName"]
-        grade = int(user_input["grade"])
-        attendance = user_input["attendance"]
-        behaviour = user_input["behaviour"]
-        effort = user_input["effort"]
-        communucation_skills = "\n".join(
-            f"- {skill.split(']')[1]}" for skill in user_input["communicationSkills"]
-        )
-        understanding_skills = "\n".join(
-            f"- {skill.split(']')[1]}" for skill in user_input["understandingSkills"]
-        )
-        overall_comment = user_input["overallComment"]
-        path = load_template(student_name)
-        text = student_name
-        text_x = 155
-        text_y = 702
-        add_text_to_pdf(
-            os.path.join(path, input_pdf_path),
-            os.path.join(path, output_pdf_path),
-            text,
-            text_x,
-            text_y,
-            max_width,
-            11,
-        )
+            createCheckboxes('understandingCheckboxes', [
+                ["[High] can confidently sing the sounds of letters and syllable blocks of hangeul.",
+                    "[High] confidently identify -요 at the end of a sentence as indicating some polite meaning.",
+                    "[High] confidently identify differences and similarities between their own and others' languages and cultures.",
+                    "[Medium] can satisfactorily sing the sounds of letters and syllable blocks of hangeul.",
+                    "[Medium] can satisfactorily use simple vacabulary to identify familiar objects and to describe simple actions or states.",
+                    "[Medium] satisfactorily identify differences and similarities between their own and others' languages and cultures.",
+                    "[Low] is beginning to identify -요 at the end of a sentence as indicating some polite meaning.",
+                    "[Low] is beginning to use simple vacabulary to identify familiar objects and to describe simple actions or states.",
+                    "[Low] is beginning to identify differences and similarities between their own and others' languages and cultures.",
+                ]
+            ], 5, 0);
+        });
+        gradeSlider.addEventListener('input', () => {
+            const selectedGrade = parseInt(gradeSlider.value);
+            if (selectedGrade >= 0 && selectedGrade <= 2) {
+                communicationCheckboxesContainer.innerHTML = '';
+                createCheckboxes('communicationCheckboxes', [
+                    ["[High] can confidently exchange simple Korean greetings, using appropriate experssion and body language.",
+                        "[High] confidently participates in songs and chants by singing and performing actions.",
+                        "[High] can confidently demonstrate their understanding of early literacy skils by labelling, matching, drawing and using gestures to locate and use information.",
+                        "[Medium] can satisfactorily exchanges simple Korean greetings, using appropriate expression and body language.",
+                        "[Medium] can satisfactorily participate in songs and chants by singing and performing actions.",
+                        "[Medium] can satisfactorily follow simple classroom instructions.",
+                        "[Low] is beginning to exchange simple Korean greetings, using some appropriate expression and body language.",
+                        "[Low] is beginning to participate in songs and chants by singing and performing simple actions.",
+                        "[Low] is beginning to make simple statements about themselves, including who they are and their personal preferences.",]
+                ], 5, 0);
+                understandingCheckboxesContainer.innerHTML = '';
+                createCheckboxes('understandingCheckboxes', [
+                    ["[High] can confidently sing the sounds of letters and syllable blocks of hangeul.",
+                        "[High] confidently identify -요 at the end of a sentence as indicating some polite meaning.",
+                        "[High] confidently identify differences and similarities between their own and others' languages and cultures.",
+                        "[Medium] can satisfactorily sing the sounds of letters and syllable blocks of hangeul.",
+                        "[Medium] can satisfactorily use simple vacabulary to identify familiar objects and to describe simple actions or states.",
+                        "[Medium] satisfactorily identify differences and similarities between their own and others' languages and cultures.",
+                        "[Low] is beginning to identify -요 at the end of a sentence as indicating some polite meaning.",
+                        "[Low] is beginning to use simple vacabulary to identify familiar objects and to describe simple actions or states.",
+                        "[Low] is beginning to identify differences and similarities between their own and others' languages and cultures.",
+                    ]
+                ], 5, 0);
+            } else if (selectedGrade >= 3 && selectedGrade <= 4) {
+                communicationCheckboxesContainer.innerHTML = '';
+                createCheckboxes('communicationCheckboxes', [
+                    ["[High] can socialise and build relationship with peers and teachers through the exchange of personal in formation in relation to self, friends and family members with confidence.",
+                        "[High] can competently participate in collaborative tasks and shared experiences such as creating and playing simple language games or dialogues that involve simple negotiation, or preparting and presenting a group display.",
+                        "[High] can competently participate in everyday classroom activities such as responding to teacher's instructions, attracting attention and asking for repetition.",
+                        "[Medium] can socialise and build relationship with peers and teachers through the exchange of personal in formation in relation to self, friends and family members with support.",
+                        "[Medium] can satisfactorily participate in collaborative tasks and shared experiences such as creating and playing simple language games or dialogues that involve simple negotiation, or preparting and presenting a group display.",
+                        "[Medium] can satisfactorily participate in everyday classroom activities such as responding to teacher's instructions, attracting attention and asking for repetition.",
+                        "[Low] struggles to socialise and build relationship with peers and teachers through the exchange of personal in formation in relation to self, friends and family members.",
+                        "[Low] is learning to recognise on each others' ways of communicating and their appropriateness in Korean or non-Korean contexts.",
+                        "[Low] struggles to create own profile using spoken, written or digital forms of expression to identify roles in or memberships of various groups.",]
+                ], 5, 0);
+                understandingCheckboxesContainer.innerHTML = '';
+                createCheckboxes('understandingCheckboxes', [
+                    ["[High] can competently recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[High] can competently understand and use key grammatical forms and structures such as basic pronouns and case markers and the polite verb ending –어/아요 in own simple language production, and recognise politeness embedded in humble or honorific forms such as 저 and –(으)세요",
+                        "[High] can competently compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Medium] can satisfactorily recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Medium] can understand that languages change over time and influence each other through contact and cultural exchanges to some degree.",
+                        "[Medium] can satisfactorily compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Low] struggles to recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Low] struggles to reflect on and share their experience when using Korean and when using own language/s, recognising cultural elements that may cause different feelings.",
+                        "[Low] struggles to compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                    ]
+                ], 5, 0);
+            } else if (selectedGrade >= 5 && selectedGrade <= 9) {
+                communicationCheckboxesContainer.innerHTML = '';
+                createCheckboxes('communicationCheckboxes', [
+                    ["[High] can understand that languages change over time and influence each other through contact and cultural exchanges.",
+                        "[High] can reflect on and share their experience when using Korean and when using own language/s, recognising cultural elements that may cause different feelings.",
+                        "[High] can competently compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Medium] can satisfactorily recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Medium] can reflect on and share their experience when using Korean and when using own language/s, recognising cultural elements that may cause different feelings to some degree.",
+                        "[Medium] can satisfactorily compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Low] struggles to recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Low] struggles to understand and use key grammatical forms and structures such as basic pronouns and case markers and the polite verb ending –어/아요 in own simple language production, and recognise politeness embedded in humble or honorific forms such as 저 and –(으)세요",
+                        "[Low] struggles to recognise and use vocabulary to describe familiar people, objects and places, and basic routines, including Sino- and pure Korean number words with basic counters, words for colours, names of sports",
+                    ]
+                ], 5, 0);
+                understandingCheckboxesContainer.innerHTML = '';
+                createCheckboxes('understandingCheckboxes', [
+                    ["[High] can understand that languages change over time and influence each other through contact and cultural exchanges.",
+                        "[High] can reflect on and share their experience when using Korean and when using own language/s, recognising cultural elements that may cause different feelings.",
+                        "[High] can competently compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Medium] can satisfactorily recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Medium] can reflect on and share their experience when using Korean and when using own language/s, recognising cultural elements that may cause different feelings to some degree.",
+                        "[Medium] can satisfactorily compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Low] struggles to recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Low] struggles to understand and use key grammatical forms and structures such as basic pronouns and case markers and the polite verb ending –어/아요 in own simple language production, and recognise politeness embedded in humble or honorific forms such as 저 and –(으)세요",
+                        "[Low] struggles to recognise and use vocabulary to describe familiar people, objects and places, and basic routines, including Sino- and pure Korean number words with basic counters, words for colours, names of sports",
+                    ]
+                ], 5, 0);
+            }
+        });
+        const gradeValueSpan = document.getElementById('gradeValue');
+        gradeSlider.addEventListener('input', () => {
+            if (gradeSlider.value === '0') {
+                gradeValueSpan.textContent = 'Prep';
+            } else {
+                gradeValueSpan.textContent = 'Year ' + gradeSlider.value;
+            }
+        });
+        const sliders = ['attendance', 'effort', 'behaviour'];
+        sliders.forEach(sliderId => {
+            const slider = document.getElementById(sliderId);
+            const valueSpan = document.getElementById(sliderId + 'Value');
+            slider.addEventListener('input', () => {
+                let selectedValue = '';
+                switch (slider.value) {
+                    case '0':
+                        selectedValue = 'Very Low';
+                        break;
+                    case '1':
+                        selectedValue = 'Needs Attention';
+                        break;
+                    case '2':
+                        selectedValue = 'Satisfactory';
+                        break;
+                    case '3':
+                        selectedValue = 'High';
+                        break;
+                    case '4':
+                        selectedValue = 'Excellent';
+                        break;
+                }
+                valueSpan.textContent = `${selectedValue}`;
+            });
+        });
+        document.getElementById('brushBtn').addEventListener('click', function (event) {
+            const studentName = document.getElementById('studentName');
+            const grade = document.getElementById('grade');
+            const attendance = document.getElementById('attendance');
+            const effort = document.getElementById('effort');
+            const behaviour = document.getElementById('behaviour');
+            const overallComment = document.getElementById('overallComment');
+            const communicationCheckboxes = document.getElementsByName('communicationCheckboxes');
+            const understandingCheckboxes = document.getElementsByName('understandingCheckboxes');
 
-        text = f"{'Year' if grade else ''} {grade if grade else 'Prep'}"
-        text_x = 390
-        text_y = 702
-        add_text_to_pdf(
-            os.path.join(path, output_pdf_path),
-            os.path.join(path, output_pdf_path),
-            text,
-            text_x,
-            text_y,
-            max_width,
-            11,
-        )
-
-        text_x = 57
-        text_y = 625
-        text_y = 652
-        add_text_to_pdf(
-            os.path.join(path, output_pdf_path),
-            os.path.join(path, output_pdf_path),
-            communucation_skills,
-            text_x,
-            text_y,
-            max_width,
-            9,
-        )
-
-        text_x = 57
-        text_y = 480
-        add_text_to_pdf(
-            os.path.join(path, output_pdf_path),
-            os.path.join(path, output_pdf_path),
-            understanding_skills,
-            text_x,
-            text_y,
-            max_width,
-            9,
-        )
-
-        text_x = 57
-        text_y = 305
-        add_text_to_pdf(
-            os.path.join(path, output_pdf_path),
-            os.path.join(path, output_pdf_path),
-            overall_comment,
-            text_x,
-            text_y,
-            max_width,
-            9,
-        )
-
-        text_x, text = generate_chart(attendance)
-        text_y = 118
-        add_text_to_pdf(
-            os.path.join(path, output_pdf_path),
-            os.path.join(path, output_pdf_path),
-            text,
-            text_x,
-            text_y,
-            max_width,
-            10,
-        )
-
-        text_x, text = generate_chart(behaviour)
-        text_y = 101
-        add_text_to_pdf(
-            os.path.join(path, output_pdf_path),
-            os.path.join(path, output_pdf_path),
-            text,
-            text_x,
-            text_y,
-            max_width,
-            10,
-        )
-
-        text_x, text = generate_chart(effort)
-        text_y = 84
-        add_text_to_pdf(
-            os.path.join(path, output_pdf_path),
-            os.path.join(path, output_pdf_path),
-            text,
-            text_x,
-            text_y,
-            max_width,
-            10,
-        )
-
-        if os.path.exists(os.path.join(path, output_pdf_path)):
-            with open(os.path.join(path, output_pdf_path), "rb") as file:
-                file_content = file.read()
-            return func.HttpResponse(
-                body=file_content,
-                headers={
-                    "Content-Disposition": "attachment; filename=report.pdf",
-                    "Content-Type": "application/pdf",
+            function getSelectedCheckboxValues(checkboxes) {
+                const selectedValues = [];
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        selectedValues.push(checkbox.value);
+                    }
+                });
+                return selectedValues;
+            }
+            const data = {
+                studentName: studentName.value,
+                grade: grade.value,
+                communicationSkills: getSelectedCheckboxValues(communicationCheckboxes),
+                understandingSkills: getSelectedCheckboxValues(understandingCheckboxes),
+                attendance: attendance.value,
+                effort: effort.value,
+                behaviour: behaviour.value
+            };
+            fetch('/api/mlwklsbrush', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                status_code=200,
-            )
-        else:
-            return func.HttpResponse("Error generating the report", status_code=500)
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(responseData => {
+                    overallComment.value = responseData.updatedComment;
+                    const characterCount = overallComment.value.length;
+                    characterCountSpan.textContent = `${characterCount}/${maxCharacters}`;
+                })
+                .catch(error => {
+                    console.error('Error making API call:', error);
+                });
+        });
+        document.getElementById('generateReportBtn').addEventListener('click', function (event) {
+            const studentName = document.getElementById('studentName');
+            const grade = document.getElementById('grade');
+            const attendance = document.getElementById('attendance');
+            const effort = document.getElementById('effort');
+            const behaviour = document.getElementById('behaviour');
+            const overallComment = document.getElementById('overallComment');
+            const communicationCheckboxes = document.getElementsByName('communicationCheckboxes');
+            const understandingCheckboxes = document.getElementsByName('understandingCheckboxes');
 
-    except ValueError:
-        return func.HttpResponse(
-            "Invalid input, please provide a valid user_input.", status_code=400
-        )
+            function getSelectedCheckboxValues(checkboxes) {
+                const selectedValues = [];
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        selectedValues.push(checkbox.value);
+                    }
+                });
+                return selectedValues;
+            }
+            const data = {
+                studentName: studentName.value,
+                grade: grade.value,
+                communicationSkills: getSelectedCheckboxValues(communicationCheckboxes),
+                understandingSkills: getSelectedCheckboxValues(understandingCheckboxes),
+                attendance: attendance.value,
+                effort: effort.value,
+                behaviour: behaviour.value,
+                overallComment: overallComment.value
+            };
+            fetch('/api/mlwklsgenerate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.blob();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(blob => {
+                    const studentName = document.getElementById('studentName').value.replace(/[^a-zA-Z0-9]/g, '_');
+                    const blobWithStudentName = new Blob([blob], { type: 'application/pdf' });
+                    const a = document.createElement('a');
+                    a.href = window.URL.createObjectURL(blobWithStudentName);
+                    a.download = `${studentName}.pdf`;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(a.href);
+                    document.body.removeChild(a);
+                })
+                .catch(error => {
+                    console.error('Error generating report:', error);
+                });
 
-    except Exception as e:
-        return func.HttpResponse(f"Error: {str(e)}", status_code=500)
+        });
+        const maxCharacters = 1500;
+        const overallCommentTextarea = document.getElementById('overallComment');
+        const characterCountSpan = document.getElementById('characterCount');
+        overallCommentTextarea.addEventListener('input', function () {
+            const characterCount = overallCommentTextarea.value.length;
+            characterCountSpan.textContent = `${characterCount}/${maxCharacters}`;
+            if (characterCount > maxCharacters) {
+                overallCommentTextarea.value = overallCommentTextarea.value.substring(0, maxCharacters);
+                characterCountSpan.textContent = `${maxCharacters}/${maxCharacters}`;
+            }
+        });
+    </script>
+</body>
+
+</html>
