@@ -25,8 +25,8 @@
         <div class="slider-section">
             <div class="slider-container">
                 <label class="slider-label" for="grade">Grade</label>
-                <input type="range" id="grade" name="grade" min="0" max="6" step="1">
-                <span class="slider-value" id="gradeValue">3</span>
+                <input type="range" id="grade" name="grade" min="0" max="9" step="1" value="0">
+                <span class="slider-value" id="gradeValue">Prep</span>
             </div>
 
             <div class="slider-container">
@@ -52,25 +52,13 @@
 
         <div class="checkbox-group">
             <div class="checkbox-group-item">
-                <h2><img src="/wkls/listening.png" alt="Listening Icon" class="h2logo">Listening</h2>
-                <div class="checkboxes" id="listeningCheckboxes"></div>
+                <h2><img src="/wkls/communication.png" alt="Communication Icon" class="h2logo">Communication</h2>
+                <div class="checkboxes" id="communicationCheckboxes"></div>
             </div>
 
             <div class="checkbox-group-item">
-                <h2><img src="/wkls/reading.png" alt="Reading Icon" class="h2logo">Reading</h2>
-                <div class="checkboxes" id="readingCheckboxes"></div>
-            </div>
-        </div>
-
-        <div class="checkbox-group">
-            <div class="checkbox-group-item">
-                <h2><img src="/wkls/speaking.png" alt="Speaking Icon" class="h2logo">Speaking</h2>
-                <div class="checkboxes" id="speakingCheckboxes"></div>
-            </div>
-
-            <div class="checkbox-group-item">
-                <h2><img src="/wkls/writing.png" alt="Writing Icon" class="h2logo">Writing</h2>
-                <div class="checkboxes" id="writingCheckboxes"></div>
+                <h2><img src="/wkls/understanding.png" alt="Understanding Icon" class="h2logo">Understanding</h2>
+                <div class="checkboxes" id="understandingCheckboxes"></div>
             </div>
         </div>
 
@@ -85,11 +73,12 @@
     </div>
 
     <script>
-        function createCheckboxes(containerId, options, maxAllowed) {
+        function createCheckboxes(containerId, options, maxAllowed, gradeGroup) {
             const container = document.getElementById(containerId);
             let selectedCheckboxes = 0;
 
-            options.forEach(option => {
+            const checkboxes = options[gradeGroup];
+            checkboxes.forEach(option => {
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.name = containerId;
@@ -98,116 +87,166 @@
                 const label = document.createElement('label');
                 label.className = 'checkbox-label';
                 label.appendChild(checkbox);
-                label.appendChild(document.createTextNode(option));
 
+                if (option.includes('[High]')) {
+                    checkbox.style.border = '2px solid #00a2f9';
+                } else if (option.includes('[Medium]')) {
+                    checkbox.style.border = '2px solid #f9c542';
+                } else if (option.includes('[Low]')) {
+                    checkbox.style.border = '2px solid #ff686b';
+                }
+
+                label.appendChild(document.createTextNode(option.replace(/\[.*?\]/, '')));
                 container.appendChild(label);
                 container.appendChild(document.createElement('br'));
-
                 checkbox.addEventListener('change', () => {
                     if (checkbox.checked) {
+                        checkbox.style.backgroundColor = getCheckboxBackgroundColor(option);
                         selectedCheckboxes++;
                     } else {
+                        checkbox.style.backgroundColor = '';
                         selectedCheckboxes--;
                     }
 
                     if (selectedCheckboxes > maxAllowed) {
                         checkbox.checked = false;
+                        checkbox.style.backgroundColor = '';
                         selectedCheckboxes--;
                     }
                 });
             });
+
+            function getCheckboxBackgroundColor(option) {
+                if (option.includes('[High]')) {
+                    return '#00a2f9';
+                } else if (option.includes('[Medium]')) {
+                    return '#f9c542';
+                } else if (option.includes('[Low]')) {
+                    return '#ff686b';
+                }
+                return '';
+            }
         }
 
-        createCheckboxes('listeningCheckboxes', [
-            "Responds to inquiries related to studied texts",
-            "Displays enthusiasm for listening to texts and successfully answers corresponding questions",
-            "Attentively replicates language usage modeled by the teacher and actively engages in oral language activities",
-            "Comprehends words and phrases by responding to questions and following routine classroom instructions",
-            "Proficiently counts and identifies colors, shapes, and objects in the language",
-            "Demonstrates the capacity to comprehend aural texts, extracting and recording received information",
-            "Exhibits exceptional understanding of classroom instructions and directions",
-            "Demonstrates proficient sound discrimination skills",
-            "Eagerly participates in dramatizations, including role-plays, singing, and games",
-            "Effectively listens to aural texts, accurately analyzes information, and utilizes it in spoken responses",
-            "Listens to brief texts and exhibits understanding",
-            "Displays excellent familiarity with the studied language while listening to spoken words",
-            "Grasps both the main points and specific details in listening tasks",
-            "Shows enjoyment in listening to stories and consistently answers related questions",
-            "Makes attempts to incorporate familiar words in class discussions",
-            "Conveys the main points of spoken texts by responding orally to questions",
-            "Displays a solid understanding of instructions and directions given in class",
-        ], 3);
-
-        createCheckboxes('readingCheckboxes', [
-            "Participates actively in choral reading sessions and can identify familiar words",
-            "Engages actively in shared reading exercises",
-            "Confidently discerns letter-sound relationships",
-            "Successfully finds specific words in familiar texts and can sound out words",
-            "Reads aloud confidently with accurate pronunciation, appropriate pace, and expression",
-            "Displays a strong understanding of texts covering various topics",
-            "Demonstrates clear language pronunciation",
-            "Derives enjoyment from reading passages and readily answers questions about the material",
-            "Fluently reads aloud, grasping the meaning",
-            "Identifies specific characters in flashcard games",
-            "Identifies specific letters in flashcard games",
-            "Recognizes and names many alphabet letters, demonstrating their corresponding sounds",
-            "Reads and comprehends simple and familiar texts",
-            "Reads familiar texts with confidence, often locating specific words",
-            "Accurately and fluently reads homework assignments",
-            "Reads with high accuracy and understanding",
-            "Reads words and phrases in familiar texts and provides key terms during shared reading activities",
-            "Recognizes and can name all alphabet letters along with their corresponding sounds",
-        ], 3);
-
-        createCheckboxes('speakingCheckboxes', [
-            "Actively engages in classroom discussions, expressing ideas using familiar vocabulary",
-            "Participates enthusiastically in language games during class",
-            "Takes an active role in short drama activities, showcasing excellent pronunciation",
-            "Enjoys singing songs learned in class and confidently performs them when required",
-            "Effectively communicates with partners, utilizing various strategies to sustain and enhance conversations",
-            "Presented a well-prepared and confidently delivered speaking task, showing continuous improvement in this area",
-            "Conducted an oral presentation that was thoroughly researched, highly informative, and engaging",
-            "Demonstrated a strong command of relevant vocabulary and sentence structures, successfully exchanging information",
-            "Displayed a solid ability to converse in the language, incorporating appropriate expression, pronunciation, and intonation",
-            "Showed the ability to communicate fluently and purposefully in various situations",
-            "Engaged in conversations confidently and fluently",
-            "Expresses preferences and dislikes using the language",
-            "Delivers fluent introductions and can greet, bid farewell, express gratitude, and apologize in the language",
-            "Greets the teacher and peers using culturally appropriate language and gestures",
-            "Identifies the names of visible objects and items from auditory and visual cues",
-            "Learned how to make introductions and greet and bid farewell to others using language appropriate for different situations",
-            "Oral skills were of a high caliber, reflecting an understanding of cultural nuances, excellent pronunciation, and intonation",
-        ], 3);
-
-        createCheckboxes('writingCheckboxes', [
-            "A conscientious and diligent student demonstrating a proficient level in presentations and written expression",
-            "Accurately duplicates words and/or sentences",
-            "Applies knowledge and skills to a high degree in writing assignments",
-            "Communicates effectively, reproducing and creating new language sequences based on modeled written activities",
-            "Completes charts, captions, and comprehension tasks to an exceptionally high standard",
-            "Solves simple crosswords and matches topics covered in class competently",
-            "Carries out written activities with competence",
-            "Mimics characters from provided examples",
-            "Imitates characters to label illustrations",
-            "Reproduces simple sentences from modeled examples",
-            "Duplicates words and sentences to label illustrations",
-            "Copies words and sentences to label illustrations related to class topics",
-            "Composes basic original texts tailored for specific audiences and purposes, utilizing precise language for the chosen topic",
-            "Demonstrates meticulous attention to detail, including the use of accents and punctuation",
-            "Exhibits excellent skills and cultural awareness in selecting appropriate and accurate vocabulary and sentence patterns in writing",
-            "Shows the ability to compose emails and understand conventions for letter writing",
-            "Displays enthusiasm for learning the language, evident through the eagerness to acquire new vocabulary and incorporate it into various text types",
-            "Enthusiastic language learner keen on acquiring new vocabulary and structures, integrating them into language tasks",
-            "Generates simple sentences and spells new words based on familiar sounds"
-        ], 3);
-
         const gradeSlider = document.getElementById('grade');
+        const communicationCheckboxesContainer = document.getElementById('communicationCheckboxes');
+        const understandingCheckboxesContainer = document.getElementById('understandingCheckboxes');
+
+        window.addEventListener('load', () => {
+            createCheckboxes('communicationCheckboxes', [
+                ["[High] can confidently exchange simple Korean greetings, using appropriate experssion and body language.",
+                    "[High] confidently participates in songs and chants by singing and performing actions.",
+                    "[High] can confidently demonstrate their understanding of early literacy skils by labelling, matching, drawing and using gestures to locate and use information.",
+                    "[Medium] can satisfactorily exchanges simple Korean greetings, using appropriate expression and body language.",
+                    "[Medium] can satisfactorily participate in songs and chants by singing and performing actions.",
+                    "[Medium] can satisfactorily follow simple classroom instructions.",
+                    "[Low] is beginning to exchange simple Korean greetings, using some appropriate expression and body language.",
+                    "[Low] is beginning to participate in songs and chants by singing and performing simple actions.",
+                    "[Low] is beginning to make simple statements about themselves, including who they are and their personal preferences.",]
+            ], 5, 0);
+
+            createCheckboxes('understandingCheckboxes', [
+                ["[High] can confidently sing the sounds of letters and syllable blocks of hangeul.",
+                    "[High] confidently identify -요 at the end of a sentence as indicating some polite meaning.",
+                    "[High] confidently identify differences and similarities between their own and others' languages and cultures.",
+                    "[Medium] can satisfactorily sing the sounds of letters and syllable blocks of hangeul.",
+                    "[Medium] can satisfactorily use simple vacabulary to identify familiar objects and to describe simple actions or states.",
+                    "[Medium] satisfactorily identify differences and similarities between their own and others' languages and cultures.",
+                    "[Low] is beginning to identify -요 at the end of a sentence as indicating some polite meaning.",
+                    "[Low] is beginning to use simple vacabulary to identify familiar objects and to describe simple actions or states.",
+                    "[Low] is beginning to identify differences and similarities between their own and others' languages and cultures.",
+                ]
+            ], 5, 0);
+        });
+        gradeSlider.addEventListener('input', () => {
+            const selectedGrade = parseInt(gradeSlider.value);
+            if (selectedGrade >= 0 && selectedGrade <= 2) {
+                communicationCheckboxesContainer.innerHTML = '';
+                createCheckboxes('communicationCheckboxes', [
+                    ["[High] can confidently exchange simple Korean greetings, using appropriate experssion and body language.",
+                        "[High] confidently participates in songs and chants by singing and performing actions.",
+                        "[High] can confidently demonstrate their understanding of early literacy skils by labelling, matching, drawing and using gestures to locate and use information.",
+                        "[Medium] can satisfactorily exchanges simple Korean greetings, using appropriate expression and body language.",
+                        "[Medium] can satisfactorily participate in songs and chants by singing and performing actions.",
+                        "[Medium] can satisfactorily follow simple classroom instructions.",
+                        "[Low] is beginning to exchange simple Korean greetings, using some appropriate expression and body language.",
+                        "[Low] is beginning to participate in songs and chants by singing and performing simple actions.",
+                        "[Low] is beginning to make simple statements about themselves, including who they are and their personal preferences.",]
+                ], 5, 0);
+                understandingCheckboxesContainer.innerHTML = '';
+                createCheckboxes('understandingCheckboxes', [
+                    ["[High] can confidently sing the sounds of letters and syllable blocks of hangeul.",
+                        "[High] confidently identify -요 at the end of a sentence as indicating some polite meaning.",
+                        "[High] confidently identify differences and similarities between their own and others' languages and cultures.",
+                        "[Medium] can satisfactorily sing the sounds of letters and syllable blocks of hangeul.",
+                        "[Medium] can satisfactorily use simple vacabulary to identify familiar objects and to describe simple actions or states.",
+                        "[Medium] satisfactorily identify differences and similarities between their own and others' languages and cultures.",
+                        "[Low] is beginning to identify -요 at the end of a sentence as indicating some polite meaning.",
+                        "[Low] is beginning to use simple vacabulary to identify familiar objects and to describe simple actions or states.",
+                        "[Low] is beginning to identify differences and similarities between their own and others' languages and cultures.",
+                    ]
+                ], 5, 0);
+            } else if (selectedGrade >= 3 && selectedGrade <= 4) {
+                communicationCheckboxesContainer.innerHTML = '';
+                createCheckboxes('communicationCheckboxes', [
+                    ["[High] can socialise and build relationship with peers and teachers through the exchange of personal in formation in relation to self, friends and family members with confidence.",
+                        "[High] can competently participate in collaborative tasks and shared experiences such as creating and playing simple language games or dialogues that involve simple negotiation, or preparting and presenting a group display.",
+                        "[High] can competently participate in everyday classroom activities such as responding to teacher's instructions, attracting attention and asking for repetition.",
+                        "[Medium] can socialise and build relationship with peers and teachers through the exchange of personal in formation in relation to self, friends and family members with support.",
+                        "[Medium] can satisfactorily participate in collaborative tasks and shared experiences such as creating and playing simple language games or dialogues that involve simple negotiation, or preparting and presenting a group display.",
+                        "[Medium] can satisfactorily participate in everyday classroom activities such as responding to teacher's instructions, attracting attention and asking for repetition.",
+                        "[Low] struggles to socialise and build relationship with peers and teachers through the exchange of personal in formation in relation to self, friends and family members.",
+                        "[Low] is learning to recognise on each others' ways of communicating and their appropriateness in Korean or non-Korean contexts.",
+                        "[Low] struggles to create own profile using spoken, written or digital forms of expression to identify roles in or memberships of various groups.",]
+                ], 5, 0);
+                understandingCheckboxesContainer.innerHTML = '';
+                createCheckboxes('understandingCheckboxes', [
+                    ["[High] can competently recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[High] can competently understand and use key grammatical forms and structures such as basic pronouns and case markers and the polite verb ending –어/아요 in own simple language production, and recognise politeness embedded in humble or honorific forms such as 저 and –(으)세요",
+                        "[High] can competently compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Medium] can satisfactorily recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Medium] can understand that languages change over time and influence each other through contact and cultural exchanges to some degree.",
+                        "[Medium] can satisfactorily compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Low] struggles to recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Low] struggles to reflect on and share their experience when using Korean and when using own language/s, recognising cultural elements that may cause different feelings.",
+                        "[Low] struggles to compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                    ]
+                ], 5, 0);
+            } else if (selectedGrade >= 5 && selectedGrade <= 9) {
+                communicationCheckboxesContainer.innerHTML = '';
+                createCheckboxes('communicationCheckboxes', [
+                    ["[High] can understand that languages change over time and influence each other through contact and cultural exchanges.",
+                        "[High] can reflect on and share their experience when using Korean and when using own language/s, recognising cultural elements that may cause different feelings.",
+                        "[High] can competently compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Medium] can satisfactorily recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Medium] can reflect on and share their experience when using Korean and when using own language/s, recognising cultural elements that may cause different feelings to some degree.",
+                        "[Medium] can satisfactorily compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Low] struggles to recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Low] struggles to understand and use key grammatical forms and structures such as basic pronouns and case markers and the polite verb ending –어/아요 in own simple language production, and recognise politeness embedded in humble or honorific forms such as 저 and –(으)세요",
+                        "[Low] struggles to recognise and use vocabulary to describe familiar people, objects and places, and basic routines, including Sino- and pure Korean number words with basic counters, words for colours, names of sports",
+                    ]
+                ], 5, 0);
+                understandingCheckboxesContainer.innerHTML = '';
+                createCheckboxes('understandingCheckboxes', [
+                    ["[High] can understand that languages change over time and influence each other through contact and cultural exchanges.",
+                        "[High] can reflect on and share their experience when using Korean and when using own language/s, recognising cultural elements that may cause different feelings.",
+                        "[High] can competently compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Medium] can satisfactorily recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Medium] can reflect on and share their experience when using Korean and when using own language/s, recognising cultural elements that may cause different feelings to some degree.",
+                        "[Medium] can satisfactorily compare and reflect on different ways of using language in everyday situations in Korean, Australian and other cultures, sharing ideas about possible reasons for the differences and variations ",
+                        "[Low] struggles to recognise characteristics of Korean pronunciation and intonation patterns, the alphabetical nature of Hangeul, and the structural features of individual syllable blocks including 받침.",
+                        "[Low] struggles to understand and use key grammatical forms and structures such as basic pronouns and case markers and the polite verb ending –어/아요 in own simple language production, and recognise politeness embedded in humble or honorific forms such as 저 and –(으)세요",
+                        "[Low] struggles to recognise and use vocabulary to describe familiar people, objects and places, and basic routines, including Sino- and pure Korean number words with basic counters, words for colours, names of sports",
+                    ]
+                ], 5, 0);
+            }
+        });
         const gradeValueSpan = document.getElementById('gradeValue');
         gradeSlider.addEventListener('input', () => {
             if (gradeSlider.value === '0') {
                 gradeValueSpan.textContent = 'Prep';
             } else {
-                gradeValueSpan.textContent = gradeSlider.value;
+                gradeValueSpan.textContent = 'Year ' + gradeSlider.value;
             }
         });
         const sliders = ['attendance', 'effort', 'behaviour'];
@@ -236,7 +275,6 @@
                 valueSpan.textContent = `${selectedValue}`;
             });
         });
-
         document.getElementById('brushBtn').addEventListener('click', function (event) {
             const studentName = document.getElementById('studentName');
             const grade = document.getElementById('grade');
@@ -244,10 +282,8 @@
             const effort = document.getElementById('effort');
             const behaviour = document.getElementById('behaviour');
             const overallComment = document.getElementById('overallComment');
-            const listeningCheckboxes = document.getElementsByName('listeningCheckboxes');
-            const readingCheckboxes = document.getElementsByName('readingCheckboxes');
-            const speakingCheckboxes = document.getElementsByName('speakingCheckboxes');
-            const writingCheckboxes = document.getElementsByName('writingCheckboxes');
+            const communicationCheckboxes = document.getElementsByName('communicationCheckboxes');
+            const understandingCheckboxes = document.getElementsByName('understandingCheckboxes');
 
             function getSelectedCheckboxValues(checkboxes) {
                 const selectedValues = [];
@@ -261,13 +297,11 @@
             const data = {
                 studentName: studentName.value,
                 grade: grade.value,
-                listeningSkills: getSelectedCheckboxValues(listeningCheckboxes),
-                readingSkills: getSelectedCheckboxValues(readingCheckboxes),
-                speakingSkills: getSelectedCheckboxValues(speakingCheckboxes),
-                writingSkills: getSelectedCheckboxValues(writingCheckboxes),
+                communicationSkills: getSelectedCheckboxValues(communicationCheckboxes),
+                understandingSkills: getSelectedCheckboxValues(understandingCheckboxes),
                 attendance: attendance.value,
                 effort: effort.value,
-                behaviour: behaviour.value,
+                behaviour: behaviour.value
             };
             fetch('/api/mlwklsbrush', {
                 method: 'POST',
@@ -291,8 +325,6 @@
                     console.error('Error making API call:', error);
                 });
         });
-
-
         document.getElementById('generateReportBtn').addEventListener('click', function (event) {
             const studentName = document.getElementById('studentName');
             const grade = document.getElementById('grade');
@@ -300,10 +332,8 @@
             const effort = document.getElementById('effort');
             const behaviour = document.getElementById('behaviour');
             const overallComment = document.getElementById('overallComment');
-            const listeningCheckboxes = document.getElementsByName('listeningCheckboxes');
-            const readingCheckboxes = document.getElementsByName('readingCheckboxes');
-            const speakingCheckboxes = document.getElementsByName('speakingCheckboxes');
-            const writingCheckboxes = document.getElementsByName('writingCheckboxes');
+            const communicationCheckboxes = document.getElementsByName('communicationCheckboxes');
+            const understandingCheckboxes = document.getElementsByName('understandingCheckboxes');
 
             function getSelectedCheckboxValues(checkboxes) {
                 const selectedValues = [];
@@ -317,10 +347,8 @@
             const data = {
                 studentName: studentName.value,
                 grade: grade.value,
-                listeningSkills: getSelectedCheckboxValues(listeningCheckboxes),
-                readingSkills: getSelectedCheckboxValues(readingCheckboxes),
-                speakingSkills: getSelectedCheckboxValues(speakingCheckboxes),
-                writingSkills: getSelectedCheckboxValues(writingCheckboxes),
+                communicationSkills: getSelectedCheckboxValues(communicationCheckboxes),
+                understandingSkills: getSelectedCheckboxValues(understandingCheckboxes),
                 attendance: attendance.value,
                 effort: effort.value,
                 behaviour: behaviour.value,
@@ -355,21 +383,17 @@
                 });
 
         });
-
         const maxCharacters = 1500;
         const overallCommentTextarea = document.getElementById('overallComment');
         const characterCountSpan = document.getElementById('characterCount');
-
         overallCommentTextarea.addEventListener('input', function () {
             const characterCount = overallCommentTextarea.value.length;
             characterCountSpan.textContent = `${characterCount}/${maxCharacters}`;
-
             if (characterCount > maxCharacters) {
                 overallCommentTextarea.value = overallCommentTextarea.value.substring(0, maxCharacters);
                 characterCountSpan.textContent = `${maxCharacters}/${maxCharacters}`;
             }
         });
-
     </script>
 </body>
 
