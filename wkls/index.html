@@ -56,6 +56,8 @@
                 <div class="checkboxes" id="communicationCheckboxes"></div>
             </div>
 
+        </div>
+        <div class="checkbox-group">
             <div class="checkbox-group-item">
                 <h2><img src="/wkls/understanding.png" alt="Understanding Icon" class="h2logo">Understanding</h2>
                 <div class="checkboxes" id="understandingCheckboxes"></div>
@@ -66,7 +68,7 @@
             <h2><img src="/wkls/comment.png" alt="Comment Icon" class="h2logo">Overall Comment</h2>
             <textarea id="overallComment" class="comment-box"
                 placeholder="Enter your overall feedback here. Need help? Click the 'Brush' button below for AI-generated suggestions."></textarea>
-            <span id="characterCount">0/1500</span>
+            <span id="characterCount">0/1250</span>
         </div>
         <button id="brushBtn"><i class="fas fa-magic"></i></button>
         <button id="generateReportBtn">Generate Report</button>
@@ -540,7 +542,7 @@
                 });
 
         });
-        const maxCharacters = 1500;
+        const maxCharacters = 1250;
         const overallCommentTextarea = document.getElementById('overallComment');
         const characterCountSpan = document.getElementById('characterCount');
         overallCommentTextarea.addEventListener('input', function () {
