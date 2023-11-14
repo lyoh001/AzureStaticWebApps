@@ -152,8 +152,12 @@ select {
 }
 
 .checkbox-group-item {
-    width: 45%;
+    flex: 0 0 60%;
     text-align: left;
+}
+
+.checkbox-group-item:last-child {
+    flex: 0 0 40%;
 }
 
 .checkboxes {
