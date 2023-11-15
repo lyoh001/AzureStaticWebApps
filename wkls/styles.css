@@ -38,8 +38,8 @@ body {
 }
 
 .h1logo {
-    width: 35px;
-    height: 35px;
+    width: 45px;
+    height: 45px;
     margin-right: 20px;
 }
 
@@ -147,6 +147,7 @@ select {
 
 .checkbox-group {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 20px;
 }
@@ -158,14 +159,14 @@ select {
 
 .checkboxes {
     display: flex;
-    margin-left: 5px;
-    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .checkbox-label {
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    width: 100%
 }
 
 .checkboxes input[type="checkbox"] {
@@ -223,4 +224,22 @@ button:hover {
 #brushBtn {
     padding: 0.9rem;
     border-radius: 50%;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #220e41;
+
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #ca3570;
+    border-radius: 5px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #ca3570;
 }

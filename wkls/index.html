@@ -93,9 +93,9 @@
                 if (option.includes('[High]')) {
                     checkbox.style.border = '2px solid #00a2f9';
                 } else if (option.includes('[Medium]')) {
-                    checkbox.style.border = '2px solid #f9c542';
+                    checkbox.style.border = '2px solid #7735c4';
                 } else if (option.includes('[Low]')) {
-                    checkbox.style.border = '2px solid #ff686b';
+                    checkbox.style.border = '2px solid #ca3570';
                 }
 
                 label.appendChild(document.createTextNode(option.replace(/\[.*?\]/, '')));
@@ -122,9 +122,9 @@
                 if (option.includes('[High]')) {
                     return '#00a2f9';
                 } else if (option.includes('[Medium]')) {
-                    return '#f9c542';
+                    return '#7735c4';
                 } else if (option.includes('[Low]')) {
-                    return '#ff686b';
+                    return '#ca3570';
                 }
                 return '';
             }
