@@ -35,19 +35,25 @@ a:hover {
 }
 
 header {
-  font-size: 1.1rem;
+  font-size: 1.0rem;
   text-align: center;
-  padding: 0rem 0;
+  padding: 0.0rem 0;
 }
 
 .highlight {
   color: var(--accent-color);
 }
 
+h1 {
+  margin-top: 0.0rem;
+  margin-bottom: 0.0rem;
+}
+
 .subheader {
   font-size: 0.9rem;
   color: var(--text-secondary);
-  margin-top: 0rem;
+  margin-top: 0.0rem;
+  margin-bottom: 0.0rem;
 }
 
 main {
@@ -68,11 +74,6 @@ section {
   height: auto;
   display: block;
   margin: 0 auto;
-}
-
-h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
 }
 
 p {
@@ -114,24 +115,23 @@ p {
   height: 100%;
 }
 
-footer {
-  background-color: var(--secondary-color);
+footer .social {
   padding: 0rem 0;
   text-align: center;
 }
 
-.social li {
+footer .social li {
   display: inline-block;
   margin: 0 1rem;
 }
 
-.social li a {
+footer .social li a {
   color: var(--text-color);
   font-size: 1.5rem;
   transition: color 0.3s ease;
 }
 
-.social li a:hover {
+footer .social li a:hover {
   color: var(--accent-color);
 }
 
