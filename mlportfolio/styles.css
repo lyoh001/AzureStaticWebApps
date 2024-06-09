@@ -139,6 +139,15 @@ footer .social li a:hover {
   .container {
     max-width: 100%;
   }
+  body {
+    font-size: 0.7rem;
+  }
+  header {
+    font-size: 0.8rem;
+  }
+  .subheader {
+    font-size: 0.7rem;
+  }
   section {
     padding: 0.8rem;
     margin-bottom: 0.5rem;
