@@ -1,8 +1,27 @@
+:root {
+    --main-font-family: 'Open Sans', sans-serif;
+    --heading-font-family: Montserrat, sans-serif;
+    --body-bg-color: #0D1117;
+    --text-color: #111111;
+    --link-color: #259bca;
+    --link-hover-color: #0676a4;
+    --btn-border-color: #ffffff;
+    --btn-hover-bg-color: #ffffff;
+    --btn-hover-text-color: #0D1117;
+    --btn-active-bg-color: #e6e6e6;
+    --section-bg-color: #0D1117;
+    --text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
 html {
     font-size: 16px;
-    font-family: sans-serif;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
+    font-family: var(--main-font-family);
     height: 100%;
     overflow-y: auto;
     overflow-x: hidden;
@@ -10,22 +29,21 @@ html {
 
 body {
     margin: 0;
-    height: auto;
     min-height: 100%;
-    font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
     line-height: 1.6;
-    color: #111111;
-    background-color: #0D1117;
+    color: var(--text-color);
+    background-color: var(--body-bg-color);
 }
 
-h1, h3 {
+h1,
+h3 {
     margin-top: 0;
     margin-bottom: 0.5rem;
     line-height: 1.2;
     font-weight: 500;
     color: inherit;
-    font-family: Montserrat, sans-serif;
+    font-family: var(--heading-font-family);
 }
 
 h1 {
@@ -37,14 +55,14 @@ h3 {
 }
 
 a {
-    color: #259bca;
+    color: var(--link-color);
     text-decoration: none;
     background-color: transparent;
-    -webkit-text-decoration-skip: objects;
 }
 
-a:hover, a:focus {
-    color: #0676a4;
+a:hover,
+a:focus {
+    color: var(--link-hover-color);
     outline-width: 0;
 }
 
@@ -57,13 +75,12 @@ img {
     cursor: pointer;
     color: #ffffff;
     font-size: 1rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: var(--main-font-family);
     line-height: 1.6;
-    letter-spacing: normal;
     text-transform: uppercase;
     font-weight: 700;
     text-decoration: none;
-    border: 2px solid #ffffff;
+    border: 2px solid var(--btn-border-color);
     outline-width: 0;
     background-color: transparent;
     margin: 0;
@@ -74,27 +91,21 @@ img {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.u-btn:focus, .u-btn:active:focus {
-    outline: none;
-}
-
-.u-btn:hover, .u-btn:focus {
-    background-color: #ffffff;
-    color: #0D1117;
+.u-btn:hover,
+.u-btn:focus {
+    background-color: var(--btn-hover-bg-color);
+    color: var(--btn-hover-text-color);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
     transform: translateY(-2px);
 }
 
 .u-btn:active {
-    background-color: #e6e6e6;
+    background-color: var(--btn-active-bg-color);
     transform: translateY(1px);
 }
 
-section {
-    display: block;
-}
-
-.u-clearfix:after, .u-clearfix:before {
+.u-clearfix:after,
+.u-clearfix:before {
     content: '';
     display: table;
 }
@@ -120,12 +131,14 @@ section {
     position: relative;
 }
 
-.u-valign-middle, .u-valign-top {
+.u-valign-middle,
+.u-valign-top {
     display: flex;
     flex-direction: column;
 }
 
-.u-valign-middle>*, .u-valign-top>* {
+.u-valign-middle>*,
+.u-valign-top>* {
     flex-shrink: 0;
 }
 
@@ -169,7 +182,7 @@ section {
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 300;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    text-shadow: var(--text-shadow);
     margin: 0 auto 0 1px;
 }
 
@@ -211,7 +224,7 @@ section {
 
 .u-grey-90 {
     color: #ffffff;
-    background-color: #0D1117;
+    background-color: var(--section-bg-color);
 }
 
 .u-border-white {
@@ -219,16 +232,19 @@ section {
     stroke: #ffffff;
 }
 
-.u-text-body-alt-color, a.u-button-style.u-text-body-alt-color {
+.u-text-body-alt-color,
+a.u-button-style.u-text-body-alt-color {
     color: #ffffff !important;
 }
 
-.u-hover-white:hover, .u-hover-white:focus {
-    color: #111111 !important;
-    background-color: #ffffff !important;
+.u-hover-white:hover,
+.u-hover-white:focus {
+    color: var(--text-color) !important;
+    background-color: var(--btn-hover-bg-color) !important;
 }
 
-.u-text-hover-black:hover svg, .u-text-hover-black:focus svg {
+.u-text-hover-black:hover svg,
+.u-text-hover-black:focus svg {
     fill: #000000;
 }
 
@@ -244,58 +260,28 @@ section {
 }
 
 .u-font-montserrat.u-custom-font {
-    font-family: Montserrat, sans-serif !important;
+    font-family: var(--heading-font-family) !important;
 }
 
 [class*="u-border-"]:not(.u-shape-svg) {
     stroke: none;
 }
 
-.u-border-2, a.u-button-style.u-border-2 {
+.u-border-2,
+a.u-button-style.u-border-2 {
     border-width: 2px;
 }
 
-.u-button-style.u-border-white:hover, .u-button-style.u-border-white:focus {
-    border-color: #e6e6e6 !important;
-    color: #e6e6e6 !important;
+.u-button-style.u-border-white:hover,
+.u-button-style.u-border-white:focus {
+    border-color: var(--btn-active-bg-color) !important;
+    color: var(--btn-active-bg-color) !important;
 }
 
-a.u-button-style.u-text-hover-black:hover, a.u-button-style.u-text-hover-black:focus, a.u-button-style.u-text-active-black:active {
+a.u-button-style.u-text-hover-black:hover,
+a.u-button-style.u-text-hover-black:focus,
+a.u-button-style.u-text-active-black:active {
     color: #000000 !important;
-}
-
-*, *:before, *:after {
-    box-sizing: border-box;
-}
-
-body, section {
-    position: relative;
-}
-
-section>*, .u-sheet>* {
-    position: relative;
-}
-
-.u-group .u-container-layout>* {
-    position: relative;
-}
-
-.u-group {
-    display: flex;
-}
-
-svg:not(:root) {
-    overflow: hidden;
-}
-
-::-webkit-input-placeholder {
-    color: inherit;
-    opacity: 0.54;
-}
-
-::-webkit-file-upload-button {
-    -webkit-appearance: button;
-    font: inherit;
 }
 
 .u-align-left {
@@ -337,8 +323,24 @@ img.u-image {
     pointer-events: initial;
 }
 
-@supports (position: sticky) {}
-@supports (position: -webkit-sticky) {}
+.u-group {
+    display: flex;
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+::-webkit-input-placeholder {
+    color: inherit;
+    opacity: 0.54;
+}
+
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
+}
+
 @media (min-width: 1200px) {
     .u-sheet {
         width: 1140px;
