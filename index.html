@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,16 +10,17 @@
         function togglePortfolio(portfolio) {
             document.getElementById('mlPortfolio').style.display = portfolio === 'ml' ? 'block' : 'none';
             document.getElementById('devopsPortfolio').style.display = portfolio === 'devops' ? 'block' : 'none';
+            document.querySelectorAll('.button').forEach(button => button.classList.remove('active'));
+            document.querySelector(`button[onclick="togglePortfolio('${portfolio}')"]`).classList.add('active');
         }
     </script>
 </head>
-
 <body>
     <header id="header">
         <div class="container">
             <h1><span class="highlight">JOHN</span> YOHAN LEE</h1>
-            <div>
-                <button onclick="togglePortfolio('ml')" class="button">ML Portfolio</button>
+            <div class="button-group">
+                <button onclick="togglePortfolio('ml')" class="button active">ML Portfolio</button>
                 <button onclick="togglePortfolio('devops')" class="button">DevOps Portfolio</button>
             </div>
         </div>
@@ -901,7 +901,6 @@
             </div>
         </div>
     </main>
-
     <footer id="footer">
         <div class="container">
             <ul class="social">
@@ -913,5 +912,4 @@
         </div>
     </footer>
 </body>
-
 </html>
