@@ -160,12 +160,16 @@ footer .social li a:hover {
         font-size: 0.8rem;
     }
 
+    .subheader {
+        font-size: 0.7rem;
+    }
+
     .button {
         font-size: 0.7rem;
     }
 
-    .subheader {
-        font-size: 0.7rem;
+    .container {
+        padding: 0.4rem;
     }
 
     section {
