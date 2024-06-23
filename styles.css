@@ -27,21 +27,27 @@ body {
 }
 
 .button {
-    background-color: var(--accent-color);
+    background-color: transparent;
     color: var(--text-color);
     padding: 0.6rem 0.7rem;
-    border: none;
+    border: 2px solid var(--accent-color);
     border-radius: var(--border-radius);
     font-weight: bold;
     font-size: 0.8rem;
     text-transform: uppercase;
     cursor: pointer;
-    transition: background-color var(--transition-speed);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
     box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 .button:hover {
-    background-color: #F49D13;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.button.active {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
 }
 
 a {
