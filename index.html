@@ -4,32 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/styles.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <title>John Yohan Lee</title>
-    <script>
-        function togglePortfolio(portfolio) {
-            document.getElementById('mlPortfolio').style.display = portfolio === 'ml' ? 'block' : 'none';
-            document.getElementById('devopsPortfolio').style.display = portfolio === 'devops' ? 'block' : 'none';
-            document.querySelectorAll('.button').forEach(button => button.classList.remove('active'));
-            document.querySelector(`button[onclick="togglePortfolio('${portfolio}')"]`).classList.add('active');
-        }
-    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>John Yohan Lee - Professional Portfolio</title>
 </head>
 <body>
     <header id="header">
-        <div class="container">
-            <h1><span class="highlight">JOHN</span> YOHAN LEE</h1>
+        <nav class="container">
+            <div class="logo">
+                <h1><span class="highlight">JOHN</span> YOHAN LEE</h1>
+                <p class="subheader">Machine Learning & DevOps Engineer</p>
+            </div>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#hero">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#footer">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="video-background">
+                <video autoplay loop muted playsinline>
+                    <source src="/videos/background-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="hero-content container">
+                <h2>Transforming Ideas into Intelligent Solutions</h2>
+                <p>Specializing in Machine Learning and DevOps to drive innovation and efficiency</p>
+                <p>Passionate about leveraging advanced technologies</p>
+                <a href="#portfolio" class="cta-button">View My Work</a>
+            </div>
+        </section>
+
+
+        <section id="skills" class="container">
+            <h2>Skills & Expertise</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Machine Learning</h3>
+                    <p>Deep learning, NLP, Computer Vision</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-server"></i>
+                    <h3>DevOps</h3>
+                    <p>CI/CD, Cloud Infrastructure, Automation</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Programming</h3>
+                    <p>Python, JavaScript, SQL</p>
+                </div>
+                <div class="skill-card">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloud Platforms</h3>
+                    <p>AWS, Azure, Google Cloud</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="container">
             <div class="button-group">
                 <button onclick="togglePortfolio('ml')" class="button active">ML Portfolio</button>
                 <button onclick="togglePortfolio('devops')" class="button">DevOps Portfolio</button>
             </div>
-        </div>
-    </header>
-    <main>
-        <div class="container">
-            <div id="mlPortfolio">
-                <article id="mainRight">
-                    <section>
+
+            <div id="mlPortfolio" class="portfolio-content">
+                <!-- ML Portfolio content -->
+                <section>
                         <h3><b>LLM: Enhancing Knowledge Base Bots with Fine-Tuned LLM, Retrieval Augmentation, and AI
                                 Agent Integration</b></h3>
                         <p>
@@ -568,11 +616,10 @@
                                     alt="" /></a>
                         </p>
                     </section>
-                </article>
             </div>
-            <div id="devopsPortfolio" style="display: none;">
-                <article id="mainRight">
-                    <section>
+            <div id="devopsPortfolio" class="portfolio-content" style="display: none;">
+                <!-- DevOps Portfolio content -->
+                <section>
                         <h3><b>A Key to Unlocking Cloud Cost Analysis and Optimization using Machine Learning</b>
                         </h3>
                         <p>
@@ -897,19 +944,60 @@
                                     alt="" /></a>
                         </p>
                     </section>
-                </article>
             </div>
-        </div>
+        </section>
     </main>
+
     <footer id="footer">
         <div class="container">
             <ul class="social">
                 <li><a href="https://github.com/lyoh001"><i class="fab fa-github"></i></a></li>
                 <li><a href="https://linkedin.com/in/lyoh001"><i class="fab fa-linkedin"></i></a></li>
-                <li><a href="https://lyoh001.com"><i class="fa fa-home"></i></a></li>
+                <li><a href="https://lyoh001.com"><i class="fa fa-globe"></i></a></li>
                 <li><a href="mailto:lyoh001@gmail.com"><i class="fa fa-envelope"></i></a></li>
             </ul>
+            <p>&copy; 2024 John Yohan Lee. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            // Mobile menu toggle
+            const navToggle = document.querySelector('.nav-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            // Header scroll effect
+            const header = document.querySelector('#header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        });
+
+        // Portfolio toggle function
+        function togglePortfolio(portfolio) {
+            document.getElementById('mlPortfolio').style.display = portfolio === 'ml' ? 'block' : 'none';
+            document.getElementById('devopsPortfolio').style.display = portfolio === 'devops' ? 'block' : 'none';
+            document.querySelectorAll('.button').forEach(button => button.classList.remove('active'));
+            document.querySelector(`button[onclick="togglePortfolio('${portfolio}')"]`).classList.add('active');
+        }
+    </script>
 </body>
 </html>
