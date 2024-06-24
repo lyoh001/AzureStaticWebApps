@@ -664,7 +664,7 @@
                   </div>
                </div>
             </div>
-            <div id="devopsPortfolio" class="portfolio-content" style="display: none;">
+            <div id="devopsPortfolio" class="portfolio-content hidden">
                <div class="portfolio-item">
                   <h3>A Key to Unlocking Cloud Cost Analysis and Optimization using Machine
                      Learning
@@ -1036,10 +1036,20 @@
          });
 
          function togglePortfolio(portfolio) {
-                 document.getElementById('mlPortfolio').style.display = portfolio === 'ml' ? 'block' : 'none';
-                 document.getElementById('devopsPortfolio').style.display = portfolio === 'devops' ? 'block' : 'none';
-                 document.querySelectorAll('.button').forEach(button => button.classList.remove('active'));
-                 document.querySelector(`button[onclick="togglePortfolio('${portfolio}')"]`).classList.add('active');
+            const mlPortfolio = document.getElementById('mlPortfolio');
+            const devopsPortfolio = document.getElementById('devopsPortfolio');
+            const buttons = document.querySelectorAll('.button-group .button');
+
+            if (portfolio === 'ml') {
+               mlPortfolio.classList.remove('hidden');
+               devopsPortfolio.classList.add('hidden');
+            } else {
+               mlPortfolio.classList.add('hidden');
+               devopsPortfolio.classList.remove('hidden');
+            }
+
+            buttons.forEach(button => button.classList.remove('active'));
+            document.querySelector(`button[onclick="togglePortfolio('${portfolio}')"]`).classList.add('active');
          }
       </script>
    </body>
