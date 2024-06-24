@@ -169,8 +169,7 @@ main {
     color: var(--accent-color);
 }
 
-#skills,
-#portfolio {
+#skills, #portfolio {
     padding: 4rem 0;
 }
 
@@ -222,8 +221,7 @@ main {
     margin: 0 0.5rem;
 }
 
-.button:hover,
-.button.active {
+.button:hover, .button.active {
     background-color: var(--accent-color);
     color: var(--primary-color);
 }
@@ -277,6 +275,40 @@ main {
     height: 20px;
 }
 
+a {
+    color: #F49D13;
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.section-image {
+    max-width: 82%;
+    height: auto;
+    border-radius: var(--border-radius);
+    margin: 1rem auto;
+    display: block;
+}
+
+.video-container {
+    position: relative;
+    width: 82%;
+    padding-bottom: 46%;
+    margin: 0 auto;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--border-radius);
+}
+
 #footer {
     background-color: var(--secondary-color);
     padding: 2rem 0;
@@ -325,7 +357,7 @@ main {
         left: 0;
         width: 100%;
         background-color: var(--secondary-color);
-        padding: 1rem 0;
+        padding: 1rem 2rem;
     }
 
     .nav-menu.active {
@@ -348,8 +380,7 @@ main {
         margin: 0.5rem 0;
     }
 
-    .skills-grid,
-    .portfolio-content {
+    .skills-grid, .portfolio-content {
         grid-template-columns: 1fr;
         font-size: 0.7rem;
     }
@@ -359,42 +390,7 @@ main {
         margin-bottom: 0.5rem;
     }
 
-    .section-image,
-    .video-container {
+    .section-image, .video-container {
         width: 100%;
     }
-}
-
-a {
-    color: #F49D13;
-    text-decoration: none;
-    transition: color var(--transition-speed);
-}
-
-a:hover {
-    color: var(--accent-color);
-}
-
-.section-image {
-    max-width: 82%;
-    height: auto;
-    border-radius: var(--border-radius);
-    margin: 1rem auto;
-    display: block;
-}
-
-.video-container {
-    position: relative;
-    width: 82%;
-    padding-bottom: 46%;
-    margin: 0 auto;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: var(--border-radius);
 }
