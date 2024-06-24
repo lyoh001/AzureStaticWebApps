@@ -377,11 +377,8 @@ a:hover {
         margin-bottom: 0.5rem;
     }
 
-    .section-image {
-        max-width: 100%;
-    }
-
-    .video-container {
+    .section-image, .video-container {
         width: 100%;
     }
+
 }
