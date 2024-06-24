@@ -1011,7 +1011,6 @@
       </footer>
       <script>
          document.addEventListener('DOMContentLoaded', (event) => {
-                 // Mobile menu toggle
                  const navToggle = document.querySelector('.nav-toggle');
                  const navMenu = document.querySelector('.nav-menu');
 
@@ -1019,7 +1018,6 @@
                          navMenu.classList.toggle('active');
                  });
 
-                 // Header scroll effect
                  const header = document.querySelector('#header');
                  window.addEventListener('scroll', () => {
                          if (window.scrollY > 50) {
@@ -1029,7 +1027,6 @@
                          }
                  });
 
-                 // Smooth scrolling for anchor links
                  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                          anchor.addEventListener('click', function (e) {
                                  e.preventDefault();
@@ -1040,7 +1037,6 @@
                  });
          });
 
-         // Portfolio toggle function
          function togglePortfolio(portfolio) {
                  document.getElementById('mlPortfolio').style.display = portfolio === 'ml' ? 'block' : 'none';
                  document.getElementById('devopsPortfolio').style.display = portfolio === 'devops' ? 'block' : 'none';
