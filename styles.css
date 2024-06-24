@@ -1,3 +1,4 @@
+
 :root {
     --primary-color: #0D1117;
     --secondary-color: #161B22;
@@ -224,8 +225,7 @@ main {
     margin: 0 0.5rem;
 }
 
-.button:hover,
-.button.active {
+.button:hover, .button.active {
     background-color: var(--accent-color);
     color: var(--primary-color);
 }
@@ -295,8 +295,7 @@ main {
     gap: 1rem;
 }
 
-#contact-form input,
-#contact-form textarea {
+#contact-form input, #contact-form textarea {
     padding: 0.8rem;
     border: none;
     border-radius: var(--border-radius);
@@ -338,7 +337,7 @@ footer {
 
 .portfolio-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr;
     gap: 2rem;
 }
 
@@ -348,15 +347,14 @@ footer {
     padding: 2rem;
     box-shadow: 0 4px 6px var(--shadow-color);
     transition: transform var(--transition-speed);
+    margin-bottom: 1rem; /* Ensure margin between items */
 }
 
-#mlPortfolio,
-#devopsPortfolio {
+#mlPortfolio, #devopsPortfolio {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr;
     gap: 2rem;
 }
-
 
 .portfolio-item:hover {
     transform: translateY(-5px);
@@ -471,5 +469,4 @@ footer {
     #devopsPortfolio {
         grid-template-columns: 1fr;
     }
-
 }
