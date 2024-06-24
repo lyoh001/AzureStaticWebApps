@@ -32,7 +32,7 @@ body {
     padding: 0 2rem;
 }
 
-header {
+#header {
     background-color: rgba(22, 27, 34, 0.8);
     position: fixed;
     width: 100%;
@@ -41,7 +41,7 @@ header {
     transition: background-color var(--transition-speed);
 }
 
-header.scrolled {
+#header.scrolled {
     background-color: var(--secondary-color);
 }
 
@@ -238,7 +238,7 @@ main {
     padding: 2rem;
     box-shadow: 0 4px 6px var(--shadow-color);
     transition: transform var(--transition-speed);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
 }
 
 .portfolio-item:hover {
@@ -288,7 +288,7 @@ main {
     border-radius: var(--border-radius);
 }
 
-footer {
+#footer {
     background-color: var(--secondary-color);
     padding: 2rem 0;
     text-align: center;
