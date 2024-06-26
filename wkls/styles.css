@@ -105,7 +105,6 @@ main {
     justify-content: center;
     text-align: center;
     color: var(--text-color);
-    background: var(--background-gradient);
 }
 
 .hero-content {
