@@ -380,7 +380,7 @@
             function getSelectedCardValues(cards) {
                 const selectedValues = [];
                 cards.forEach(card => {
-                    selectedValues.push(card.textContent.trim());
+                    selectedValues.push([card.textContent.trim()]);
                 });
                 return selectedValues;
             }
