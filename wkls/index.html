@@ -323,27 +323,27 @@
             const effort = document.getElementById('effort');
             const behaviour = document.getElementById('behaviour');
             const overallComment = document.getElementById('overallComment');
-            const communicationCheckboxes = document.getElementsByName('communicationCheckboxes');
-            const understandingCheckboxes = document.getElementsByName('understandingCheckboxes');
+            const communicationCards = document.querySelectorAll('#communicationCards .skill-card.selected');
+            const understandingCards = document.querySelectorAll('#understandingCards .skill-card.selected');
 
-            function getSelectedCheckboxValues(checkboxes) {
+            function getSelectedCardValues(cards) {
                 const selectedValues = [];
-                checkboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        selectedValues.push(checkbox.value);
-                    }
+                cards.forEach(card => {
+                    selectedValues.push(card.textContent.trim());
                 });
                 return selectedValues;
             }
+
             const data = {
                 studentName: studentName.value,
                 grade: grade.value,
-                communicationSkills: getSelectedCheckboxValues(communicationCheckboxes),
-                understandingSkills: getSelectedCheckboxValues(understandingCheckboxes),
+                communicationSkills: getSelectedCardValues(communicationCards),
+                understandingSkills: getSelectedCardValues(understandingCards),
                 attendance: attendance.value,
                 effort: effort.value,
                 behaviour: behaviour.value
             };
+
             fetch('/api/mlwklsbrush', {
                 method: 'POST',
                 headers: {
@@ -351,20 +351,20 @@
                 },
                 body: JSON.stringify(data)
             })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    }
-                    throw new Error('Network response was not ok.');
-                })
-                .then(responseData => {
-                    overallComment.value = responseData.updatedComment;
-                    const characterCount = overallComment.value.length;
-                    characterCountSpan.textContent = `${characterCount}/${maxCharacters}`;
-                })
-                .catch(error => {
-                    console.error('Error making API call:', error);
-                });
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(responseData => {
+                overallComment.value = responseData.updatedComment;
+                const characterCount = overallComment.value.length;
+                characterCountSpan.textContent = `${characterCount}/${maxCharacters}`;
+            })
+            .catch(error => {
+                console.error('Error making API call:', error);
+            });
          });
 
          document.getElementById('generateReportBtn').addEventListener('click', function (event) {
@@ -374,28 +374,28 @@
             const effort = document.getElementById('effort');
             const behaviour = document.getElementById('behaviour');
             const overallComment = document.getElementById('overallComment');
-            const communicationCheckboxes = document.getElementsByName('communicationCheckboxes');
-            const understandingCheckboxes = document.getElementsByName('understandingCheckboxes');
+            const communicationCards = document.querySelectorAll('#communicationCards .skill-card.selected');
+            const understandingCards = document.querySelectorAll('#understandingCards .skill-card.selected');
 
-            function getSelectedCheckboxValues(checkboxes) {
+            function getSelectedCardValues(cards) {
                 const selectedValues = [];
-                checkboxes.forEach(checkbox => {
-                    if (checkbox.checked) {
-                        selectedValues.push(checkbox.value);
-                    }
+                cards.forEach(card => {
+                    selectedValues.push(card.textContent.trim());
                 });
                 return selectedValues;
             }
+
             const data = {
                 studentName: studentName.value,
                 grade: grade.value,
-                communicationSkills: getSelectedCheckboxValues(communicationCheckboxes),
-                understandingSkills: getSelectedCheckboxValues(understandingCheckboxes),
+                communicationSkills: getSelectedCardValues(communicationCards),
+                understandingSkills: getSelectedCardValues(understandingCards),
                 attendance: attendance.value,
                 effort: effort.value,
                 behaviour: behaviour.value,
                 overallComment: overallComment.value
             };
+
             fetch('/api/mlwklsgenerate', {
                 method: 'POST',
                 headers: {
@@ -403,28 +403,28 @@
                 },
                 body: JSON.stringify(data)
             })
-                .then(response => {
-                    if (response.ok) {
-                        return response.blob();
-                    }
-                    throw new Error('Network response was not ok.');
-                })
-                .then(blob => {
-                    const studentName = document.getElementById('studentName').value.replace(/[^a-zA-Z0-9]/g, '_');
-                    const blobWithStudentName = new Blob([blob], { type: 'application/pdf' });
-                    const a = document.createElement('a');
-                    a.href = window.URL.createObjectURL(blobWithStudentName);
-                    a.download = `${studentName}.pdf`;
-                    document.body.appendChild(a);
-                    a.click();
-                    window.URL.revokeObjectURL(a.href);
-                    document.body.removeChild(a);
-                })
-                .catch(error => {
-                    console.error('Error generating report:', error);
-                });
-
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                }
+                throw new Error('Network response was not ok.');
+            })
+            .then(blob => {
+                const studentName = document.getElementById('studentName').value.replace(/[^a-zA-Z0-9]/g, '_');
+                const blobWithStudentName = new Blob([blob], { type: 'application/pdf' });
+                const a = document.createElement('a');
+                a.href = window.URL.createObjectURL(blobWithStudentName);
+                a.download = `${studentName}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(a.href);
+                document.body.removeChild(a);
+            })
+            .catch(error => {
+                console.error('Error generating report:', error);
+            });
          });
+
 
          const maxCharacters = 1250;
          const overallCommentTextarea = document.getElementById('overallComment');

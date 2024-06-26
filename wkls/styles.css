@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
     --primary-color: #2962FF; /* Blue accent */
     --secondary-color: #455A64; /* Dark grey */
@@ -100,8 +102,7 @@ label {
     color: var(--secondary-color);
 }
 
-input[type="text"],
-textarea {
+input[type="text"], textarea {
     width: 100%;
     padding: 0.875rem 1rem;
     border: 1px solid #BDBDBD;
@@ -112,8 +113,7 @@ textarea {
     transition: var(--transition);
 }
 
-input[type="text"]:focus,
-textarea:focus {
+input[type="text"]:focus, textarea:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 2px rgba(41, 98, 255, 0.2);
