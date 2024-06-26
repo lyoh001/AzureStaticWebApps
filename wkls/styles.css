@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #2962FF; /* Blue accent */
-    --secondary-color: #455A64; /* Dark grey */
-    --accent-color: #FFC107; /* Amber accent */
-    --text-color: #212121; /* Dark grey text */
-    --background-color: #F5F5F5; /* Light grey background */
+    --primary-color: #3498db;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --text-color: #34495e;
+    --background-color: #ecf0f1;
     --card-bg-color: #ffffff;
-    --input-bg-color: #ECEFF1; /* Lighter grey for inputs */
-    --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --input-bg-color: #f6f8fa;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --transition: all 0.3s ease;
 }
 
@@ -50,11 +50,12 @@ body {
 
 .container {
     background-color: var(--card-bg-color);
-    border-radius: 8px;
+    border-radius: 12px;
     padding: 3rem;
     width: 100%;
     max-width: 1200px;
     box-shadow: var(--box-shadow);
+    margin: 0 auto; /* Center the container horizontally */
 }
 
 header {
@@ -71,7 +72,7 @@ header {
 }
 
 h1 {
-    font-size: 2.0rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--secondary-color);
 }
@@ -86,8 +87,8 @@ h2 {
 }
 
 .icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     margin-right: 0.75rem;
 }
 
@@ -104,9 +105,9 @@ label {
 
 input[type="text"], textarea {
     width: 100%;
-    padding: 0.875rem 1rem;
-    border: 1px solid #BDBDBD;
-    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
     background-color: var(--input-bg-color);
     color: var(--text-color);
     font-size: 1rem;
@@ -116,7 +117,7 @@ input[type="text"], textarea {
 input[type="text"]:focus, textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(41, 98, 255, 0.2);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
 }
 
 .slider-section {
@@ -136,7 +137,7 @@ input[type="range"] {
     width: 100%;
     height: 8px;
     border-radius: 4px;
-    background: #CFD8DC;
+    background: #d7dcdf;
     outline: none;
     margin: 1rem 0;
     transition: var(--transition);
@@ -148,14 +149,14 @@ input[type="range"]::-webkit-slider-thumb {
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: var(--accent-color);
+    background: var(--primary-color);
     cursor: pointer;
     transition: var(--transition);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-    background: var(--primary-color);
+    background: var(--accent-color);
     transform: scale(1.1);
 }
 
@@ -176,22 +177,35 @@ input[type="range"]::-webkit-slider-thumb:hover {
 .skill-cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    gap: 1.5rem;
 }
 
 .skill-card {
     background-color: var(--card-bg-color);
-    border: 1px solid #ECEFF1;
-    border-radius: 4px;
-    padding: 1.25rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
     cursor: pointer;
     transition: var(--transition);
-    box-shadow: var(--box-shadow);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: transparent;
+    transition: var(--transition);
 }
 
 .skill-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .skill-card.selected {
@@ -200,16 +214,20 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border-color: var(--primary-color);
 }
 
-.skill-card.high {
-    border-left: 4px solid #4CAF50;
+.skill-card.selected::before {
+    background-color: #ffffff;
 }
 
-.skill-card.medium {
-    border-left: 4px solid var(--accent-color);
+.skill-card.high::before {
+    background-color: #2ecc71;
 }
 
-.skill-card.low {
-    border-left: 4px solid #F44336;
+.skill-card.medium::before {
+    background-color: #f39c12;
+}
+
+.skill-card.low::before {
+    background-color: #e74c3c;
 }
 
 .comment-section {
@@ -220,7 +238,7 @@ input[type="range"]::-webkit-slider-thumb:hover {
     display: block;
     text-align: right;
     font-size: 0.875rem;
-    color: #757575;
+    color: #7f8c8d;
     margin-top: 0.5rem;
 }
 
@@ -245,9 +263,9 @@ input[type="range"]::-webkit-slider-thumb:hover {
 }
 
 button {
-    padding: 0.875rem 1.5rem;
+    padding: 1rem 1.75rem;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     background-color: var(--primary-color);
     color: #ffffff;
     font-size: 1rem;
@@ -258,12 +276,11 @@ button {
 }
 
 button:hover {
-    background-color: #1976D2;
+    background-color: #2980b9;
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Media Queries for Responsiveness */
 @media (max-width: 1024px) {
     .container {
         padding: 2.5rem;
@@ -281,22 +298,30 @@ button:hover {
 @media (max-width: 768px) {
     body {
         padding: 1rem;
+        font-size: 14px;
     }
 
     .container {
-        padding: 2rem;
+        padding: 1.5rem;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 1.75rem;
     }
 
     .slider-section {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
     .skill-cards {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .skill-card {
+        padding: 1.25rem;
+        font-size: 0.9rem;
     }
 
     .button-section {
@@ -306,21 +331,22 @@ button:hover {
 
     button {
         width: 100%;
+        font-size: 0.9rem;
     }
 }
 
 @media (max-width: 480px) {
     .container {
-        padding: 1.5rem;
+        padding: 1rem;
     }
 
     h1 {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .logo {
-        width: 50px;
-        height: 50px;
+        width: 48px;
+        height: 48px;
     }
 
     h2 {
@@ -330,5 +356,14 @@ button:hover {
     input[type="text"],
     textarea {
         font-size: 0.9rem;
+        padding: 0.875rem 1rem;
+    }
+
+    .slider-section {
+        grid-template-columns: 1fr;
+    }
+
+    .skill-cards {
+        grid-template-columns: 1fr;
     }
 }
