@@ -137,8 +137,7 @@ main {
     color: var(--text-secondary);
 }
 
-.hero-content input[type="text"],
-.cta-button {
+.hero-content input[type="text"], .cta-button {
     width: 40%; /* Adjust the width as needed */
     max-width: 300px; /* Optional: set a maximum width */
     margin: 0 auto; /* Center the element */
