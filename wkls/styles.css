@@ -138,8 +138,15 @@ main {
     color: var(--text-secondary);
 }
 
+.hero-content input[type="text"],
+.cta-button {
+    width: 40%; /* Adjust the width as needed */
+    max-width: 300px; /* Optional: set a maximum width */
+    margin: 0 auto; /* Center the element */
+    display: block; /* Ensure the element is block-level */
+}
+
 .hero-content input[type="text"] {
-    width: 100%;
     padding: 0.8rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--text-secondary);
@@ -147,6 +154,9 @@ main {
     color: var(--text-color);
     margin-bottom: 1rem;
     transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+    outline: none; /* Ensure no outline on focus */
+    border-color: var(--accent-color); /* Always apply border color */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.3); /* Always apply shadow */
 }
 
 .hero-content input[type="text"]:focus {
@@ -156,12 +166,11 @@ main {
 }
 
 .cta-button {
-    display: inline-block;
     background-color: var(--accent-color);
     color: var(--primary-color);
     padding: 0.8rem 1.5rem;
     border: 2px solid var(--accent-color);
-    border-radius: var(--border-radius);
+    border-radius: 30px; /* Updated border-radius to match the button class */
     font-weight: bold;
     text-transform: uppercase;
     cursor: pointer;
