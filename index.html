@@ -1025,8 +1025,10 @@
                  anchor.addEventListener('click', function (e) {
                      e.preventDefault();
                      document.querySelector(this.getAttribute('href')).scrollIntoView({
-                         behavior: 'smooth'
+                        behavior: 'smooth'
                      });
+                     // Hide the nav menu when a link is clicked
+                     navMenu.classList.remove('active');
                  });
              });
          });
