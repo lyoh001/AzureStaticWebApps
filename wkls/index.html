@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="icon" href="/wkls/favicon.png">
     <title>WKLS Report Generator</title>
 </head>
+
 <body>
     <header id="header">
         <nav class="container">
@@ -39,22 +41,26 @@
             <div class="form-card">
                 <h2>Performance Metrics</h2>
                 <div class="performance-metrics">
-                    <div class="slider-container">
+                    <div class="metric-card">
+                        <i class="fas fa-graduation-cap"></i>
                         <label for="grade">Grade</label>
                         <input type="range" id="grade" name="grade" min="0" max="9" step="1" value="0">
                         <span class="slider-value" id="gradeValue">Prep</span>
                     </div>
-                    <div class="slider-container">
+                    <div class="metric-card">
+                        <i class="fas fa-calendar-check"></i>
                         <label for="attendance">Attendance</label>
                         <input type="range" id="attendance" name="attendance" min="0" max="4" step="1" value="2">
                         <span class="slider-value" id="attendanceValue">Satisfactory</span>
                     </div>
-                    <div class="slider-container">
+                    <div class="metric-card">
+                        <i class="fas fa-smile"></i>
                         <label for="behaviour">Behaviour</label>
                         <input type="range" id="behaviour" name="behaviour" min="0" max="4" step="1" value="2">
                         <span class="slider-value" id="behaviourValue">Satisfactory</span>
                     </div>
-                    <div class="slider-container">
+                    <div class="metric-card">
+                        <i class="fas fa-tasks"></i>
                         <label for="effort">Effort</label>
                         <input type="range" id="effort" name="effort" min="0" max="4" step="1" value="2">
                         <span class="slider-value" id="effortValue">Satisfactory</span>
@@ -66,11 +72,9 @@
             <div class="form-card">
                 <h2>Skills Assessment</h2>
                 <div class="skill-group">
-                    <h3>Communication</h3>
                     <div class="skill-cards" id="communicationCards"></div>
                 </div>
                 <div class="skill-group">
-                    <h3>Understanding</h3>
                     <div class="skill-cards" id="understandingCards"></div>
                 </div>
             </div>
@@ -78,13 +82,14 @@
         <section id="comment-section" class="container">
             <div class="form-card">
                 <h2>Overall Comment</h2>
-                <textarea id="overallComment" placeholder="Enter your overall feedback here. Need help? Click the 'Brush' button below for AI-generated suggestions."></textarea>
+                <textarea id="overallComment"
+                    placeholder="Need help? Click the 'Try Suggestions' button below for AI-generated comments to get you started."></textarea>
                 <span id="characterCount">0/1250</span>
             </div>
         </section>
         <section id="button-section" class="container">
             <div class="button-group">
-                <button id="brushBtn" class="button">AI Suggestion</button>
+                <button id="brushBtn" class="button">Try Suggestions</button>
                 <button id="generateReportBtn" class="button">Generate Report</button>
             </div>
         </section>
@@ -95,7 +100,8 @@
                 <li><a href="#" aria-label="GitHub"><i class="fab fa-github" aria-hidden="true"></i></a></li>
                 <li><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
                 <li><a href="#" aria-label="Website"><i class="fa fa-globe" aria-hidden="true"></i></a></li>
-                <li><a href="mailto:example@example.com" aria-label="Email"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+                <li><a href="mailto:example@example.com" aria-label="Email"><i class="fa fa-envelope"
+                            aria-hidden="true"></i></a></li>
             </ul>
             <p>&copy; 2024 WKLS. All rights reserved.</p>
         </div>
@@ -301,6 +307,12 @@
                     card.classList.add('low');
                 }
 
+                // Add category footer
+                const footer = document.createElement('div');
+                footer.className = 'skill-card-footer';
+                footer.textContent = containerId.includes('communication') ? 'Communication' : 'Understanding';
+                card.appendChild(footer);
+
                 card.addEventListener('click', () => {
                     if (card.classList.contains('selected')) {
                         card.classList.remove('selected');
@@ -490,9 +502,12 @@
                     document.querySelector(this.getAttribute('href')).scrollIntoView({
                         behavior: 'smooth'
                     });
+                    // Hide the nav menu when a link is clicked
+                    navMenu.classList.remove('active');
                 });
             });
         });
+
 
     </script>
 </body>
