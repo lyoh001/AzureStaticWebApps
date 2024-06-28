@@ -123,6 +123,7 @@
         function hideLoadingSpinner() {
             loadingSpinner.classList.add('hidden');
         }
+
         const skillOptions = {
             communication: {
                 0: ["[High] can confidently exchange simple Korean greetings, using appropriate experssion and body language.",
@@ -505,7 +506,9 @@
                 characterCountSpan.textContent = `${maxCharacters}/${maxCharacters}`;
             }
         });
+
         document.addEventListener('DOMContentLoaded', () => {
+            hideLoadingSpinner();
             updateSkillCards();
 
             const navToggle = document.querySelector('.nav-toggle');
@@ -530,7 +533,6 @@
                 });
             });
         });
-
     </script>
 </body>
 
