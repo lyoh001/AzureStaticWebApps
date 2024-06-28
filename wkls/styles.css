@@ -577,8 +577,7 @@ main {
     0% {
         transform: rotate(0deg);
     }
-
-    g 100% {
+    100% {
         transform: rotate(360deg);
     }
 }
