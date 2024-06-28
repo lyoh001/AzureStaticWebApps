@@ -114,6 +114,15 @@
         <div class="spinner"></div>
     </div>
     <script>
+        const loadingSpinner = document.getElementById('loadingSpinner');
+
+        function showLoadingSpinner() {
+            loadingSpinner.classList.remove('hidden');
+        }
+
+        function hideLoadingSpinner() {
+            loadingSpinner.classList.add('hidden');
+        }
         const skillOptions = {
             communication: {
                 0: ["[High] can confidently exchange simple Korean greetings, using appropriate experssion and body language.",
@@ -314,7 +323,6 @@
                     card.classList.add('low');
                 }
 
-                // Add category footer
                 const footer = document.createElement('div');
                 footer.className = 'skill-card-footer';
                 footer.textContent = containerId.includes('communication') ? 'Communication' : 'Understanding';
@@ -369,6 +377,7 @@
         });
 
         document.getElementById('brushBtn').addEventListener('click', function (event) {
+            showLoadingSpinner();
             const studentName = document.getElementById('studentName');
             const grade = document.getElementById('grade');
             const attendance = document.getElementById('attendance');
@@ -416,10 +425,14 @@
                 })
                 .catch(error => {
                     console.error('Error making API call:', error);
+                })
+                .finally(() => {
+                    hideLoadingSpinner();
                 });
         });
 
         document.getElementById('generateReportBtn').addEventListener('click', function (event) {
+            showLoadingSpinner();
             const studentName = document.getElementById('studentName');
             const grade = document.getElementById('grade');
             const attendance = document.getElementById('attendance');
@@ -447,6 +460,7 @@
                 behaviour: behaviour.value,
                 overallComment: overallComment.value
             };
+
             fetch('/api/mlwklsgenerate', {
                 method: 'POST',
                 headers: {
@@ -473,9 +487,11 @@
                 })
                 .catch(error => {
                     console.error('Error generating report:', error);
+                })
+                .finally(() => {
+                    hideLoadingSpinner();
                 });
         });
-
 
         const maxCharacters = 1250;
         const overallCommentTextarea = document.getElementById('overallComment');
@@ -489,8 +505,9 @@
                 characterCountSpan.textContent = `${maxCharacters}/${maxCharacters}`;
             }
         });
-        updateSkillCards();
         document.addEventListener('DOMContentLoaded', () => {
+            updateSkillCards();
+
             const navToggle = document.querySelector('.nav-toggle');
             const navMenu = document.querySelector('.nav-menu');
 
@@ -513,7 +530,6 @@
                 });
             });
         });
-
 
     </script>
 </body>
