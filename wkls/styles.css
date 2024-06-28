@@ -64,6 +64,13 @@ nav {
     color: var(--accent-color);
 }
 
+.subheader {
+	font-size: 0.8rem;
+	color: var(--text-secondary);
+	margin-top: 0rem;
+	font-weight: 300;
+}
+
 .nav-menu {
     display: flex;
     list-style: none;

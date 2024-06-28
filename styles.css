@@ -65,9 +65,9 @@ nav {
 }
 
 .subheader {
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	color: var(--text-secondary);
-	margin-top: 0.25rem;
+	margin-top: 0rem;
 	font-weight: 300;
 }
 
