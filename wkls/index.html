@@ -396,9 +396,6 @@
                 behaviour: behaviour.value
             };
 
-            // Show the loading spinner
-            document.getElementById('loadingSpinner').classList.remove('hidden');
-
             fetch('/api/mlwklsbrush', {
                 method: 'POST',
                 headers: {
@@ -419,13 +416,8 @@
                 })
                 .catch(error => {
                     console.error('Error making API call:', error);
-                })
-                .finally(() => {
-                    // Hide the loading spinner
-                    document.getElementById('loadingSpinner').classList.add('hidden');
                 });
         });
-
 
         document.getElementById('generateReportBtn').addEventListener('click', function (event) {
             const studentName = document.getElementById('studentName');
@@ -455,10 +447,6 @@
                 behaviour: behaviour.value,
                 overallComment: overallComment.value
             };
-
-            // Show the loading spinner
-            document.getElementById('loadingSpinner').classList.remove('hidden');
-
             fetch('/api/mlwklsgenerate', {
                 method: 'POST',
                 headers: {
@@ -485,13 +473,8 @@
                 })
                 .catch(error => {
                     console.error('Error generating report:', error);
-                })
-                .finally(() => {
-                    // Hide the loading spinner
-                    document.getElementById('loadingSpinner').classList.add('hidden');
                 });
         });
-
 
 
         const maxCharacters = 1250;
