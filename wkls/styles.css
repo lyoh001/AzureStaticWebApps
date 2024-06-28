@@ -74,26 +74,26 @@ nav {
 }
 
 .nav-menu a {
-	color: var(--text-color);
-	text-decoration: none;
-	font-weight: 500;
-	transition: color var(--transition-speed);
-	position: relative;
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-speed);
+    position: relative;
 }
 
 .nav-menu a::after {
-	content: '';
-	position: absolute;
-	width: 0;
-	height: 2px;
-	bottom: -4px;
-	left: 0;
-	background-color: var(--accent-color);
-	transition: width var(--transition-speed);
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width var(--transition-speed);
 }
 
 .nav-menu a:hover::after {
-	width: 100%;
+    width: 100%;
 }
 
 .nav-toggle {
@@ -545,16 +545,40 @@ main {
 }
 
 .spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left-color: #000;
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.inner-ring,
+.outer-ring {
+    position: absolute;
+    border: 4px solid transparent;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+}
+
+.inner-ring {
+    width: 100%;
+    height: 100%;
+    border-top-color: #3498db;
     animation: spin 1s linear infinite;
 }
 
+.outer-ring {
+    top: -10px;
+    left: -10px;
+    width: 70px;
+    height: 70px;
+    border-top-color: #e74c3c;
+    animation: spin 1.5s linear infinite reverse;
+}
+
 @keyframes spin {
-    to {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    g 100% {
         transform: rotate(360deg);
     }
 }
