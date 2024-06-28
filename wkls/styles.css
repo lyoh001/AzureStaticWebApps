@@ -527,6 +527,10 @@ main {
     display: none;
 }
 
+#loadingSpinner.hidden {
+    display: none;
+}
+
 #loadingSpinner {
     position: fixed;
     top: 0;
@@ -539,6 +543,7 @@ main {
     align-items: center;
     z-index: 1000;
 }
+
 .spinner {
     border: 4px solid rgba(0, 0, 0, 0.1);
     border-left-color: #000;
@@ -547,6 +552,7 @@ main {
     height: 40px;
     animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
