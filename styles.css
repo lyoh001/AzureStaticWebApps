@@ -167,6 +167,7 @@ main {
 	background-color: rgba(13, 17, 23, 0.8);
 	border-radius: var(--border-radius);
 	backdrop-filter: blur(10px);
+	top: -2rem;
 }
 
 .hero-content h2 {
