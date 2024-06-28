@@ -612,7 +612,7 @@ main {
     }
 
     .nav-menu li {
-        margin: 1.5rem 0;
+        margin: 1rem 1.5rem;
     }
 
     .nav-toggle {
