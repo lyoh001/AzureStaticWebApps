@@ -110,9 +110,6 @@
             <p>&copy; 2024 WKLS. All rights reserved.</p>
         </div>
     </footer>
-    <div class="loading-overlay" id="loadingOverlay">
-        <div class="spinner"></div>
-    </div>
     <script>
         const skillOptions = {
             communication: {
@@ -396,8 +393,6 @@
                 behaviour: behaviour.value
             };
 
-            document.getElementById('loadingSpinner').classList.remove('hidden');
-
             fetch('/api/mlwklsbrush', {
                 method: 'POST',
                 headers: {
@@ -418,12 +413,8 @@
                 })
                 .catch(error => {
                     console.error('Error making API call:', error);
-                })
-                .finally(() => {
-                    document.getElementById('loadingSpinner').classList.add('hidden');
                 });
         });
-
 
         document.getElementById('generateReportBtn').addEventListener('click', function (event) {
             const studentName = document.getElementById('studentName');
@@ -453,9 +444,6 @@
                 behaviour: behaviour.value,
                 overallComment: overallComment.value
             };
-
-            document.getElementById('loadingSpinner').classList.remove('hidden');
-
             fetch('/api/mlwklsgenerate', {
                 method: 'POST',
                 headers: {
@@ -482,9 +470,6 @@
                 })
                 .catch(error => {
                     console.error('Error generating report:', error);
-                })
-                .finally(() => {
-                    document.getElementById('loadingSpinner').classList.add('hidden');
                 });
         });
 
