@@ -606,7 +606,7 @@ main {
         display: none;
         flex-direction: column;
         position: absolute;
-        top: 35px;
+        top: 58px;
         left: 0;
         width: 100%;
         background-color: var(--secondary-color);
