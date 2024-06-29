@@ -112,7 +112,7 @@
             <p>&copy; 2024 WKLS. All rights reserved.</p>
         </div>
     </footer>
-    <div id="loadingSpinner"  class="hidden">
+    <div id="loadingSpinner" class="hidden">
         <div class="spinner">
             <div class="inner-ring"></div>
             <div class="outer-ring"></div>
@@ -334,6 +334,11 @@
                 footer.textContent = containerId.includes('communication') ? 'Communication' : 'Understanding';
                 card.appendChild(footer);
 
+                const remainingSelection = document.createElement('div');
+                remainingSelection.className = 'remaining-selection';
+                remainingSelection.textContent = maxAllowed - selectedCards;
+                card.appendChild(remainingSelection);
+
                 card.addEventListener('click', () => {
                     if (card.classList.contains('selected')) {
                         card.classList.remove('selected');
@@ -342,9 +347,18 @@
                         card.classList.add('selected');
                         selectedCards++;
                     }
+                    updateRemainingSelections(containerId, maxAllowed - selectedCards);
                 });
 
                 container.appendChild(card);
+            });
+        }
+
+        function updateRemainingSelections(containerId, remaining) {
+            const cards = document.querySelectorAll(`#${containerId} .skill-card`);
+            cards.forEach(card => {
+                const remainingSelection = card.querySelector('.remaining-selection');
+                remainingSelection.textContent = remaining;
             });
         }
 
