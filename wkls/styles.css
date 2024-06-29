@@ -225,6 +225,24 @@ main {
     transform: translateY(-5px);
 }
 
+.form-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent-color), #b8daf1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-speed);
+}
+
+.form-card:hover::before {
+    transform: scaleX(1);
+}
+
+
 #form-section h2,
 #skills-section h2,
 #comment-section h2 {
