@@ -232,7 +232,7 @@ main {
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, var(--accent-color), #b8daf1);
+    background: linear-gradient(90deg, var(--accent-color), #ffffff);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform var(--transition-speed);

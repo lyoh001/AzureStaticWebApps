@@ -465,8 +465,7 @@
             function getSelectedCardValues(cards) {
                 const selectedValues = [];
                 cards.forEach(card => {
-                    const cardText = card.childNodes[0].textContent.trim();
-                    selectedValues.push(cardText);
+                    selectedValues.push('[] ' + card.textContent.trim());
                 });
                 return selectedValues;
             }
