@@ -465,7 +465,8 @@
             function getSelectedCardValues(cards) {
                 const selectedValues = [];
                 cards.forEach(card => {
-                    selectedValues.push('[] ' + card.textContent.trim());
+                    const textContent = card.textContent.replace(/Communication\d*|Understanding\d*/, '').trim();
+                    selectedValues.push('[] ' + textContent);
                 });
                 return selectedValues;
             }
