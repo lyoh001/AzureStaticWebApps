@@ -10,6 +10,10 @@
     --font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     --background-gradient: linear-gradient(135deg, #ffffff, #f8f9fa);
     --heading-color: #212529;
+    --card-gradient: linear-gradient(135deg, #f6f8f9 0%, #e5ebee 100%);
+    --card-hover-gradient: linear-gradient(135deg, #e5ebee 0%, #f6f8f9 100%);
+    --card-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: 0 15px 30px rgba(0, 123, 255, 0.2);
 }
 
 * {
@@ -158,8 +162,7 @@ main {
     color: var(--text-secondary);
 }
 
-.hero-content input[type="text"],
-.cta-button {
+.hero-content input[type="text"], .cta-button {
     width: 50%;
     max-width: 300px;
     margin: 0 auto;
@@ -204,10 +207,7 @@ main {
     color: var(--accent-color);
 }
 
-#form-section,
-#skills-section,
-#comment-section,
-#button-section {
+#form-section, #skills-section, #comment-section, #button-section {
     padding: 2rem 0;
     background-color: var(--secondary-color);
 }
@@ -219,6 +219,7 @@ main {
     box-shadow: 0 10px 30px var(--shadow-color);
     margin-bottom: 1.5rem;
     transition: transform var(--transition-speed);
+    position: relative;
 }
 
 .form-card:hover {
@@ -242,10 +243,7 @@ main {
     transform: scaleX(1);
 }
 
-
-#form-section h2,
-#skills-section h2,
-#comment-section h2 {
+#form-section h2, #skills-section h2, #comment-section h2 {
     text-align: center;
     margin-bottom: 1.5rem;
     font-size: 1.5rem;
@@ -253,9 +251,7 @@ main {
     position: relative;
 }
 
-#form-section h2::after,
-#skills-section h2::after,
-#comment-section h2::after {
+#form-section h2::after, #skills-section h2::after, #comment-section h2::after {
     content: none;
 }
 
@@ -355,7 +351,7 @@ main {
     border-radius: 16px;
     padding: 2rem;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
     position: relative;
     overflow: hidden;
@@ -367,8 +363,8 @@ main {
 }
 
 .skill-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 123, 255, 0.15);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 123, 255, 0.2);
 }
 
 .skill-card.selected {
@@ -426,6 +422,7 @@ main {
     color: var(--text-secondary);
     letter-spacing: 0.5px;
     border-radius: 0 0 16px 16px;
+    background: linear-gradient(to right, rgba(76, 175, 80, 0.1), rgba(33, 150, 243, 0.1));
 }
 
 .skill-card.high {
@@ -451,11 +448,28 @@ main {
     padding: 4px 10px;
     border-radius: 20px;
     opacity: 0.8;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .skill-card:hover .remaining-selection {
     opacity: 1;
+    transform: scale(1.1);
+}
+
+.skill-card:hover {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    }
 }
 
 #comment-section textarea {
@@ -588,8 +602,7 @@ main {
     height: 50px;
 }
 
-.inner-ring,
-.outer-ring {
+.inner-ring, .outer-ring {
     position: absolute;
     border: 4px solid transparent;
     border-radius: 50%;
@@ -615,7 +628,6 @@ main {
     0% {
         transform: rotate(0deg);
     }
-
     100% {
         transform: rotate(360deg);
     }
